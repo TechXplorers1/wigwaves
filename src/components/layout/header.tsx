@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Link from 'next/link';
@@ -33,6 +34,7 @@ export default function Header() {
   const [isClient, setIsClient] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -104,7 +106,7 @@ export default function Header() {
                  </Button>
               )}
 
-              <Sheet>
+              <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon" className="relative" aria-label="Open cart">
                     <ShoppingCart className="h-5 w-5" />
@@ -116,7 +118,7 @@ export default function Header() {
                   </Button>
                 </SheetTrigger>
                 <SheetContent className="flex flex-col">
-                  <CartSheet />
+                  <CartSheet closeCart={() => setIsCartOpen(false)} />
                 </SheetContent>
               </Sheet>
               

@@ -9,7 +9,7 @@ import { SheetHeader, SheetTitle, SheetFooter } from '@/components/ui/sheet';
 import { ScrollArea } from '../ui/scroll-area';
 import { Separator } from '../ui/separator';
 
-export default function CartSheet() {
+export default function CartSheet({ closeCart }: { closeCart: () => void }) {
   const { cartItems, updateQuantity, removeFromCart, cartTotal, itemCount } = useCart();
 
   const shippingCost = cartTotal > 0 ? 15.00 : 0;
@@ -86,10 +86,10 @@ export default function CartSheet() {
                 <span>${total.toFixed(2)}</span>
               </div>
               <div className="flex flex-col gap-2">
-                <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+                <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" onClick={closeCart}>
                   <Link href="/checkout">Proceed to Checkout</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="w-full">
+                <Button asChild size="lg" variant="outline" className="w-full" onClick={closeCart}>
                   <Link href="/cart">View Cart</Link>
                 </Button>
               </div>
@@ -101,7 +101,7 @@ export default function CartSheet() {
           <ShoppingBag className="h-24 w-24 text-muted-foreground/30 mb-4" />
           <h3 className="text-xl font-semibold">Your Cart is Empty</h3>
           <p className="text-muted-foreground mt-2">Looks like you haven't added anything yet.</p>
-          <Button asChild className="mt-6">
+          <Button asChild className="mt-6" onClick={closeCart}>
             <Link href="/shop">Start Shopping</Link>
           </Button>
         </div>
