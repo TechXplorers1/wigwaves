@@ -106,13 +106,19 @@ export default function AdminDashboardPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Tabs defaultValue="upcoming">
+              <Tabs defaultValue="overview">
                 <TabsList>
+                  <TabsTrigger value="overview">Overview</TabsTrigger>
                   <TabsTrigger value="upcoming">Upcoming Orders</TabsTrigger>
                   <TabsTrigger value="returns">Returns</TabsTrigger>
                   <TabsTrigger value="exchanges">Exchanges</TabsTrigger>
                   <TabsTrigger value="canceled">Canceled</TabsTrigger>
                 </TabsList>
+                <TabsContent value="overview">
+                   <div className="flex items-center justify-center h-48">
+                    <p className="text-muted-foreground">Order overview coming soon.</p>
+                  </div>
+                </TabsContent>
                 <TabsContent value="upcoming">
                   <Table>
                     <TableHeader>
