@@ -342,9 +342,44 @@ export default function AdminDashboardPage() {
                   </Table>
                 </TabsContent>
                 <TabsContent value="exchanges">
-                   <div className="flex items-center justify-center h-48">
-                    <p className="text-muted-foreground">No exchanges to show.</p>
-                  </div>
+                   <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Customer</TableHead>
+                        <TableHead className="hidden sm:table-cell">Order ID</TableHead>
+                        <TableHead className="hidden sm:table-cell">Status</TableHead>
+                        <TableHead className="hidden md:table-cell">Exchange Date</TableHead>
+                        <TableHead className="text-right">Original Item</TableHead>
+                        <TableHead className="text-right">New Item</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>
+                          <div className="font-medium">Jackson Lee</div>
+                          <div className="hidden text-sm text-muted-foreground md:inline">
+                            jackson.lee@email.com
+                          </div>
+                        </TableCell>
+                        <TableCell className="hidden sm:table-cell">#ORD-006</TableCell>
+                        <TableCell className="hidden sm:table-cell">
+                          <Badge className="text-xs" variant="outline">
+                            Pending Approval
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">2023-07-25</TableCell>
+                        <TableCell className="text-right">Sleek Midnight</TableCell>
+                        <TableCell className="text-right">Golden Waves</TableCell>
+                        <TableCell className="text-right">
+                           <div className="flex gap-2 justify-end">
+                            <Button variant="outline" size="sm">Approve</Button>
+                            <Button variant="destructive" size="sm">Decline</Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
                 </TabsContent>
                 <TabsContent value="canceled">
                    <div className="flex items-center justify-center h-48">
