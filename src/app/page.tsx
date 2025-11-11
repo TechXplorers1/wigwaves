@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { products } from "@/lib/products";
 import ProductCard from "@/components/product/product-card";
@@ -39,9 +39,6 @@ export default function Home() {
                 <Link href="/shop">
                   Shop All Wigs <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/ai-recommender">AI Try-On Tool</Link>
               </Button>
             </div>
           </div>
@@ -85,26 +82,25 @@ export default function Home() {
       <section className="w-full py-12 md:py-24 bg-card">
         <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
           <div className="space-y-4">
-            <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm">AI Powered</div>
-            <h2 className="text-3xl font-headline tracking-tighter sm:text-4xl md:text-5xl">Can't Decide? Let Us Help.</h2>
+            <h2 className="text-3xl font-headline tracking-tighter sm:text-4xl md:text-5xl">Unsure Where To Start?</h2>
             <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
-              Our revolutionary AI recommendation tool analyzes your features and preferences to suggest the perfect wig. Upload a photo or describe your desired look to get started.
+              Browse our curated collection of best-sellers and customer favorites. We have a style for every occasion and personality. Your perfect look is just a click away.
             </p>
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link href="/ai-recommender">
-                Find My Style
+              <Link href="/shop">
+                Explore Best-Sellers
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
           <div className="flex justify-center">
             <Image
-              src="https://picsum.photos/seed/ai-tool/600/600"
+              src="https://picsum.photos/seed/shop-now/600/600"
               width={600}
               height={600}
-              alt="AI tool illustration"
+              alt="Woman trying on wigs"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover"
-              data-ai-hint="futuristic technology"
+              data-ai-hint="fashion model"
             />
           </div>
         </div>
@@ -124,7 +120,7 @@ export default function Home() {
               </CardHeader>
               <CardContent className="space-y-2">
                 <p className="font-medium text-lg">&ldquo;Absolutely in love!&rdquo;</p>
-                <p className="text-muted-foreground">The quality is amazing and it looks so natural. The AI recommender was surprisingly accurate and helped me find this gem.</p>
+                <p className="text-muted-foreground">The quality is amazing and it looks so natural. I've received so many compliments since I started wearing it.</p>
                 <footer className="font-semibold pt-2">- Sarah J.</footer>
               </CardContent>
             </Card>
