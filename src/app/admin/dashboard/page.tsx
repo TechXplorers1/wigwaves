@@ -95,9 +95,9 @@ export default function AdminDashboardPage() {
           <Card className="xl:col-span-2">
             <CardHeader className="flex flex-row items-center">
               <div className="grid gap-2">
-                <CardTitle>Transactions</CardTitle>
+                <CardTitle>Upcoming Orders</CardTitle>
                 <CardDescription>
-                  Recent transactions from your store.
+                  Here are the upcoming orders that need to be processed.
                 </CardDescription>
               </div>
             </CardHeader>
@@ -106,7 +106,7 @@ export default function AdminDashboardPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Customer</TableHead>
-                    <TableHead className="hidden xl:table-column">Type</TableHead>
+                    <TableHead className="hidden xl:table-column">Order ID</TableHead>
                     <TableHead className="hidden xl:table-column">Status</TableHead>
                     <TableHead className="hidden xl:table-column">Date</TableHead>
                     <TableHead className="text-right">Amount</TableHead>
@@ -120,14 +120,14 @@ export default function AdminDashboardPage() {
                         liam@example.com
                       </div>
                     </TableCell>
-                    <TableCell className="hidden xl:table-column">Sale</TableCell>
+                    <TableCell className="hidden xl:table-column">#ORD-001</TableCell>
                     <TableCell className="hidden xl:table-column">
                       <Badge className="text-xs" variant="outline">
-                        Approved
+                        Pending
                       </Badge>
                     </TableCell>
                     <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                      2023-06-23
+                      2023-07-15
                     </TableCell>
                     <TableCell className="text-right">$250.00</TableCell>
                   </TableRow>
@@ -138,14 +138,14 @@ export default function AdminDashboardPage() {
                         olivia@example.com
                       </div>
                     </TableCell>
-                    <TableCell className="hidden xl:table-column">Refund</TableCell>
+                    <TableCell className="hidden xl:table-column">#ORD-002</TableCell>
                     <TableCell className="hidden xl:table-column">
                       <Badge className="text-xs" variant="outline">
-                        Declined
+                        Processing
                       </Badge>
                     </TableCell>
                     <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                      2023-06-24
+                      2023-07-16
                     </TableCell>
                     <TableCell className="text-right">$150.00</TableCell>
                   </TableRow>
@@ -157,15 +157,15 @@ export default function AdminDashboardPage() {
                       </div>
                     </TableCell>
                     <TableCell className="hidden xl:table-column">
-                      Subscription
+                      #ORD-003
                     </TableCell>
                     <TableCell className="hidden xl:table-column">
                       <Badge className="text-xs" variant="outline">
-                        Approved
+                        Pending
                       </Badge>
                     </TableCell>
                     <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                      2023-06-25
+                      2023-07-17
                     </TableCell>
                     <TableCell className="text-right">$350.00</TableCell>
                   </TableRow>
@@ -176,14 +176,14 @@ export default function AdminDashboardPage() {
                         emma@example.com
                       </div>
                     </TableCell>
-                    <TableCell className="hidden xl:table-column">Sale</TableCell>
+                    <TableCell className="hidden xl:table-column">#ORD-004</TableCell>
                     <TableCell className="hidden xl:table-column">
                       <Badge className="text-xs" variant="outline">
-                        Approved
+                        Shipped
                       </Badge>
                     </TableCell>
                     <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                      2023-06-26
+                      2023-07-18
                     </TableCell>
                     <TableCell className="text-right">$450.00</TableCell>
                   </TableRow>
@@ -194,14 +194,14 @@ export default function AdminDashboardPage() {
                         liam@example.com
                       </div>
                     </TableCell>
-                    <TableCell className="hidden xl:table-column">Sale</TableCell>
+                    <TableCell className="hidden xl:table-column">#ORD-005</TableCell>
                     <TableCell className="hidden xl:table-column">
                       <Badge className="text-xs" variant="outline">
-                        Approved
+                        Delivered
                       </Badge>
                     </TableCell>
                     <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                      2023-06-27
+                      2023-07-19
                     </TableCell>
                     <TableCell className="text-right">$550.00</TableCell>
                   </TableRow>
@@ -296,3 +296,5 @@ export default function AdminDashboardPage() {
     </div>
   );
 }
+
+    
