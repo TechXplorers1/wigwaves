@@ -1,8 +1,10 @@
+import Breadcrumb from '@/components/layout/breadcrumb';
 import Image from 'next/image';
 
 export default function PoliciesPage() {
   return (
     <div className="container py-12 md:py-24">
+      <Breadcrumb />
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-headline tracking-tight">Shipping & Return Policy</h1>

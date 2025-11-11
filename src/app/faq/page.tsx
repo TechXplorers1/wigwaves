@@ -1,3 +1,4 @@
+import Breadcrumb from "@/components/layout/breadcrumb";
 import {
   Accordion,
   AccordionContent,
@@ -60,6 +61,7 @@ const faqs = [
 export default function FAQPage() {
   return (
     <div className="container py-12 md:py-24">
+      <Breadcrumb />
       <div className="text-center mb-12">
         <h1 className="text-4xl sm:text-6xl font-headline tracking-tight">Frequently Asked Questions</h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">

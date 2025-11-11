@@ -1,6 +1,9 @@
+import Breadcrumb from "@/components/layout/breadcrumb";
+
 export default function HairCareTipsPage() {
   return (
     <div className="container py-12 md:py-24">
+      <Breadcrumb />
       <div className="text-center mb-12">
         <h1 className="text-4xl sm:text-6xl font-headline tracking-tight">Hair Care Tips</h1>
         <p className="mt-4 max-w-4xl mx-auto text-lg text-muted-foreground">

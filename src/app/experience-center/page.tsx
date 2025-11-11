@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { placeholderImages } from '@/lib/placeholder-images';
+import Breadcrumb from '@/components/layout/breadcrumb';
 
 const ExperienceCenterPage = () => {
   const heroImage = placeholderImages.find(p => p.id === 'experience-hero');
@@ -25,7 +26,7 @@ const ExperienceCenterPage = () => {
       )}
 
       <div className="container mx-auto -mt-48 px-4 md:px-8 relative z-10">
-        
+        <Breadcrumb />
         {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-headline tracking-tight text-foreground">

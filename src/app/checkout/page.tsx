@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import Breadcrumb from '@/components/layout/breadcrumb';
 
 export default function CheckoutPage() {
   const { cartItems, cartTotal, itemCount } = useCart();
@@ -16,6 +17,7 @@ export default function CheckoutPage() {
   if (itemCount === 0) {
     return (
         <div className="container text-center py-24">
+            <Breadcrumb />
             <h1 className="text-2xl font-semibold">Your cart is empty.</h1>
             <Button asChild className="mt-4">
                 <Link href="/shop">Go Shopping</Link>
@@ -30,6 +32,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="container py-12 md:py-24">
+      <Breadcrumb />
       <div className="text-center mb-12">
         <h1 className="text-4xl sm:text-6xl font-headline tracking-tight">Checkout</h1>
       </div>

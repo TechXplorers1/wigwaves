@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { placeholderImages } from '@/lib/placeholder-images';
+import Breadcrumb from '@/components/layout/breadcrumb';
 
 const styleArticles = [
     {
@@ -91,13 +92,7 @@ export default function Style101Page() {
     return (
         <div className="container py-12 md:py-24">
             <div className="text-left mb-4">
-                <nav aria-label="Breadcrumb">
-                    <ol className="list-none p-0 inline-flex items-center text-sm text-muted-foreground">
-                        <li><Link href="/" className="hover:text-primary">HOME</Link></li>
-                        <li className="mx-2">/</li>
-                        <li>STYLE 101</li>
-                    </ol>
-                </nav>
+                <Breadcrumb />
             </div>
             <div className="text-center mb-12">
                 <h1 className="text-4xl sm:text-6xl font-headline tracking-tight">STYLE 101</h1>

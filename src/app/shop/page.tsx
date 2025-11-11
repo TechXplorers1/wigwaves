@@ -6,6 +6,7 @@ import { products } from '@/lib/products';
 import ProductCard from '@/components/product/product-card';
 import Filters from '@/components/shop/filters';
 import type { Wig } from '@/lib/types';
+import Breadcrumb from '@/components/layout/breadcrumb';
 
 export default function ShopPage() {
   const searchParams = useSearchParams();
@@ -60,6 +61,7 @@ export default function ShopPage() {
 
   return (
     <div className="container py-8">
+      <Breadcrumb />
       <div className="text-center mb-12">
         <h1 className="text-4xl sm:text-6xl font-headline tracking-tight">Our Collection</h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">

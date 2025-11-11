@@ -1,3 +1,4 @@
+import Breadcrumb from "@/components/layout/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 export default function ContactPage() {
   return (
     <div className="container py-12 md:py-24">
+      <Breadcrumb />
       <div className="max-w-2xl mx-auto">
         <Card>
           <CardHeader className="text-center">
