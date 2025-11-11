@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 
 import Logo from '@/components/logo';
-import { NAV_LINKS } from '@/lib/constants';
 
 export default function Footer() {
   const socialLinks = [
@@ -25,18 +24,6 @@ export default function Footer() {
             <p className="text-muted-foreground max-w-xs">
               Find your perfect style with our high-quality wigs and AI-powered recommendations.
             </p>
-             <div className="flex space-x-4">
-              {socialLinks.map(social => (
-                <Link
-                  key={social.name}
-                  href={social.href}
-                  aria-label={social.name}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <social.icon className="h-6 w-6" />
-                </Link>
-              ))}
-            </div>
           </div>
           <div className="md:col-span-2">
              <h3 className="font-semibold mb-4">Shop</h3>
@@ -64,6 +51,21 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
+          </div>
+          <div className="md:col-span-2">
+            <h3 className="font-semibold mb-4">Connect With Us</h3>
+            <div className="flex space-x-4">
+              {socialLinks.map(social => (
+                <Link
+                  key={social.name}
+                  href={social.href}
+                  aria-label={social.name}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <social.icon className="h-6 w-6" />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
         <div className="mt-12 pt-8 border-t">
