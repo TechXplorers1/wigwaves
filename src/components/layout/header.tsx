@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, Search, ShoppingCart, User, X } from 'lucide-react';
+import { Menu, Search, ShoppingCart, User, X, LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { NAV_LINKS } from '@/lib/constants';
@@ -14,9 +14,19 @@ import CartSheet from '../cart/cart-sheet';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Input } from '../ui/input';
+import { useAuth } from '@/context/auth-context';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function Header() {
   const { itemCount } = useCart();
+  const { user, logout } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
@@ -34,12 +44,15 @@ export default function Header() {
     }
   };
 
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  }
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Logo />
-        </div>
+      <div className="container flex h-16 items-center">
+        <Logo />
         
         {isClient && (
           <>
@@ -61,7 +74,7 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="flex items-center justify-end gap-2">
+            <div className="flex flex-1 items-center justify-end gap-2">
               <div className={cn(
                 "flex items-center gap-2 transition-all duration-300",
                 isSearchOpen ? 'w-full max-w-xs' : 'w-0'
@@ -106,11 +119,33 @@ export default function Header() {
                 </SheetContent>
               </Sheet>
               
-              <Button variant="ghost" size="icon" asChild>
-                <Link href="/login" aria-label="User account">
-                  <User className="h-5 w-5" />
-                </Link>
-              </Button>
+              {user ? (
+                 <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon" aria-label="User account">
+                      <User className="h-5 w-5" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem>Billing</DropdownMenuItem>
+                    <DropdownMenuItem>Settings</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleLogout}>
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Button variant="ghost" size="icon" asChild>
+                  <Link href="/login" aria-label="User account">
+                    <User className="h-5 w-5" />
+                  </Link>
+                </Button>
+              )}
 
               <Sheet>
                 <SheetTrigger asChild>

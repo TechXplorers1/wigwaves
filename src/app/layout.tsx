@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { CartProvider } from '@/context/cart-context';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import { AuthProvider } from '@/context/auth-context';
 
 export const metadata: Metadata = {
   title: 'WigVerse - Find Your Perfect Style',
@@ -28,14 +29,16 @@ export default function RootLayout({
           "min-h-screen bg-background font-body antialiased",
         )}
       >
-        <CartProvider>
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-          <Toaster />
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+            <Toaster />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );
