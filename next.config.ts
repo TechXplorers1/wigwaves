@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '1hairstop.in',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
 };
