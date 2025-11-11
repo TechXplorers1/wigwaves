@@ -13,26 +13,6 @@ import CartSheet from '../cart/cart-sheet';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-function HeaderNav() {
-  const pathname = usePathname();
-  return (
-    <nav className="hidden md:flex md:items-center md:gap-6 md:ml-10 text-sm font-medium">
-      {NAV_LINKS.map(link => (
-        <Link
-          key={link.name}
-          href={link.href}
-          className={cn(
-            'transition-colors hover:text-primary',
-            pathname === link.href ? 'text-primary' : 'text-muted-foreground'
-          )}
-        >
-          {link.name}
-        </Link>
-      ))}
-    </nav>
-  );
-}
-
 export default function Header() {
   const { itemCount } = useCart();
   const pathname = usePathname();
@@ -49,7 +29,20 @@ export default function Header() {
         
         {isClient && (
           <div className="flex flex-1 items-center justify-end gap-2">
-            <HeaderNav />
+            <nav className="hidden md:flex md:items-center md:gap-6 md:ml-10 text-sm font-medium">
+              {NAV_LINKS.map(link => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={cn(
+                    'transition-colors hover:text-primary',
+                    pathname === link.href ? 'text-primary' : 'text-muted-foreground'
+                  )}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
             <div className="flex items-center gap-2 ml-auto">
                 <Button variant="ghost" size="icon" aria-label="Search">
                   <Search className="h-5 w-5" />
