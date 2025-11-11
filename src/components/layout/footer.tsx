@@ -29,7 +29,6 @@ export default function Footer() {
              <h3 className="font-semibold mb-4">Shop</h3>
               <ul className="space-y-2">
                 <li><Link href="/shop" className="text-muted-foreground hover:text-primary transition-colors">Shop</Link></li>
-                <li><Link href="/wig-forms" className="text-muted-foreground hover:text-primary transition-colors">Wig Forms</Link></li>
                 <li><Link href="/hair-care-tips" className="text-muted-foreground hover:text-primary transition-colors">Hair Care Tips</Link></li>
               </ul>
           </div>
