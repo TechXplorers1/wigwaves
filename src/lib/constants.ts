@@ -1,4 +1,4 @@
-export const APP_NAME = 'IOXIO';
+export const APP_NAME = 'WigVerse';
 
 export const PRIMARY_NAV_LINKS = [
   { name: 'About Us', href: '/about' },
