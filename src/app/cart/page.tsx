@@ -42,7 +42,7 @@ export default function CartPage() {
                     />
                     <div className="flex-1">
                       <h3 className="font-semibold text-lg">{item.name}</h3>
-                      <p className="text-muted-foreground">${item.price.toFixed(2)}</h3 >
+                      <p className="text-muted-foreground">${item.price.toFixed(2)}</p>
                       <div className="flex items-center gap-2 mt-4">
                         <Button
                           variant="outline"
