@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import { Slider } from "../ui/slider";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Button } from "../ui/button";
 
 const styles = ['Straight', 'Wavy', 'Curly', 'Pixie', 'Bob'];
@@ -48,9 +48,8 @@ export default function Filters({ onFilterChange }: { onFilterChange: (filters: 
   };
   
   useEffect(() => {
-    // This applies filters immediately on any change except for the slider.
-    // To apply on button click only, you would remove this useEffect.
-    // handleApplyFilters();
+    handleApplyFilters();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
 
@@ -73,7 +72,7 @@ export default function Filters({ onFilterChange }: { onFilterChange: (filters: 
                 value={localPriceRange}
                 max={500}
                 step={10}
-                onValueChange={setLocalPriceRange}
+                onValueChange={(value) => setLocalPriceRange(value as [number, number])}
               />
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>${localPriceRange[0]}</span>
