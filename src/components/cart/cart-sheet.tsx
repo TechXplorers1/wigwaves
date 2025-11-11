@@ -72,7 +72,7 @@ export default function CartSheet() {
                   <span>${cartTotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Shipping</span>
+                  <span>Shipping Charge</span>
                   <span>${shippingCost.toFixed(2)}</span>
                 </div>
                  <div className="flex justify-between">
