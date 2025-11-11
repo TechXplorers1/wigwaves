@@ -30,6 +30,12 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/components/ui/tabs';
 
 export default function AdminDashboardPage() {
   return (
@@ -93,120 +99,143 @@ export default function AdminDashboardPage() {
         </div>
         <div className="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
           <Card className="xl:col-span-2">
-            <CardHeader className="flex flex-row items-center">
-              <div className="grid gap-2">
-                <CardTitle>Upcoming Orders</CardTitle>
-                <CardDescription>
-                  Here are the upcoming orders that need to be processed.
-                </CardDescription>
-              </div>
+            <CardHeader>
+              <CardTitle>Order Management</CardTitle>
+              <CardDescription>
+                Manage upcoming orders, returns, exchanges, and cancellations.
+              </CardDescription>
             </CardHeader>
             <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Customer</TableHead>
-                    <TableHead>Order ID</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="hidden md:table-cell">Date</TableHead>
-                    <TableHead className="text-right">Amount</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>
-                      <div className="font-medium">Liam Johnson</div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        liam@example.com
-                      </div>
-                    </TableCell>
-                    <TableCell>#ORD-001</TableCell>
-                    <TableCell>
-                      <Badge className="text-xs" variant="outline">
-                        Pending
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      2023-07-15
-                    </TableCell>
-                    <TableCell className="text-right">$250.00</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <div className="font-medium">Olivia Smith</div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        olivia@example.com
-                      </div>
-                    </TableCell>
-                    <TableCell>#ORD-002</TableCell>
-                    <TableCell>
-                      <Badge className="text-xs" variant="outline">
-                        Processing
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      2023-07-16
-                    </TableCell>
-                    <TableCell className="text-right">$150.00</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <div className="font-medium">Noah Williams</div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        noah@example.com
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      #ORD-003
-                    </TableCell>
-                    <TableCell>
-                      <Badge className="text-xs" variant="outline">
-                        Pending
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      2023-07-17
-                    </TableCell>
-                    <TableCell className="text-right">$350.00</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <div className="font-medium">Emma Brown</div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        emma@example.com
-                      </div>
-                    </TableCell>
-                    <TableCell>#ORD-004</TableCell>
-                    <TableCell>
-                      <Badge className="text-xs" variant="outline">
-                        Shipped
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      2023-07-18
-                    </TableCell>
-                    <TableCell className="text-right">$450.00</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <div className="font-medium">Liam Johnson</div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        liam@example.com
-                      </div>
-                    </TableCell>
-                    <TableCell>#ORD-005</TableCell>
-                    <TableCell>
-                      <Badge className="text-xs" variant="outline">
-                        Delivered
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      2023-07-19
-                    </TableCell>
-                    <TableCell className="text-right">$550.00</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
+              <Tabs defaultValue="upcoming">
+                <TabsList>
+                  <TabsTrigger value="upcoming">Upcoming Orders</TabsTrigger>
+                  <TabsTrigger value="returns">Returns</TabsTrigger>
+                  <TabsTrigger value="exchanges">Exchanges</TabsTrigger>
+                  <TabsTrigger value="canceled">Canceled</TabsTrigger>
+                </TabsList>
+                <TabsContent value="upcoming">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Customer</TableHead>
+                        <TableHead>Order ID</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead className="hidden md:table-cell">
+                          Date
+                        </TableHead>
+                        <TableHead className="text-right">Amount</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>
+                          <div className="font-medium">Liam Johnson</div>
+                          <div className="hidden text-sm text-muted-foreground md:inline">
+                            liam@example.com
+                          </div>
+                        </TableCell>
+                        <TableCell>#ORD-001</TableCell>
+                        <TableCell>
+                          <Badge className="text-xs" variant="outline">
+                            Pending
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          2023-07-15
+                        </TableCell>
+                        <TableCell className="text-right">$250.00</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <div className="font-medium">Olivia Smith</div>
+                          <div className="hidden text-sm text-muted-foreground md:inline">
+                            olivia@example.com
+                          </div>
+                        </TableCell>
+                        <TableCell>#ORD-002</TableCell>
+                        <TableCell>
+                          <Badge className="text-xs" variant="outline">
+                            Processing
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          2023-07-16
+                        </TableCell>
+                        <TableCell className="text-right">$150.00</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <div className="font-medium">Noah Williams</div>
+                          <div className="hidden text-sm text-muted-foreground md:inline">
+                            noah@example.com
+                          </div>
+                        </TableCell>
+                        <TableCell>#ORD-003</TableCell>
+                        <TableCell>
+                          <Badge className="text-xs" variant="outline">
+                            Pending
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          2023-07-17
+                        </TableCell>
+                        <TableCell className="text-right">$350.00</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <div className="font-medium">Emma Brown</div>
+                          <div className="hidden text-sm text-muted-foreground md:inline">
+                            emma@example.com
+                          </div>
+                        </TableCell>
+                        <TableCell>#ORD-004</TableCell>
+                        <TableCell>
+                          <Badge className="text-xs" variant="outline">
+                            Shipped
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          2023-07-18
+                        </TableCell>
+                        <TableCell className="text-right">$450.00</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <div className="font-medium">Liam Johnson</div>
+                          <div className="hidden text-sm text-muted-foreground md:inline">
+                            liam@example.com
+                          </div>
+                        </TableCell>
+                        <TableCell>#ORD-005</TableCell>
+                        <TableCell>
+                          <Badge className="text-xs" variant="outline">
+                            Delivered
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          2023-07-19
+                        </TableCell>
+                        <TableCell className="text-right">$550.00</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TabsContent>
+                <TabsContent value="returns">
+                  <div className="flex items-center justify-center h-48">
+                    <p className="text-muted-foreground">No returns to show.</p>
+                  </div>
+                </TabsContent>
+                <TabsContent value="exchanges">
+                   <div className="flex items-center justify-center h-48">
+                    <p className="text-muted-foreground">No exchanges to show.</p>
+                  </div>
+                </TabsContent>
+                <TabsContent value="canceled">
+                   <div className="flex items-center justify-center h-48">
+                    <p className="text-muted-foreground">No canceled orders to show.</p>
+                  </div>
+                </TabsContent>
+              </Tabs>
             </CardContent>
           </Card>
           <Card>
@@ -216,7 +245,10 @@ export default function AdminDashboardPage() {
             <CardContent className="grid gap-8">
               <div className="flex items-center gap-4">
                 <Avatar className="hidden h-9 w-9 sm:flex">
-                  <AvatarImage src="https://i.pravatar.cc/150?u=1" alt="Avatar" />
+                  <AvatarImage
+                    src="https://i.pravatar.cc/150?u=1"
+                    alt="Avatar"
+                  />
                   <AvatarFallback>OM</AvatarFallback>
                 </Avatar>
                 <div className="grid gap-1">
@@ -231,7 +263,10 @@ export default function AdminDashboardPage() {
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="hidden h-9 w-9 sm:flex">
-                  <AvatarImage src="https://i.pravatar.cc/150?u=2" alt="Avatar" />
+                  <AvatarImage
+                    src="https://i.pravatar.cc/150?u=2"
+                    alt="Avatar"
+                  />
                   <AvatarFallback>JL</AvatarFallback>
                 </Avatar>
                 <div className="grid gap-1">
@@ -246,7 +281,10 @@ export default function AdminDashboardPage() {
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="hidden h-9 w-9 sm:flex">
-                  <AvatarImage src="https://i.pravatar.cc/150?u=3" alt="Avatar" />
+                  <AvatarImage
+                    src="https://i.pravatar.cc/150?u=3"
+                    alt="Avatar"
+                  />
                   <AvatarFallback>IN</AvatarFallback>
                 </Avatar>
                 <div className="grid gap-1">
@@ -261,7 +299,10 @@ export default function AdminDashboardPage() {
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="hidden h-9 w-9 sm:flex">
-                  <AvatarImage src="https://i.pravatar.cc/150?u=4" alt="Avatar" />
+                  <AvatarImage
+                    src="https://i.pravatar.cc/150?u=4"
+                    alt="Avatar"
+                  />
                   <AvatarFallback>WK</AvatarFallback>
                 </Avatar>
                 <div className="grid gap-1">
@@ -276,7 +317,10 @@ export default function AdminDashboardPage() {
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="hidden h-9 w-9 sm:flex">
-                  <AvatarImage src="https://i.pravatar.cc/150?u=5" alt="Avatar" />
+                  <AvatarImage
+                    src="https://i.pravatar.cc/150?u=5"
+                    alt="Avatar"
+                  />
                   <AvatarFallback>SD</AvatarFallback>
                 </Avatar>
                 <div className="grid gap-1">
