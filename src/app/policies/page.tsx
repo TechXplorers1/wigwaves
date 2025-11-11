@@ -37,10 +37,10 @@ export default function PoliciesPage() {
 
           <div className="mt-12">
             <Image 
-                src="https://storage.googleapis.com/stc-assets/ai-assets/71e624c8-382a-4318-9730-10a112260f71.png"
+                src="https://static.wixstatic.com/media/9f09d6_0963c023b5b04037bfd7637a112d4359~mv2.jpg/v1/fill/w_882,h_882,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/948AC026-6EF4-4C92-8181-1D2713493BB2.jpg"
                 alt="Head measurement guide for wigs"
                 width={800}
-                height={965}
+                height={800}
                 className="mx-auto rounded-lg"
                 data-ai-hint="head measurement guide"
             />
