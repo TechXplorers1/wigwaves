@@ -65,7 +65,7 @@ export default function AdminDashboardPage() {
             </CardContent>
           </Card>
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between spacey-0 pb-2">
               <CardTitle className="text-sm font-medium">New Users</CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
@@ -142,7 +142,7 @@ export default function AdminDashboardPage() {
                     <TableCell className="hidden xl:table-column">
                       <Badge className="text-xs" variant="outline">
                         Declined
-                      </Badge<ctrl100>I've set up the initial framework for the dashboard, including key metric cards, a transactions table, and a recent sales list. Now, I'm ready to populate it with dynamic data to make it fully functional.
+                      </Badge>
                     </TableCell>
                     <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
                       2023-06-24
@@ -173,8 +173,7 @@ export default function AdminDashboardPage() {
                     <TableCell>
                       <div className="font-medium">Emma Brown</div>
                       <div className="hidden text-sm text-muted-foreground md:inline">
-                       <ctrl100>I've set up the initial framework for the dashboard, including key metric cards, a transactions table, and a recent sales list. Now, I'm ready to populate it with dynamic data to make it fully functional.
- emma@example.com
+                        emma@example.com
                       </div>
                     </TableCell>
                     <TableCell className="hidden xl:table-column">Sale</TableCell>
