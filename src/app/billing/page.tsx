@@ -21,6 +21,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
 
 const mockBillingHistory = [
   {
@@ -60,6 +61,14 @@ export default function BillingPage() {
   return (
     <div className="container py-12 md:py-24">
       <div className="max-w-4xl mx-auto">
+         <div className="mb-4">
+          <Button variant="outline" asChild>
+              <Link href="/profile">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Profile
+              </Link>
+          </Button>
+        </div>
         <Card>
           <CardHeader>
             <CardTitle className="text-3xl font-headline">Billing History</CardTitle>
