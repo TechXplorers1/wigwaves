@@ -11,7 +11,7 @@ const ExperienceCenterPage = () => {
     <div className="bg-background">
       
       {heroImage && (
-        <section className="relative w-full h-[40vh] md:h-[50vh]">
+        <section className="relative w-full h-[40vh] md:h-[50vh] mb-16">
           <Image
             src={heroImage.imageUrl}
             alt={heroImage.description}
@@ -20,14 +20,14 @@ const ExperienceCenterPage = () => {
             priority
             data-ai-hint={heroImage.imageHint}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
         </section>
       )}
 
-      <div className="container mx-auto py-16 px-4 md:px-8">
+      <div className="container mx-auto -mt-48 px-4 md:px-8 relative z-10">
         
         {/* Header Section */}
-        <div className="text-center mb-12 -mt-24 relative z-10">
+        <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-headline tracking-tight text-foreground">
             Our Flagship Experience Center
           </h1>
