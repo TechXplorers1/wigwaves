@@ -63,9 +63,9 @@ export default function BillingPage() {
       <div className="max-w-4xl mx-auto">
          <div className="mb-4">
           <Button variant="outline" asChild>
-              <Link href="/profile">
+              <Link href="/">
                   <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Profile
+                  Back to Home
               </Link>
           </Button>
         </div>
