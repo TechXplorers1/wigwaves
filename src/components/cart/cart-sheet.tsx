@@ -68,7 +68,7 @@ export default function CartSheet() {
             <div className="w-full space-y-4">
                <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span>Subtotal</span>
+                  <span>Product price</span>
                   <span>${cartTotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
