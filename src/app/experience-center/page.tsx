@@ -2,21 +2,39 @@
 import Image from 'next/image';
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { placeholderImages } from '@/lib/placeholder-images';
 
 const ExperienceCenterPage = () => {
+  const heroImage = placeholderImages.find(p => p.id === 'experience-hero');
+
   return (
     <div className="bg-background">
+      
+      {heroImage && (
+        <section className="relative w-full h-[40vh] md:h-[50vh]">
+          <Image
+            src={heroImage.imageUrl}
+            alt={heroImage.description}
+            fill
+            className="object-cover object-center"
+            priority
+            data-ai-hint={heroImage.imageHint}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
+        </section>
+      )}
+
       <div className="container mx-auto py-16 px-4 md:px-8">
         
         {/* Header Section */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 -mt-24 relative z-10">
           <h1 className="text-4xl md:text-5xl font-headline tracking-tight text-foreground">
             Our Flagship Experience Center
           </h1>
-          <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
+          <p className="mt-4 max-w-3xl mx-auto text-lg text-foreground/90">
             Our Flagship store consists of a Shop, Salon, and Training Open Space. It's a hub for everyone to explore our products, for our members to style their hair, and a training area where we organize regular workshops and events. We call our Flagship store an "EXPERIENCE CENTER".
           </p>
-          <p className="mt-2 max-w-3xl mx-auto text-lg text-muted-foreground">
+          <p className="mt-2 max-w-3xl mx-auto text-lg text-foreground/90">
             Customers can touch, feel, wear, and get to know our products before they buy them. Come and let us enhance your beauty.
           </p>
         </div>

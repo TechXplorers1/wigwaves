@@ -22,6 +22,12 @@
       "imageHint": "confident woman city"
     },
     {
+      "id": "experience-hero",
+      "description": "The interior of the WigVerse experience center.",
+      "imageUrl": "https://images.unsplash.com/photo-1695527081874-b674c46f40fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzYWxvbiUyMGludGVyaW9yfGVufDB8fHx8MTc2Mjg1NjI2MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "salon interior"
+    },
+    {
       "id": "wig1",
       "description": "A long, wavy blonde wig.",
       "imageUrl": "https://images.unsplash.com/photo-1650901463035-d1104cd2dba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibG9uZGUlMjB3aWd8ZW58MHx8fHwxNzYyNzk2MzE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
