@@ -115,11 +115,6 @@ export default function AdminDashboardPage() {
                   <TabsTrigger value="canceled">Canceled</TabsTrigger>
                 </TabsList>
                 <TabsContent value="overview">
-                   <div className="flex items-center justify-center h-48">
-                    <p className="text-muted-foreground">Order overview coming soon.</p>
-                  </div>
-                </TabsContent>
-                <TabsContent value="upcoming">
                   <Table>
                     <TableHeader>
                       <TableRow>
@@ -225,6 +220,11 @@ export default function AdminDashboardPage() {
                       </TableRow>
                     </TableBody>
                   </Table>
+                </TabsContent>
+                <TabsContent value="upcoming">
+                   <div className="flex items-center justify-center h-48">
+                    <p className="text-muted-foreground">Upcoming orders content coming soon.</p>
+                  </div>
                 </TabsContent>
                 <TabsContent value="returns">
                   <div className="flex items-center justify-center h-48">
