@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, Search, ShoppingCart, User, X, LogOut, LayoutDashboard } from 'lucide-react';
+import { Menu, Search, ShoppingCart, User, X, LogOut, LayoutDashboard, UserCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { NAV_LINKS } from '@/lib/constants';
@@ -147,7 +147,12 @@ export default function Header() {
                       <>
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link href="/profile">
+                            <UserCircle className="mr-2 h-4 w-4" />
+                            <span>Profile</span>
+                          </Link>
+                        </DropdownMenuItem>
                         <DropdownMenuItem>Billing</DropdownMenuItem>
                         <DropdownMenuItem>Settings</DropdownMenuItem>
                         <DropdownMenuSeparator />
