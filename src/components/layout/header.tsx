@@ -96,7 +96,7 @@ export default function Header() {
           <Logo />
         </div>
 
-        <nav className="hidden lg:flex items-center justify-center gap-x-6">
+        <nav className="hidden lg:flex items-center gap-x-6">
             {PRIMARY_NAV_LINKS.map(link => (
                 <Link
                     key={link.name}
