@@ -222,9 +222,64 @@ export default function AdminDashboardPage() {
                   </Table>
                 </TabsContent>
                 <TabsContent value="upcoming">
-                   <div className="flex items-center justify-center h-48">
-                    <p className="text-muted-foreground">Upcoming orders content coming soon.</p>
-                  </div>
+                   <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Customer</TableHead>
+                        <TableHead className="hidden sm:table-cell">Order ID</TableHead>
+                        <TableHead className="hidden sm:table-cell">Status</TableHead>
+                        <TableHead className="hidden md:table-cell">Date</TableHead>
+                        <TableHead className="text-right">Amount</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>
+                          <div className="font-medium">Liam Johnson</div>
+                          <div className="hidden text-sm text-muted-foreground md:inline">
+                            liam@example.com
+                          </div>
+                        </TableCell>
+                        <TableCell className="hidden sm:table-cell">#ORD-001</TableCell>
+                        <TableCell className="hidden sm:table-cell">
+                          <Badge className="text-xs" variant="outline">
+                            Pending
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">2023-07-15</TableCell>
+                        <TableCell className="text-right">$250.00</TableCell>
+                        <TableCell className="text-right">
+                           <div className="flex gap-2 justify-end">
+                            <Button variant="outline" size="sm">Approve</Button>
+                            <Button variant="destructive" size="sm">Decline</Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <div className="font-medium">Noah Williams</div>
+                          <div className="hidden text-sm text-muted-foreground md:inline">
+                            noah@example.com
+                          </div>
+                        </TableCell>
+                        <TableCell className="hidden sm:table-cell">#ORD-003</TableCell>
+                        <TableCell className="hidden sm:table-cell">
+                          <Badge className="text-xs" variant="outline">
+                            Pending
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">2023-07-17</TableCell>
+                        <TableCell className="text-right">$350.00</TableCell>
+                         <TableCell className="text-right">
+                           <div className="flex gap-2 justify-end">
+                            <Button variant="outline" size="sm">Approve</Button>
+                            <Button variant="destructive" size="sm">Decline</Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
                 </TabsContent>
                 <TabsContent value="returns">
                   <div className="flex items-center justify-center h-48">
