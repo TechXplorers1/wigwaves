@@ -160,10 +160,8 @@ export default function Header() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <Button variant="ghost" size="icon" asChild>
-                  <Link href="/login" aria-label="User account">
-                    <User className="h-5 w-5" />
-                  </Link>
+                <Button asChild>
+                  <Link href="/login">Login</Link>
                 </Button>
               )}
 
