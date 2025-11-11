@@ -93,7 +93,10 @@ export default function Filters() {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <Button className="w-full">Apply Filters</Button>
+      <div className="grid grid-cols-2 gap-4">
+        <Button variant="outline">Clear Filters</Button>
+        <Button>Apply Filters</Button>
+      </div>
     </div>
   );
 }
