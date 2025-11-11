@@ -1,15 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/product/product-card';
 import Filters from '@/components/shop/filters';
 import type { Wig } from '@/lib/types';
 
 export default function ShopPage() {
+  const searchParams = useSearchParams();
   const [filteredProducts, setFilteredProducts] = useState<Wig[]>(products);
 
-  const handleFilterChange = (filters: {
+  const applyFilters = (filters: {
     search: string;
     priceRange: [number, number];
     styles: string[];
@@ -53,6 +55,8 @@ export default function ShopPage() {
 
     setFilteredProducts(tempProducts);
   };
+  
+  const initialSearch = searchParams.get('search') || '';
 
   return (
     <div className="container py-8">
@@ -66,7 +70,7 @@ export default function ShopPage() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <aside className="lg:col-span-1">
           <div className="sticky top-20">
-            <Filters onFilterChange={handleFilterChange} />
+            <Filters onFilterChange={applyFilters} initialSearch={initialSearch} />
           </div>
         </aside>
         <main className="lg:col-span-3">

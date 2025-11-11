@@ -22,9 +22,19 @@ const initialFilters = {
   materials: [] as string[],
 };
 
-export default function Filters({ onFilterChange }: { onFilterChange: (filters: typeof initialFilters) => void }) {
-  const [filters, setFilters] = useState(initialFilters);
-  const [localPriceRange, setLocalPriceRange] = useState(initialFilters.priceRange);
+export default function Filters({ 
+  onFilterChange,
+  initialSearch = ''
+}: { 
+  onFilterChange: (filters: typeof initialFilters) => void,
+  initialSearch?: string;
+}) {
+  const [filters, setFilters] = useState({...initialFilters, search: initialSearch});
+  const [priceRange, setPriceRange] = useState(initialFilters.priceRange);
+
+  useEffect(() => {
+    onFilterChange(filters);
+  }, [filters, onFilterChange]);
 
   const handleCheckboxChange = (category: keyof typeof initialFilters, value: string) => {
     setFilters(prev => {
@@ -36,20 +46,16 @@ export default function Filters({ onFilterChange }: { onFilterChange: (filters: 
     });
   };
 
-  const handleApplyFilters = () => {
-    onFilterChange({ ...filters, priceRange: localPriceRange });
-  };
-  
+  const handleApplyPrice = () => {
+    setFilters(prev => ({...prev, priceRange: priceRange}))
+  }
+
   const handleClearFilters = () => {
     setFilters(initialFilters);
-    setLocalPriceRange(initialFilters.priceRange);
+    setPriceRange(initialFilters.priceRange);
     onFilterChange(initialFilters);
   };
   
-  useEffect(() => {
-    handleApplyFilters();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters]);
 
   const FilterGroup = ({ title, children }: { title: string, children: React.ReactNode }) => (
     <Card>
@@ -75,14 +81,14 @@ export default function Filters({ onFilterChange }: { onFilterChange: (filters: 
       <FilterGroup title="Price Range">
         <div className="space-y-4">
           <Slider
-            value={localPriceRange}
+            value={priceRange}
             max={500}
             step={10}
-            onValueChange={(value) => setLocalPriceRange(value as [number, number])}
+            onValueChange={(value) => setPriceRange(value as [number, number])}
           />
           <div className="flex justify-between text-sm text-muted-foreground">
-            <span>${localPriceRange[0]}</span>
-            <span>${localPriceRange[1]}</span>
+            <span>${priceRange[0]}</span>
+            <span>${priceRange[1]}</span>
           </div>
         </div>
       </FilterGroup>
@@ -149,7 +155,7 @@ export default function Filters({ onFilterChange }: { onFilterChange: (filters: 
 
       <div className="grid grid-cols-2 gap-4">
         <Button variant="outline" onClick={handleClearFilters}>Clear Filters</Button>
-        <Button onClick={handleApplyFilters}>Apply Filters</Button>
+        <Button onClick={handleApplyPrice}>Apply Filters</Button>
       </div>
     </div>
   );
