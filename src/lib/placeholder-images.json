@@ -1,3 +1,82 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "A woman with a beautiful wig in a stylish setting.",
+      "imageUrl": "https://images.unsplash.com/photo-1568252542512-9fe8fe9c87bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmYXNoaW9uJTIwbW9kZWx8ZW58MHx8fHwxNzYyNzY5NDMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fashion model"
+    },
+    {
+      "id": "wig1",
+      "description": "A long, wavy blonde wig.",
+      "imageUrl": "https://images.unsplash.com/photo-1650901463035-d1104cd2dba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibG9uZGUlMjB3aWd8ZW58MHx8fHwxNzYyNzk2MzE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blonde wig"
+    },
+    {
+      "id": "wig2",
+      "description": "A short, chic brunette bob.",
+      "imageUrl": "https://picsum.photos/seed/wig2/600/800",
+      "imageHint": "brunette bob"
+    },
+    {
+      "id": "wig3",
+      "description": "A vibrant red curly wig.",
+      "imageUrl": "https://images.unsplash.com/photo-1654539883424-5ec80922599b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZWQlMjBjdXJseSUyMGhhaXJ8ZW58MHx8fHwxNzYyODQwNjAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "red curly hair"
+    },
+    {
+      "id": "wig4",
+      "description": "A sleek, long black wig.",
+      "imageUrl": "https://images.unsplash.com/photo-1559227514-606d502a6c26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsb25nJTIwYmxhY2slMjBoYWlyfGVufDB8fHx8MTc2Mjg0MDYwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "long black hair"
+    },
+    {
+      "id": "wig5",
+      "description": "A silver-grey pixie cut wig.",
+      "imageUrl": "https://images.unsplash.com/photo-1471017851983-fc49d89c57c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaXhpZSUyMGN1dHxlbnwwfHx8fDE3NjI4MTUyNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pixie cut"
+    },
+    {
+      "id": "wig6",
+      "description": "A pastel pink shoulder-length wig.",
+      "imageUrl": "https://images.unsplash.com/photo-1533103261400-4f1ebafdbea7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaW5rJTIwaGFpcnxlbnwwfHx8fDE3NjI4NDA2MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pink hair"
+    },
+    {
+      "id": "wig7",
+      "description": "A wig with dark roots and ombre ends.",
+      "imageUrl": "https://images.unsplash.com/photo-1559234699-d9a087a98537?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvbWJyZSUyMGhhaXJ8ZW58MHx8fHwxNzYyODQwNjAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ombre hair"
+    },
+    {
+      "id": "wig8",
+      "description": "A voluminous afro-style wig.",
+      "imageUrl": "https://images.unsplash.com/photo-1632765866070-3fadf25d3d5b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhZnJvJTIwaGFpcnxlbnwwfHx8fDE3NjI4NDA2MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "afro hair"
+    },
+    {
+      "id": "wig9",
+      "description": "A braided cornrow wig.",
+      "imageUrl": "https://images.unsplash.com/photo-1664645478451-e22012491601?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxicmFpZGVkJTIwaGFpcnxlbnwwfHx8fDE3NjI4NDA2MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "braided hair"
+    },
+    {
+      "id": "wig10",
+      "description": "A men's toupee, dark brown.",
+      "imageUrl": "https://images.unsplash.com/photo-1456327102063-fb5054efe647?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtZW5zJTIwaGFpcnxlbnwwfHx8fDE3NjI4NDA2MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mens hair"
+    },
+    {
+      "id": "wig11",
+      "description": "A fun, bright blue costume wig.",
+      "imageUrl": "https://images.unsplash.com/photo-1543416286-92a0f1a39703?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibHVlJTIwaGFpcnxlbnwwfHx8fDE3NjI4NDA2MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue hair"
+    },
+    {
+      "id": "wig12",
+      "description": "A lace front wig with baby hairs.",
+      "imageUrl": "https://images.unsplash.com/photo-1588527962980-72746d95973e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsYWNlJTIwZnJvbnQlMjB3aWd8ZW58MHx8fHwxNzYyODQwNjAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "lace front wig"
+    }
+  ]
 }
