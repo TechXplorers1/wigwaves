@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 export default function CartPage() {
   const { cartItems, updateQuantity, removeFromCart, cartTotal, itemCount } = useCart();
 
-  const shippingCost = 5.00;
+  const shippingCost = 15.00;
   const tax = cartTotal * 0.08;
   const total = cartTotal + shippingCost + tax;
 
