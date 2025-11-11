@@ -89,11 +89,59 @@ export default function Header() {
     router.push('/');
   }
 
+  const closeCart = () => setIsCartOpen(false);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-20 items-center">
-        <div className="flex items-center lg:flex-1">
-          <Logo />
+        <div className="flex items-center lg:hidden">
+           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className='w-full max-w-sm'>
+              <Logo className="mb-8" />
+              <nav className="grid gap-4 text-base font-medium">
+                {[...PRIMARY_NAV_LINKS, ...SECONDARY_NAV_LINKS].map(link => (
+                    link.sublinks ? (
+                        <DropdownMenu key={link.name}>
+                            <DropdownMenuTrigger asChild>
+                                <div className='flex items-center justify-between'>
+                                    <Link href={link.href} className={cn('transition-colors hover:text-primary', pathname.startsWith(link.href) ? 'text-primary' : 'text-muted-foreground')} onClick={() => setIsMenuOpen(false)}>{link.name}</Link>
+                                    <ChevronDown className="h-4 w-4" />
+                                </div>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                {link.sublinks.map(sublink => (
+                                    <DropdownMenuItem key={sublink.name} asChild>
+                                        <Link href={sublink.href} onClick={() => setIsMenuOpen(false)}>{sublink.name}</Link>
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    ) : (
+                        <Link
+                            key={link.name}
+                            href={link.href}
+                            className={cn(
+                            'transition-colors hover:text-primary',
+                            pathname === link.href ? 'text-primary' : 'text-muted-foreground'
+                            )}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            {link.name}
+                        </Link>
+                    )
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
+        
+        <div className="flex-1 flex items-center">
+            <Logo />
         </div>
 
         <nav className="hidden lg:flex items-center gap-x-6">
@@ -114,7 +162,7 @@ export default function Header() {
         {isClient && (
           <>
             <div className="flex flex-1 items-center justify-end gap-2">
-                <div className="relative hidden sm:block w-full max-w-xs">
+                <div className="relative hidden sm:block w-full max-w-[17rem]">
                     <Input
                         type="search"
                         placeholder="Search..."
@@ -138,7 +186,7 @@ export default function Header() {
                   </Button>
                 </SheetTrigger>
                 <SheetContent className="flex flex-col">
-                  <CartSheet closeCart={() => setIsCartOpen(false)} />
+                  <CartSheet closeCart={closeCart} />
                 </SheetContent>
               </Sheet>
               
@@ -206,50 +254,6 @@ export default function Header() {
                   <Link href="/login">Login</Link>
                 </Button>
               )}
-
-              <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu">
-                    <Menu className="h-6 w-6" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className='w-full max-w-sm'>
-                  <Logo className="mb-8" />
-                  <nav className="grid gap-4 text-base font-medium">
-                    {[...PRIMARY_NAV_LINKS, ...SECONDARY_NAV_LINKS].map(link => (
-                        link.sublinks ? (
-                            <DropdownMenu key={link.name}>
-                                <DropdownMenuTrigger asChild>
-                                    <div className='flex items-center justify-between'>
-                                        <Link href={link.href} className={cn('transition-colors hover:text-primary', pathname.startsWith(link.href) ? 'text-primary' : 'text-muted-foreground')} onClick={() => setIsMenuOpen(false)}>{link.name}</Link>
-                                        <ChevronDown className="h-4 w-4" />
-                                    </div>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent>
-                                    {link.sublinks.map(sublink => (
-                                        <DropdownMenuItem key={sublink.name} asChild>
-                                            <Link href={sublink.href} onClick={() => setIsMenuOpen(false)}>{sublink.name}</Link>
-                                        </DropdownMenuItem>
-                                    ))}
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        ) : (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className={cn(
-                                'transition-colors hover:text-primary',
-                                pathname === link.href ? 'text-primary' : 'text-muted-foreground'
-                                )}
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                {link.name}
-                            </Link>
-                        )
-                    ))}
-                  </nav>
-                </SheetContent>
-              </Sheet>
             </div>
           </>
         )}
