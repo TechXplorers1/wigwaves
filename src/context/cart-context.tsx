@@ -30,7 +30,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             : item
         );
       }
-      return [...prevItems, { id: product.id, name: product.name, price: product.price, image: product.image, quantity }];
+      return [...prevItems, { ...product, quantity }];
     });
     toast({
       title: "Added to Cart",

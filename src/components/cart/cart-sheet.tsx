@@ -7,9 +7,14 @@ import { useCart } from '@/context/cart-context';
 import { Button } from '@/components/ui/button';
 import { SheetHeader, SheetTitle, SheetFooter } from '@/components/ui/sheet';
 import { ScrollArea } from '../ui/scroll-area';
+import { Separator } from '../ui/separator';
 
 export default function CartSheet() {
   const { cartItems, updateQuantity, removeFromCart, cartTotal, itemCount } = useCart();
+
+  const shippingCost = cartTotal > 0 ? 15.00 : 0;
+  const tax = cartTotal * 0.08;
+  const total = cartTotal > 0 ? cartTotal + shippingCost + tax : 0;
 
   return (
     <>
@@ -61,11 +66,25 @@ export default function CartSheet() {
           </ScrollArea>
           <SheetFooter className="mt-auto pt-6 border-t">
             <div className="w-full space-y-4">
-              <div className="flex justify-between font-semibold text-lg">
-                <span>Subtotal</span>
-                <span>${cartTotal.toFixed(2)}</span>
+               <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span>Subtotal</span>
+                  <span>${cartTotal.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Shipping</span>
+                  <span>${shippingCost.toFixed(2)}</span>
+                </div>
+                 <div className="flex justify-between">
+                  <span>Taxes (8%)</span>
+                  <span>${tax.toFixed(2)}</span>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground">Shipping and taxes calculated at checkout.</p>
+              <Separator />
+              <div className="flex justify-between font-semibold text-lg">
+                <span>Total</span>
+                <span>${total.toFixed(2)}</span>
+              </div>
               <div className="flex flex-col gap-2">
                 <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                   <Link href="/checkout">Proceed to Checkout</Link>

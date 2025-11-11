@@ -10,10 +10,6 @@ export type Wig = {
   material: 'Human Hair' | 'Synthetic';
 };
 
-export type CartItem = {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
+export type CartItem = Wig & {
   quantity: number;
 };
