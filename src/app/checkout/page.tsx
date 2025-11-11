@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { CreditCard, Landmark, Wallet } from 'lucide-react';
 import { useCart } from '@/context/cart-context';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 export default function CheckoutPage() {
   const { cartItems, cartTotal, itemCount } = useCart();
@@ -65,23 +67,33 @@ export default function CheckoutPage() {
             </div>
           </form>
 
-          <h2 className="text-2xl font-headline my-6 pt-6 border-t">Payment Details</h2>
-          <form className="space-y-4">
-            <div className="space-y-2">
-                <Label htmlFor="card-number">Card Number</Label>
-                <Input id="card-number" placeholder="•••• •••• •••• ••••" />
-            </div>
-             <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="expiry-date">Expiry Date</Label>
-                <Input id="expiry-date" placeholder="MM / YY" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="cvc">CVC</Label>
-                <Input id="cvc" placeholder="•••" />
-              </div>
-            </div>
-          </form>
+          <h2 className="text-2xl font-headline my-6 pt-6 border-t">Payment Method</h2>
+          <RadioGroup defaultValue="card" className="space-y-4">
+            <Label
+              htmlFor="card"
+              className="flex items-center gap-4 rounded-lg border p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground has-[input:checked]:bg-primary has-[input:checked]:text-primary-foreground has-[input:checked]:border-primary"
+            >
+              <RadioGroupItem value="card" id="card" className="sr-only" />
+              <CreditCard className="h-6 w-6" />
+              <span className="font-semibold">Credit Card</span>
+            </Label>
+            <Label
+              htmlFor="paypal"
+              className="flex items-center gap-4 rounded-lg border p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground has-[input:checked]:bg-primary has-[input:checked]:text-primary-foreground has-[input:checked]:border-primary"
+            >
+              <RadioGroupItem value="paypal" id="paypal" className="sr-only" />
+              <Landmark className="h-6 w-6" />
+              <span className="font-semibold">PayPal</span>
+            </Label>
+            <Label
+              htmlFor="google-pay"
+              className="flex items-center gap-4 rounded-lg border p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground has-[input:checked]:bg-primary has-[input:checked]:text-primary-foreground has-[input:checked]:border-primary"
+            >
+              <RadioGroupItem value="google-pay" id="google-pay" className="sr-only" />
+              <Wallet className="h-6 w-6" />
+              <span className="font-semibold">Google Pay</span>
+            </Label>
+          </RadioGroup>
         </div>
 
         <div className="sticky top-24">
@@ -106,7 +118,7 @@ export default function CheckoutPage() {
               </div>
               <div className="mt-6 pt-6 border-t space-y-2">
                 <div className="flex justify-between text-muted-foreground">
-                  <span>Subtotal</span>
+                  <span>Product price</span>
                   <span>${cartTotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-muted-foreground">
