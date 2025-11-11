@@ -36,14 +36,16 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
-        <Logo />
+      <div className="container flex h-16 items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Logo />
+        </div>
         
         {isClient && (
-          <div className="flex flex-1 items-center justify-end gap-2">
+          <>
             <nav className={cn(
-              "hidden md:flex md:items-center md:gap-6 text-sm font-medium transition-all duration-300",
-              isSearchOpen ? "md:w-0 md:opacity-0 md:overflow-hidden" : "md:ml-10"
+              "hidden md:flex md:items-center md:gap-6 text-sm font-medium transition-all duration-300 absolute left-1/2 -translate-x-1/2",
+              isSearchOpen ? "opacity-0" : "opacity-100"
             )}>
               {NAV_LINKS.map(link => (
                 <Link
@@ -59,10 +61,10 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="flex items-center gap-2 ml-auto">
+            <div className="flex items-center justify-end gap-2">
               <div className={cn(
                 "flex items-center gap-2 transition-all duration-300",
-                isSearchOpen ? 'w-full max-w-sm' : 'w-0'
+                isSearchOpen ? 'w-full max-w-xs' : 'w-0'
               )}>
                 {isSearchOpen && (
                   <>
@@ -135,7 +137,7 @@ export default function Header() {
                 </SheetContent>
               </Sheet>
             </div>
-          </div>
+          </>
         )}
       </div>
     </header>
