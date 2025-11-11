@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, Search, ShoppingCart, User, X, LogOut, LayoutDashboard, UserCircle } from 'lucide-react';
+import { Menu, Search, ShoppingCart, User, X, LogOut, LayoutDashboard, UserCircle, CreditCard } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { NAV_LINKS } from '@/lib/constants';
@@ -153,7 +153,12 @@ export default function Header() {
                             <span>Profile</span>
                           </Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>Billing</DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link href="/billing">
+                            <CreditCard className="mr-2 h-4 w-4" />
+                            <span>Billing</span>
+                          </Link>
+                        </DropdownMenuItem>
                         <DropdownMenuItem>Settings</DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={handleLogout}>
