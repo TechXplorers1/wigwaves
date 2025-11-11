@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/product/product-card';
@@ -11,7 +11,7 @@ export default function ShopPage() {
   const searchParams = useSearchParams();
   const [filteredProducts, setFilteredProducts] = useState<Wig[]>(products);
 
-  const applyFilters = (filters: {
+  const applyFilters = useCallback((filters: {
     search: string;
     priceRange: [number, number];
     styles: string[];
@@ -54,7 +54,7 @@ export default function ShopPage() {
     }
 
     setFilteredProducts(tempProducts);
-  };
+  }, []);
   
   const initialSearch = searchParams.get('search') || '';
 

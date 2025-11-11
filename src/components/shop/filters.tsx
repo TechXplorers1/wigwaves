@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import { Slider } from "../ui/slider";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
@@ -22,7 +22,7 @@ const initialFilters = {
   materials: [] as string[],
 };
 
-export default function Filters({ 
+const Filters = memo(function Filters({ 
   onFilterChange,
   initialSearch = ''
 }: { 
@@ -30,13 +30,12 @@ export default function Filters({
   initialSearch?: string;
 }) {
   const [filters, setFilters] = useState({...initialFilters, search: initialSearch});
-  const [priceRange, setPriceRange] = useState(initialFilters.priceRange);
 
   useEffect(() => {
     onFilterChange(filters);
   }, [filters, onFilterChange]);
 
-  const handleCheckboxChange = (category: keyof typeof initialFilters, value: string) => {
+  const handleCheckboxChange = (category: 'styles' | 'colors' | 'lengths' | 'materials', value: string) => {
     setFilters(prev => {
       const list = prev[category] as string[];
       const newList = list.includes(value)
@@ -46,13 +45,12 @@ export default function Filters({
     });
   };
 
-  const handleApplyPrice = () => {
-    setFilters(prev => ({...prev, priceRange: priceRange}))
+  const handlePriceChange = (value: [number, number]) => {
+    setFilters(prev => ({...prev, priceRange: value}));
   }
 
   const handleClearFilters = () => {
     setFilters(initialFilters);
-    setPriceRange(initialFilters.priceRange);
     onFilterChange(initialFilters);
   };
   
@@ -81,14 +79,14 @@ export default function Filters({
       <FilterGroup title="Price Range">
         <div className="space-y-4">
           <Slider
-            value={priceRange}
+            value={filters.priceRange}
             max={500}
             step={10}
-            onValueChange={(value) => setPriceRange(value as [number, number])}
+            onValueChange={(value) => handlePriceChange(value as [number, number])}
           />
           <div className="flex justify-between text-sm text-muted-foreground">
-            <span>${priceRange[0]}</span>
-            <span>${priceRange[1]}</span>
+            <span>${filters.priceRange[0]}</span>
+            <span>${filters.priceRange[1]}</span>
           </div>
         </div>
       </FilterGroup>
@@ -153,10 +151,11 @@ export default function Filters({
         </div>
       </FilterGroup>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         <Button variant="outline" onClick={handleClearFilters}>Clear Filters</Button>
-        <Button onClick={handleApplyPrice}>Apply Filters</Button>
       </div>
     </div>
   );
-}
+});
+
+export default Filters;
