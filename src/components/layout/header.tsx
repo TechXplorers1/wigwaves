@@ -92,9 +92,11 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-20 items-center">
-        <Logo />
+        <div className="flex items-center lg:flex-1">
+          <Logo />
+        </div>
 
-        <nav className="hidden lg:flex items-center gap-x-6 ml-12">
+        <nav className="hidden lg:flex items-center justify-center gap-x-6">
             {PRIMARY_NAV_LINKS.map(link => (
                 <Link
                     key={link.name}
