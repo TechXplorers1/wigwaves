@@ -1,11 +1,28 @@
-export const APP_NAME = 'WigVerse';
+export const APP_NAME = 'IOXIO';
 
-export const NAV_LINKS = [
-  { name: 'Home', href: '/' },
-  { name: 'Shop', href: '/shop' },
-  { name: 'Hair Care Tips', href: '/hair-care-tips' },
-  { name: 'Policies', href: '/policies' },
-  { name: 'FAQ', href: '/faq' },
+export const PRIMARY_NAV_LINKS = [
   { name: 'About Us', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'Experience Center', href: '#' },
+  { name: 'Style 101', href: '#' },
+  { name: 'Contact Us', href: '/contact' },
 ];
+
+export const SECONDARY_NAV_LINKS = [
+  { name: 'New', href: '/shop?category=new' },
+  { name: 'Braids', href: '/shop?category=braids' },
+  { 
+    name: 'Wigs', 
+    href: '/shop?category=wigs',
+    sublinks: [
+        { name: 'Straight', href: '/shop?style=Straight' },
+        { name: 'Wavy', href: '/shop?style=Wavy' },
+        { name: 'Curly', href: '/shop?style=Curly' },
+    ]
+  },
+  { name: 'Weaves', href: '/shop?category=weaves' },
+  { name: 'Crochet', href: '/shop?category=crochet' },
+  { name: 'Ponytails', href: '/shop?category=ponytails' },
+  { name: 'All', href: '/shop' },
+];
+
+export const NAV_LINKS = [...PRIMARY_NAV_LINKS, ...SECONDARY_NAV_LINKS];

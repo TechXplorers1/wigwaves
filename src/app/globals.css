@@ -70,3 +70,23 @@
     min-height: 100vh;
   }
 }
+
+@layer components {
+  .sub-nav-link {
+    @apply relative text-sm font-semibold uppercase tracking-wider text-foreground/80 transition-colors hover:text-primary;
+  }
+
+  .sub-nav-link.active {
+    @apply text-primary;
+  }
+
+  .sub-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: hsl(var(--primary));
+  }
+}
