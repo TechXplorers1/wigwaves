@@ -1,10 +1,25 @@
 {
   "placeholderImages": [
     {
-      "id": "hero",
-      "description": "A woman with a beautiful wig in a stylish setting.",
+      "id": "hero-1",
+      "title": "Discover Your Crown",
+      "description": "Explore our exquisite collection of high-quality wigs and find the perfect style that expresses your unique beauty.",
       "imageUrl": "https://1hairstop.in/cdn/shop/articles/How_Much_Do_Indian_Human_Hair_Wigs_Cost_Are_They_Worth_It_1c337906-2cbd-4f59-80d5-8438ed054a28.jpg?v=1749657097",
       "imageHint": "fashion model"
+    },
+    {
+      "id": "hero-2",
+      "title": "Summer Styles Are Here",
+      "description": "Light, breezy, and beautiful. Find the perfect look for the sunny days ahead.",
+      "imageUrl": "https://images.unsplash.com/photo-1669363818159-001d02939356?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3b21hbiUyMHNtaWxpbmclMjBzdW1tZXJ8ZW58MHx8fHwxNzYyODY2MzMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman smiling summer"
+    },
+    {
+      "id": "hero-3",
+      "title": "Unleash Your Confidence",
+      "description": "From bold and beautiful to sleek and sophisticated, we have a style for every version of you.",
+      "imageUrl": "https://images.unsplash.com/photo-1762331655244-0114ee13b3ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb25maWRlbnQlMjB3b21hbiUyMGNpdHl8ZW58MHx8fHwxNzYyODY2MzMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "confident woman city"
     },
     {
       "id": "wig1",

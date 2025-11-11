@@ -1,3 +1,6 @@
+
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
@@ -10,39 +13,53 @@ import { placeholderImages } from "@/lib/placeholder-images";
 
 export default function Home() {
   const featuredProducts = products.slice(0, 8);
-  const heroImage = placeholderImages.find(p => p.id === 'hero');
+  const heroSlides = placeholderImages.filter(p => p.id.startsWith('hero-'));
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <section className="relative w-full h-[60vh] md:h-[80vh]">
-        {heroImage && (
-          <Image
-            src={heroImage.imageUrl}
-            alt={heroImage.description}
-            fill
-            className="object-cover object-top"
-            priority
-            data-ai-hint={heroImage.imageHint}
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-        <div className="relative h-full flex flex-col items-start justify-end p-4 md:p-12 lg:p-24">
-          <div className="max-w-2xl text-left">
-            <h1 className="text-4xl font-headline tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-              Discover Your Crown
-            </h1>
-            <p className="mt-4 text-lg text-foreground/90">
-              Explore our exquisite collection of high-quality wigs and find the perfect style that expresses your unique beauty.
-            </p>
-            <div className="mt-6 flex gap-4">
-              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                <Link href="/shop">
-                  Shop All Wigs <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
+        <Carousel
+          opts={{ loop: true }}
+          className="w-full h-full"
+          autoplayDelay={5000}
+        >
+          <CarouselContent>
+            {heroSlides.map((slide) => (
+              <CarouselItem key={slide.id}>
+                <div className="relative w-full h-[60vh] md:h-[80vh]">
+                  <Image
+                    src={slide.imageUrl}
+                    alt={slide.description}
+                    fill
+                    className="object-cover object-top"
+                    priority={heroSlides.indexOf(slide) === 0}
+                    data-ai-hint={slide.imageHint}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                  <div className="relative h-full flex flex-col items-start justify-end p-4 md:p-12 lg:p-24">
+                    <div className="max-w-2xl text-left">
+                      <h1 className="text-4xl font-headline tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+                        {slide.title || 'Discover Your Crown'}
+                      </h1>
+                      <p className="mt-4 text-lg text-foreground/90">
+                        {slide.description}
+                      </p>
+                      <div className="mt-6 flex gap-4">
+                        <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                          <Link href="/shop">
+                            Shop Now <ArrowRight className="ml-2 h-5 w-5" />
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex" />
+          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex" />
+        </Carousel>
       </section>
 
       <section className="w-full py-12 md:py-24">

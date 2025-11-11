@@ -1,9 +1,11 @@
+
 "use client"
 
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -19,6 +21,7 @@ type CarouselProps = {
   plugins?: CarouselPlugin
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
+  autoplayDelay?: number;
 }
 
 type CarouselContextProps = {
@@ -54,16 +57,25 @@ const Carousel = React.forwardRef<
       plugins,
       className,
       children,
+      autoplayDelay,
       ...props
     },
     ref
   ) => {
+    const allPlugins = React.useMemo(() => {
+      let currentPlugins = plugins || [];
+      if (autoplayDelay) {
+        currentPlugins.push(Autoplay({ delay: autoplayDelay, stopOnInteraction: false }));
+      }
+      return currentPlugins;
+    }, [plugins, autoplayDelay]);
+    
     const [carouselRef, api] = useEmblaCarousel(
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
       },
-      plugins
+      allPlugins,
     )
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
@@ -157,11 +169,11 @@ const CarouselContent = React.forwardRef<
   const { carouselRef, orientation } = useCarousel()
 
   return (
-    <div ref={carouselRef} className="overflow-hidden">
+    <div ref={carouselRef} className="overflow-hidden h-full">
       <div
         ref={ref}
         className={cn(
-          "flex",
+          "flex h-full",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
           className
         )}
@@ -184,7 +196,7 @@ const CarouselItem = React.forwardRef<
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full",
+        "min-w-0 shrink-0 grow-0 basis-full h-full",
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className
       )}
