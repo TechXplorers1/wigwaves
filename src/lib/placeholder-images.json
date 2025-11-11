@@ -98,6 +98,60 @@
       "description": "A lace front wig with baby hairs.",
       "imageUrl": "https://images.unsplash.com/photo-1588527962980-72746d95973e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsYWNlJTIwZnJvbnQlMjB3aWd8ZW58MHx8fHwxNzYyODQwNjAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "lace front wig"
+    },
+    {
+      "id": "style-101-1",
+      "description": "A comparison of fiber hair and human hair.",
+      "imageUrl": "https://images.unsplash.com/photo-1587300351037-335e5930b0bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3b21hbiUyMGNvbXBhcmlzb258ZW58MHx8fHwxNzYyODY4MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman comparison"
+    },
+    {
+      "id": "style-101-2",
+      "description": "An active woman with braids.",
+      "imageUrl": "https://images.unsplash.com/photo-1701796068999-c27721e036a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3b21hbiUyMGJyYWlkcyUyMGFjdGl2ZXxlbnwwfHx8fDE3NjI4NjgyMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman braids active"
+    },
+    {
+      "id": "style-101-3",
+      "description": "A woman with a complete braid solution.",
+      "imageUrl": "https://images.unsplash.com/photo-1551854838-828c88bdeaf4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3b21hbiUyMHdpdGglMjBicmFpZHN8ZW58MHx8fHwxNzYyODY4MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman with braids"
+    },
+    {
+      "id": "style-101-4",
+      "description": "A woman with Kanekalon clean fiber hair.",
+      "imageUrl": "https://images.unsplash.com/photo-1614020863825-28a0bb7e3c3c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxoYWlyJTIwc3R5bGV8ZW58MHx8fHwxNzYyODY4MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hair style"
+    },
+    {
+      "id": "style-101-5",
+      "description": "Different shades of wig caps.",
+      "imageUrl": "https://images.unsplash.com/photo-1635248313030-5e653d66b1e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3aWclMjBjYXAlMjBzaGFkZXN8ZW58MHx8fHwxNzYyODY4MjM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wig cap shades"
+    },
+    {
+      "id": "style-101-6",
+      "description": "A guide to removing wig glue.",
+      "imageUrl": "https://images.unsplash.com/photo-1615754930920-ef87ac0b53ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3aWclMjBnbHVlJTIwcmVtb3ZhbHxlbnwwfHx8fDE3NjI4NjgyMzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wig glue removal"
+    },
+    {
+      "id": "style-101-7",
+      "description": "A woman wearing a fiber wig.",
+      "imageUrl": "https://images.unsplash.com/photo-1605389196941-c3c6595528c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3b21hbiUyMGZpYmVyJTIwd2lnfGVufDB8fHx8MTc2Mjg2ODIzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman fiber wig"
+    },
+    {
+      "id": "style-101-8",
+      "description": "A woman with a ponytail.",
+      "imageUrl": "https://images.unsplash.com/photo-1617338832563-ffea3d5f8167?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwb255dGFpbCUyMHN0eWxlfGVufDB8fHx8MTc2Mjg2ODIzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ponytail style"
+    },
+    {
+      "id": "style-101-9",
+      "description": "A comparison of boho braids and box braids.",
+      "imageUrl": "https://images.unsplash.com/photo-1757866331952-8d6c8adc4dbe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxib2hvJTIwYm94JTIwYnJhaWRzfGVufDB8fHx8MTc2Mjg2ODIzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "boho box braids"
     }
   ]
 }

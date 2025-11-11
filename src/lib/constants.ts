@@ -3,7 +3,7 @@ export const APP_NAME = 'WigVerse';
 export const PRIMARY_NAV_LINKS = [
   { name: 'About Us', href: '/about' },
   { name: 'Experience Center', href: '/experience-center' },
-  { name: 'Style 101', href: '#' },
+  { name: 'Style 101', href: '/style-101' },
   { name: 'Contact Us', href: '/contact' },
 ];
 
