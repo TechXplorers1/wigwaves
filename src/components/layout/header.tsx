@@ -11,29 +11,42 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import CartSheet from '../cart/cart-sheet';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+function HeaderNav() {
+  const pathname = usePathname();
+  return (
+    <nav className="hidden md:flex md:items-center md:gap-6 md:ml-10 text-sm font-medium">
+      {NAV_LINKS.map(link => (
+        <Link
+          key={link.name}
+          href={link.href}
+          className={cn(
+            'transition-colors hover:text-primary',
+            pathname === link.href ? 'text-primary' : 'text-muted-foreground'
+          )}
+        >
+          {link.name}
+        </Link>
+      ))}
+    </nav>
+  );
+}
 
 export default function Header() {
   const { itemCount } = useCart();
   const pathname = usePathname();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <Logo />
-        <nav className="hidden md:flex md:items-center md:gap-6 md:ml-10 text-sm font-medium">
-          {NAV_LINKS.map(link => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={cn(
-                'transition-colors hover:text-primary',
-                pathname === link.href ? 'text-primary' : 'text-muted-foreground'
-              )}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
+        {isClient && <HeaderNav />}
 
         <div className="flex flex-1 items-center justify-end gap-2">
           <Button variant="ghost" size="icon" aria-label="Search">
