@@ -143,11 +143,11 @@ export default function Header() {
           </Sheet>
         </div>
         
-        <div className="mr-6 flex items-center">
+        <div className="mr-6 hidden lg:flex items-center">
             <Logo />
         </div>
 
-        <nav className="hidden lg:flex flex-1 items-center gap-x-6">
+        <nav className="hidden lg:flex flex-1 justify-center items-center gap-x-6">
             {PRIMARY_NAV_LINKS.map(link => (
                 <Link
                     key={link.name}
@@ -188,10 +188,6 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent className="flex flex-col">
-                 <SheetHeader>
-                  <SheetTitle>Shopping Cart</SheetTitle>
-                  <SheetDescription>Your items</SheetDescription>
-                </SheetHeader>
                 <CartSheet closeCart={closeCart} />
               </SheetContent>
             </Sheet>
