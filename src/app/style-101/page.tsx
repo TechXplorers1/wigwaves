@@ -104,13 +104,12 @@ export default function Style101Page() {
                 {styleArticles.map((article) => (
                     <Link href={article.href} key={article.id} className="group">
                         <Card className="overflow-hidden flex flex-col h-full">
-                             <div className="relative bg-muted">
+                             <div className="relative bg-muted aspect-square w-full h-64">
                                 <Image
                                     src={article.image}
                                     alt={article.title}
-                                    width={400}
-                                    height={300}
-                                    className="object-contain w-full h-auto transition-transform duration-300 group-hover:scale-105"
+                                    fill
+                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                                     data-ai-hint={article.imageHint}
                                 />
                             </div>
