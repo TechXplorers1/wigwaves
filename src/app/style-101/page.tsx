@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
@@ -55,7 +56,7 @@ const styleArticles = [
         title: 'The Ultimate Guide to Removing Wig Glue from Your Hair: Tips, Tricks, and DIY Solutions',
         excerpt: 'Wearing wigs can be a fantastic way to switch up your look, but removing wig glue can sometimes f...',
         date: 'Aug 16, 2024',
-        image: placeholderImages.find(p => p.id === 'style-101-6')?.imageUrl || 'https://picsum.photos/seed/style6/400/300',
+        image: 'https://ng.10by10styles.com/cdn/shop/articles/bgyj_800x.png?v=1723804519',
         imageHint: 'wig glue removal',
         href: '#'
     },
