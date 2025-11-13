@@ -74,7 +74,7 @@ const styleArticles = [
         title: '5 Ponytail Styles for Every Occasion',
         excerpt: 'Hello, ponytail lovers! Today, we\'re exploring five versatile styles that will take your mane fro...',
         date: 'Jul 04, 2024',
-        image: placeholderImages.find(p => p.id === 'style-101-8')?.imageUrl || 'https://picsum.photos/seed/style8/400/300',
+        image: 'https://ng.10by10styles.com/cdn/shop/articles/Beige_Aesthetic_Fashion_Blog_Banner_520x500_e4dcf609-7e3d-4621-821e-8e19c5962589_400x.png?v=1734541464',
         imageHint: 'ponytail style',
         href: '#'
     },
