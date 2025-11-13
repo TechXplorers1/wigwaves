@@ -28,7 +28,7 @@ const styleArticles = [
         title: 'Complete Braid: The One-Pack Braiding Solution',
         excerpt: 'We\'re excited to introduce our newest product—Complete Braid—the perfect solution for all your b...',
         date: 'Dec 12, 2024',
-        image: placeholderImages.find(p => p.id === 'style-101-3')?.imageUrl || 'https://picsum.photos/seed/style3/400/300',
+        image: 'https://ng.10by10styles.com/cdn/shop/articles/blog_520x500_7548ccff-b188-41f3-848b-aa7307bdf997_400x.png?v=1734541435',
         imageHint: 'woman with braids',
         href: '#'
     },
@@ -107,7 +107,7 @@ export default function Style101Page() {
                                     src={article.image}
                                     alt={article.title}
                                     fill
-                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                    className="object-contain transition-transform duration-300 group-hover:scale-105"
                                     data-ai-hint={article.imageHint}
                                 />
                             </div>
