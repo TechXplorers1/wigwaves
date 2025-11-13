@@ -39,7 +39,7 @@ export const products: Wig[] = [
   },
   {
     id: 'w4',
-    name: 'Sleek Midnight',
+    name: 'Amarachi (Jet Black)',
     price: 250.00,
     image: "https://laidbyify.com/cdn/shop/files/FullSizeRender_a768257a-8218-4c15-b0fa-8fe21b490d14.jpg?v=1742301306",
     description: 'A stunningly sleek and straight wig in a deep black. Perfect for a sophisticated look.',
