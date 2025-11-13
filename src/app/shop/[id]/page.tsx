@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useParams } from 'next/navigation';
@@ -15,10 +16,24 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const capSizes = ["Small 21\"", "Medium 22\"", "Large 23\""];
 const lengths = ["18", "20", "22", "24", "26"];
+
+const capSizeAdjustments: { [key: string]: number } = {
+  "Small 21\"": 0,
+  "Medium 22\"": 15,
+  "Large 23\"": 30,
+};
+
+const lengthAdjustments: { [key: string]: number } = {
+  "18": 0,
+  "20": 25,
+  "22": 50,
+  "24": 75,
+  "26": 100,
+};
 
 
 export default function ProductDetailPage() {
@@ -26,22 +41,37 @@ export default function ProductDetailPage() {
   const { id } = params;
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
-  const [selectedCapSize, setSelectedCapSize] = useState(capSizes[0]);
-  const [selectedLength, setSelectedLength] = useState(lengths[0]);
+  const [selectedCapSize, setSelectedCapSize] = useState(capSizes[1]);
+  const [selectedLength, setSelectedLength] = useState(lengths[2]);
+  const [currentPrice, setCurrentPrice] = useState(0);
 
 
   const product = products.find(p => p.id === id);
   const relatedProducts = products.filter(p => p.style === product?.style && p.id !== product?.id).slice(0, 3);
 
+  useEffect(() => {
+    if (product) {
+      const basePrice = product.price;
+      const capAdjustment = capSizeAdjustments[selectedCapSize] || 0;
+      const lengthAdjustment = lengthAdjustments[selectedLength] || 0;
+      setCurrentPrice(basePrice + capAdjustment + lengthAdjustment);
+    }
+  }, [product, selectedCapSize, selectedLength]);
+
   if (!product) {
     return <div className="container py-24 text-center">Product not found.</div>;
   }
   
-  const salePrice = product.price * 0.9;
-  const discount = Math.round(((product.price - salePrice) / product.price) * 100);
+  const salePrice = currentPrice * 0.9;
+  const discount = Math.round(((currentPrice - salePrice) / currentPrice) * 100);
 
   const handleAddToCart = () => {
-    addToCart(product, quantity);
+    const productWithOptions = {
+        ...product,
+        price: salePrice,
+        name: `${product.name} - ${selectedLength}" / ${selectedCapSize}`
+    }
+    addToCart(productWithOptions, quantity);
   };
   
   const incrementQuantity = () => setQuantity(q => q + 1);
@@ -84,8 +114,10 @@ export default function ProductDetailPage() {
 
           <div className="flex items-center gap-4 mb-4">
             <p className="text-2xl font-bold text-destructive">${salePrice.toFixed(2)}</p>
-            <p className="text-xl text-muted-foreground line-through">${product.price.toFixed(2)}</p>
-            <span className="px-2 py-0.5 bg-destructive text-destructive-foreground text-xs font-semibold rounded-md">-{discount}%</span>
+            <p className="text-xl text-muted-foreground line-through">${currentPrice.toFixed(2)}</p>
+            {discount > 0 && (
+                <span className="px-2 py-0.5 bg-destructive text-destructive-foreground text-xs font-semibold rounded-md">-{discount}%</span>
+            )}
           </div>
 
           <div className="space-y-4 mb-6">

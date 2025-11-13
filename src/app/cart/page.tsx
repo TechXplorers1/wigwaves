@@ -34,7 +34,7 @@ export default function CartPage() {
               </CardHeader>
               <CardContent className="divide-y divide-border p-0">
                 {cartItems.map(item => (
-                  <div key={item.id} className="flex items-start gap-4 p-4">
+                  <div key={item.cartItemId} className="flex items-start gap-4 p-4">
                     <Image
                       src={item.image}
                       alt={item.name}
@@ -50,7 +50,7 @@ export default function CartPage() {
                           variant="outline"
                           size="icon"
                           className="h-8 w-8"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() => item.cartItemId && updateQuantity(item.cartItemId, item.quantity - 1)}
                         >
                           <Minus className="h-4 w-4" />
                         </Button>
@@ -59,7 +59,7 @@ export default function CartPage() {
                           variant="outline"
                           size="icon"
                           className="h-8 w-8"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() => item.cartItemId && updateQuantity(item.cartItemId, item.quantity + 1)}
                         >
                           <Plus className="h-4 w-4" />
                         </Button>
@@ -67,7 +67,7 @@ export default function CartPage() {
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-lg">${(item.price * item.quantity).toFixed(2)}</p>
-                      <Button variant="ghost" size="icon" className="mt-2 text-muted-foreground" onClick={() => removeFromCart(item.id)}>
+                      <Button variant="ghost" size="icon" className="mt-2 text-muted-foreground" onClick={() => item.cartItemId && removeFromCart(item.cartItemId)}>
                         <X className="h-5 w-5" />
                       </Button>
                     </div>

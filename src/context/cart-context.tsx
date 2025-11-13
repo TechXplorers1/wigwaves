@@ -22,15 +22,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = (product: Wig, quantity: number) => {
     setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === product.id);
+      const existingItem = prevItems.find(item => item.id === product.id && item.name === product.name);
       if (existingItem) {
         return prevItems.map(item =>
-          item.id === product.id
+          item.id === product.id && item.name === product.name
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-      return [...prevItems, { ...product, quantity }];
+      return [...prevItems, { ...product, quantity, cartItemId: `${product.id}-${product.name}` }];
     });
     toast({
       title: "Added to Cart",
@@ -38,16 +38,16 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const updateQuantity = (productId: string, quantity: number) => {
+  const updateQuantity = (cartItemId: string, quantity: number) => {
     setCartItems(prevItems =>
       prevItems.map(item =>
-        item.id === productId ? { ...item, quantity } : item
+        item.cartItemId === cartItemId ? { ...item, quantity } : item
       ).filter(item => item.quantity > 0)
     );
   };
 
-  const removeFromCart = (productId: string) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
+  const removeFromCart = (cartItemId: string) => {
+    setCartItems(prevItems => prevItems.filter(item => item.cartItemId !== cartItemId));
   };
 
   const clearCart = () => {

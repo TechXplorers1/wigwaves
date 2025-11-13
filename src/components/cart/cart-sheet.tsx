@@ -27,7 +27,7 @@ export default function CartSheet({ closeCart }: { closeCart: () => void }) {
           <ScrollArea className="flex-1 -mx-6">
             <div className="px-6 divide-y divide-border">
               {cartItems.map(item => (
-                <div key={item.id} className="flex items-center gap-4 py-4">
+                <div key={item.cartItemId} className="flex items-center gap-4 py-4">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -43,7 +43,7 @@ export default function CartSheet({ closeCart }: { closeCart: () => void }) {
                         variant="outline"
                         size="icon"
                         className="h-7 w-7"
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        onClick={() => item.cartItemId && updateQuantity(item.cartItemId, item.quantity - 1)}
                       >
                         <Minus className="h-4 w-4" />
                       </Button>
@@ -52,13 +52,13 @@ export default function CartSheet({ closeCart }: { closeCart: () => void }) {
                         variant="outline"
                         size="icon"
                         className="h-7 w-7"
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        onClick={() => item.cartItemId && updateQuantity(item.cartItemId, item.quantity + 1)}
                       >
                         <Plus className="h-4 w-4" />
                       </Button>
                     </div>
                   </div>
-                  <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)}>
+                  <Button variant="ghost" size="icon" onClick={() => item.cartItemId && removeFromCart(item.cartItemId)}>
                     <X className="h-5 w-5" />
                   </Button>
                 </div>

@@ -12,4 +12,5 @@ export type Wig = {
 
 export type CartItem = Wig & {
   quantity: number;
+  cartItemId?: string;
 };
