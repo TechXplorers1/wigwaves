@@ -26,7 +26,7 @@ export default function ShopPage() {
     const lengthParam = searchParams.get('length');
 
     if (category === 'new') {
-        tempProducts = products.slice(-10);
+        tempProducts = products.slice(-6);
     }
 
     if (lengthParam) {
@@ -78,7 +78,7 @@ export default function ShopPage() {
     let tempProducts = [...products];
 
     if (category === 'new') {
-        tempProducts = products.slice(-10);
+        tempProducts = products.slice(-6);
     } else if (category) {
          // This can be expanded for other categories like braids, weaves etc.
     }
