@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/product/product-card';
 import Filters from '@/components/shop/filters';
@@ -11,6 +11,7 @@ import Breadcrumb from '@/components/layout/breadcrumb';
 
 export default function ShopPage() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [filteredProducts, setFilteredProducts] = useState<Wig[]>(products);
 
   const applyFilters = useCallback((filters: {
@@ -23,23 +24,25 @@ export default function ShopPage() {
   }) => {
     let tempProducts = [...products];
     const category = searchParams.get('category');
-    const lengthParam = searchParams.get('length');
-    const capSizeParam = searchParams.get('cap_size');
-
-    if (category === 'new') {
-        tempProducts = products.slice(-6);
+    
+    if (category) {
+        if (category === 'new') {
+            tempProducts = products.slice(-6);
+        } else {
+            tempProducts = tempProducts.filter(p => p.name.toLowerCase().includes(category.slice(0, -1))); // 'braids' -> 'braid'
+        }
     }
 
+    const lengthParam = searchParams.get('length');
     if (lengthParam) {
       tempProducts = tempProducts.filter(p => p.length === lengthParam);
     }
-
+    
+    const capSizeParam = searchParams.get('cap_size');
     if (capSizeParam) {
-      // This is a simplified filter. A real implementation might need more robust logic
-      // if products can have multiple cap sizes. For now, we assume this is a general filter.
-      // We will just show all products and the user can select the size on the product page.
-      // The presence of the param is enough to take them to the page.
+      // For now, we just land on the shop page, no pre-filtering is done on the products listed
     }
+
 
     // Filter by search term
     if (filters.search) {
@@ -86,13 +89,18 @@ export default function ShopPage() {
     
     let tempProducts = [...products];
 
-    if (category === 'new') {
-        tempProducts = products.slice(-6);
-    } else if (category) {
-         // This can be expanded for other categories like braids, weaves etc.
-    }
-
-    if (style) {
+    if (category) {
+        if (category === 'new') {
+            tempProducts = products.slice(-6);
+        } else {
+            const categorySingular = category.slice(0, -1);
+            tempProducts = tempProducts.filter(p => p.name.toLowerCase().includes(categorySingular));
+            if (tempProducts.length === 0) {
+                router.push('/');
+                return;
+            }
+        }
+    } else if (style) {
         tempProducts = tempProducts.filter(p => p.style === style);
     }
 
@@ -102,12 +110,10 @@ export default function ShopPage() {
 
     if (capSizeParam) {
       // For now, we just land on the shop page, no pre-filtering is done on the products listed
-      // The user can then use the filters on the side.
-      // Or select the size on the product page.
     }
     
     setFilteredProducts(tempProducts);
-  }, [searchParams]);
+  }, [searchParams, router]);
 
   return (
     <div className="container py-8">
