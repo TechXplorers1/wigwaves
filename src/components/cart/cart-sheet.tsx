@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Plus, Minus, X, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/context/cart-context';
 import { Button } from '@/components/ui/button';
-import { SheetHeader, SheetTitle, SheetFooter } from '@/components/ui/sheet';
+import { SheetHeader, SheetTitle, SheetFooter, SheetDescription } from '@/components/ui/sheet';
 import { ScrollArea } from '../ui/scroll-area';
 import { Separator } from '../ui/separator';
 
@@ -20,6 +20,7 @@ export default function CartSheet({ closeCart }: { closeCart: () => void }) {
     <>
       <SheetHeader>
         <SheetTitle className="font-headline text-2xl">Shopping Cart ({itemCount})</SheetTitle>
+        <SheetDescription className="sr-only">A summary of the items in your shopping cart.</SheetDescription>
       </SheetHeader>
       {cartItems.length > 0 ? (
         <div className="flex-1 flex flex-col">

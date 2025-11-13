@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { useCart } from '@/context/cart-context';
 import Logo from '@/components/logo';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import CartSheet from '../cart/cart-sheet';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -102,8 +102,11 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className='w-full max-w-sm'>
-              <Logo className="mb-8" />
-              <nav className="grid gap-4 text-base font-medium">
+                <SheetHeader>
+                  <SheetTitle><Logo /></SheetTitle>
+                  <SheetDescription className="sr-only">Main mobile navigation menu</SheetDescription>
+                </SheetHeader>
+              <nav className="grid gap-4 text-base font-medium mt-8">
                 {[...PRIMARY_NAV_LINKS, ...SECONDARY_NAV_LINKS].map(link => (
                     link.sublinks ? (
                         <DropdownMenu key={link.name}>
@@ -140,11 +143,11 @@ export default function Header() {
           </Sheet>
         </div>
         
-        <div className="flex-1 flex items-center">
+        <div className="flex flex-1 lg:flex-none items-center">
             <Logo />
         </div>
 
-        <nav className="hidden lg:flex items-center gap-x-6">
+        <nav className="hidden lg:flex flex-1 justify-center items-center gap-x-6">
             {PRIMARY_NAV_LINKS.map(link => (
                 <Link
                     key={link.name}
@@ -161,7 +164,7 @@ export default function Header() {
         
         {isClient && (
           <>
-            <div className="flex flex-1 items-center justify-end gap-2">
+            <div className="flex items-center justify-end gap-2">
                 <div className="relative hidden sm:block w-full max-w-[17rem]">
                     <Input
                         type="search"
