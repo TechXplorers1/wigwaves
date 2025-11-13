@@ -7,6 +7,7 @@ import type { Wig } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useCart } from '@/context/cart-context';
+import { Badge } from '../ui/badge';
 
 interface ProductCardProps {
   product: Wig;
@@ -25,6 +26,11 @@ export default function ProductCard({ product }: ProductCardProps) {
       <Card className="w-full overflow-hidden transition-all group-hover:shadow-lg h-full flex flex-col">
         <CardHeader className="p-0">
           <div className="aspect-[3/4] relative">
+            {product.isNew && (
+              <Badge className="absolute top-2 left-2 z-10 bg-accent text-accent-foreground">
+                New
+              </Badge>
+            )}
             <Image
               src={product.image}
               alt={product.name}
