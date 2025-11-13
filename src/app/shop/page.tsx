@@ -24,6 +24,7 @@ export default function ShopPage() {
     let tempProducts = [...products];
     const category = searchParams.get('category');
     const lengthParam = searchParams.get('length');
+    const capSizeParam = searchParams.get('cap_size');
 
     if (category === 'new') {
         tempProducts = products.slice(-6);
@@ -31,6 +32,13 @@ export default function ShopPage() {
 
     if (lengthParam) {
       tempProducts = tempProducts.filter(p => p.length === lengthParam);
+    }
+
+    if (capSizeParam) {
+      // This is a simplified filter. A real implementation might need more robust logic
+      // if products can have multiple cap sizes. For now, we assume this is a general filter.
+      // We will just show all products and the user can select the size on the product page.
+      // The presence of the param is enough to take them to the page.
     }
 
     // Filter by search term
@@ -74,6 +82,7 @@ export default function ShopPage() {
     const category = searchParams.get('category');
     const style = searchParams.get('style');
     const lengthParam = searchParams.get('length');
+    const capSizeParam = searchParams.get('cap_size');
     
     let tempProducts = [...products];
 
@@ -89,6 +98,12 @@ export default function ShopPage() {
 
     if (lengthParam) {
         tempProducts = tempProducts.filter(p => p.length === lengthParam);
+    }
+
+    if (capSizeParam) {
+      // For now, we just land on the shop page, no pre-filtering is done on the products listed
+      // The user can then use the filters on the side.
+      // Or select the size on the product page.
     }
     
     setFilteredProducts(tempProducts);

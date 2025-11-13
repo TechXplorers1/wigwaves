@@ -35,11 +35,11 @@ const SubNav = () => {
   const getIsActive = (href: string) => {
     const url = new URL(href, 'http://localhost');
     const currentUrl = new URL(pathname + '?' + searchParams.toString(), 'http://localhost');
-    return url.href === currentUrl.href;
+    return url.pathname === currentUrl.pathname && url.search === currentUrl.search;
   };
   
   const isWigsActive = () => {
-    return pathname === '/shop' && (searchParams.has('style') || searchParams.has('length'));
+    return pathname === '/shop' && (searchParams.has('style') || searchParams.has('length') || searchParams.has('cap_size'));
   }
 
   return (
