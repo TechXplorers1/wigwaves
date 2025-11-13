@@ -23,10 +23,14 @@ export default function ShopPage() {
   }) => {
     let tempProducts = [...products];
     const category = searchParams.get('category');
+    const lengthParam = searchParams.get('length');
 
     if (category === 'new') {
-        // Consider the last 4 added products as "new"
-        tempProducts = products.slice(-4);
+        tempProducts = products.slice(-10);
+    }
+
+    if (lengthParam) {
+      tempProducts = tempProducts.filter(p => p.length === lengthParam);
     }
 
     // Filter by search term
@@ -67,25 +71,27 @@ export default function ShopPage() {
   const initialSearch = searchParams.get('search') || '';
   
   useEffect(() => {
-    // initial filter application
     const category = searchParams.get('category');
     const style = searchParams.get('style');
+    const lengthParam = searchParams.get('length');
     
-    if (category || style) {
-        let tempProducts = [...products];
-        if (category === 'new') {
-            tempProducts = products.slice(-4);
-        } else if (category) {
-             // This can be expanded for other categories like braids, weaves etc.
-        }
+    let tempProducts = [...products];
 
-        if (style) {
-            tempProducts = tempProducts.filter(p => p.style === style);
-        }
-        setFilteredProducts(tempProducts);
-    } else {
-        setFilteredProducts(products);
+    if (category === 'new') {
+        tempProducts = products.slice(-10);
+    } else if (category) {
+         // This can be expanded for other categories like braids, weaves etc.
     }
+
+    if (style) {
+        tempProducts = tempProducts.filter(p => p.style === style);
+    }
+
+    if (lengthParam) {
+        tempProducts = tempProducts.filter(p => p.length === lengthParam);
+    }
+    
+    setFilteredProducts(tempProducts);
   }, [searchParams]);
 
   return (

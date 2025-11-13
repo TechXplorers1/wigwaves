@@ -14,9 +14,9 @@ export const SECONDARY_NAV_LINKS = [
     name: 'Wigs', 
     href: '/shop?category=wigs',
     sublinks: [
-        { name: 'Straight', href: '/shop?style=Straight' },
-        { name: 'Wavy', href: '/shop?style=Wavy' },
-        { name: 'Curly', href: '/shop?style=Curly' },
+        { name: 'Long', href: '/shop?length=Long' },
+        { name: 'Medium', href: '/shop?length=Medium' },
+        { name: 'Short', href: '/shop?length=Short' },
     ]
   },
   { name: 'Weaves', href: '/shop?category=weaves' },

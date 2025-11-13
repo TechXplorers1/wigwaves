@@ -34,31 +34,12 @@ const SubNav = () => {
 
   const getIsActive = (href: string) => {
     const url = new URL(href, 'http://localhost');
-    const isPathMatch = url.pathname === pathname;
-    const hasSearchParams = Array.from(url.searchParams.keys()).length > 0;
-
-    if (!isPathMatch) return false;
-
-    if (hasSearchParams) {
-      let allParamsMatch = true;
-      for (const [key, value] of url.searchParams.entries()) {
-        if (searchParams.get(key) !== value) {
-          allParamsMatch = false;
-          break;
-        }
-      }
-      return allParamsMatch;
-    }
-    
-    // For links with no search params, they should only be active if the current page has no search params either
-    // (with the exception of /shop)
-    if (pathname === '/shop') return Array.from(searchParams.keys()).length === 0;
-
-    return isPathMatch && Array.from(searchParams.keys()).length === 0;
+    const currentUrl = new URL(pathname + '?' + searchParams.toString(), 'http://localhost');
+    return url.href === currentUrl.href;
   };
   
   const isWigsActive = () => {
-    return pathname.startsWith('/shop') && searchParams.has('style');
+    return pathname === '/shop' && (searchParams.has('style') || searchParams.has('length'));
   }
 
   return (
