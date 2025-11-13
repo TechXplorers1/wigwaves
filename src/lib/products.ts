@@ -17,7 +17,7 @@ export const products: Wig[] = [
   },
   {
     id: 'w2',
-    name: 'Chic Brunette Bob',
+    name: 'Chika',
     price: 220.50,
     image: "https://laidbyify.com/cdn/shop/files/7D5C1F71-C620-45CB-95E6-A77B8EFD8E7E.jpg?v=1762186440&width=2200",
     description: 'A timeless and chic bob cut in a rich brunette shade. Made from 100% human hair.',
