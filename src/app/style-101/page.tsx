@@ -46,7 +46,7 @@ const styleArticles = [
         title: 'Finding the Perfect Wig Cap Shade',
         excerpt: 'When it comes to achieving a natural and flawless look with wigs, the color of your wig cap can m...',
         date: 'Sep 28, 2024',
-        image: placeholderImages.find(p => p.id === 'style-101-5')?.imageUrl || 'https://picsum.photos/seed/style5/400/300',
+        image: 'https://ng.10by10styles.com/cdn/shop/articles/cov_800x.png?v=1727514108',
         imageHint: 'wig cap shades',
         href: '#'
     },
