@@ -1,18 +1,21 @@
-
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/product/product-card';
 import Filters from '@/components/shop/filters';
 import type { Wig } from '@/lib/types';
 import Breadcrumb from '@/components/layout/breadcrumb';
+import { Button } from '@/components/ui/button';
 
 export default function ShopPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [filteredProducts, setFilteredProducts] = useState<Wig[]>(products);
+  const [isEmptyCategory, setIsEmptyCategory] = useState(false);
+  const [categoryName, setCategoryName] = useState('');
 
   const applyFilters = useCallback((filters: {
     search: string;
@@ -27,9 +30,10 @@ export default function ShopPage() {
     
     if (category) {
         if (category === 'new') {
-            tempProducts = products.slice(-6);
+            tempProducts = products.filter(p => p.isNew);
         } else {
-            tempProducts = tempProducts.filter(p => p.name.toLowerCase().includes(category.slice(0, -1))); // 'braids' -> 'braid'
+            const categorySingular = category.endsWith('s') ? category.slice(0, -1) : category;
+            tempProducts = tempProducts.filter(p => p.name.toLowerCase().includes(categorySingular));
         }
     }
 
@@ -75,6 +79,14 @@ export default function ShopPage() {
     if (filters.materials.length > 0) {
       tempProducts = tempProducts.filter(p => filters.materials.includes(p.material));
     }
+    
+    if (category && tempProducts.length === 0 && !Object.values(filters).some(f => Array.isArray(f) ? f.length > 0 : !!f)) {
+        setIsEmptyCategory(true);
+        setCategoryName(category.toUpperCase());
+    } else {
+        setIsEmptyCategory(false);
+    }
+
 
     setFilteredProducts(tempProducts);
   }, [searchParams]);
@@ -88,18 +100,21 @@ export default function ShopPage() {
     const capSizeParam = searchParams.get('cap_size');
     
     let tempProducts = [...products];
+    let categoryIsEmpty = false;
 
     if (category) {
         if (category === 'new') {
-            tempProducts = products.slice(-6);
+            tempProducts = products.filter(p => p.isNew);
         } else {
-            const categorySingular = category.slice(0, -1);
+            const categorySingular = category.endsWith('s') ? category.slice(0, -1) : category;
             tempProducts = tempProducts.filter(p => p.name.toLowerCase().includes(categorySingular));
-            if (tempProducts.length === 0) {
-                router.push('/');
-                return;
-            }
         }
+
+        if (tempProducts.length === 0) {
+            categoryIsEmpty = true;
+            setCategoryName(category.toUpperCase());
+        }
+
     } else if (style) {
         tempProducts = tempProducts.filter(p => p.style === style);
     }
@@ -112,6 +127,7 @@ export default function ShopPage() {
       // For now, we just land on the shop page, no pre-filtering is done on the products listed
     }
     
+    setIsEmptyCategory(categoryIsEmpty);
     setFilteredProducts(tempProducts);
   }, [searchParams, router]);
 
@@ -124,28 +140,37 @@ export default function ShopPage() {
           Browse our extensive catalog of premium wigs. Use the filters to find your perfect match.
         </p>
       </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <aside className="lg:col-span-1">
-          <div className="sticky top-20">
-            <Filters onFilterChange={applyFilters} initialSearch={initialSearch} />
-          </div>
-        </aside>
-        <main className="lg:col-span-3">
-          {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-              {filteredProducts.map(product => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+      
+      {isEmptyCategory ? (
+        <div className="text-center py-16">
+            <h2 className="text-2xl font-semibold">Collection {categoryName} is empty</h2>
+            <Button asChild className="mt-6">
+                <Link href="/">Back to Homepage</Link>
+            </Button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <aside className="lg:col-span-1">
+            <div className="sticky top-20">
+                <Filters onFilterChange={applyFilters} initialSearch={initialSearch} />
             </div>
-          ) : (
-            <div className="text-center py-16 border-2 border-dashed rounded-lg">
-              <h2 className="text-2xl font-semibold">No Wigs Found</h2>
-              <p className="text-muted-foreground mt-2">Try adjusting your filters to find your perfect style.</p>
-            </div>
-          )}
-        </main>
-      </div>
+            </aside>
+            <main className="lg:col-span-3">
+            {filteredProducts.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                {filteredProducts.map(product => (
+                    <ProductCard key={product.id} product={product} />
+                ))}
+                </div>
+            ) : (
+                <div className="text-center py-16 border-2 border-dashed rounded-lg">
+                <h2 className="text-2xl font-semibold">No Wigs Found</h2>
+                <p className="text-muted-foreground mt-2">Try adjusting your filters to find your perfect style.</p>
+                </div>
+            )}
+            </main>
+        </div>
+      )}
     </div>
   );
 }
