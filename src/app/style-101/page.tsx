@@ -1,4 +1,5 @@
 
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
@@ -83,7 +84,7 @@ const styleArticles = [
         title: 'Boho Braids vs Box Braids: Choosing the Perfect Braided Style',
         excerpt: 'In the ever-changing reality of trends, picking a hairstyling could be almost impossible. Most ti...',
         date: 'May 29, 2024',
-        image: placeholderImages.find(p => p.id === 'style-101-9')?.imageUrl || 'https://picsum.photos/seed/style9/400/300',
+        image: 'https://ng.10by10styles.com/cdn/shop/articles/vs_800x.png?v=1716976660',
         imageHint: 'boho box braids',
         href: '#'
     }
