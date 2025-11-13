@@ -52,6 +52,12 @@ const nextConfig: NextConfig = {
         hostname: 'static.wixstatic.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ng.10by10styles.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

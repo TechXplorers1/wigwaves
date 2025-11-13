@@ -10,7 +10,7 @@ const styleArticles = [
         title: 'Fiber Hair vs Human Hair',
         excerpt: 'To all the hair lovers, are you tired of feeling stuck when it comes to choosing between fiber ha...',
         date: 'Apr 23, 2025',
-        image: placeholderImages.find(p => p.id === 'style-101-1')?.imageUrl || 'https://picsum.photos/seed/style1/400/300',
+        image: 'https://ng.10by10styles.com/cdn/shop/articles/DRFUHBJK_800x.png?v=1745416235',
         imageHint: 'woman comparison',
         href: '#'
     },
@@ -19,7 +19,7 @@ const styleArticles = [
         title: 'Active Braid: The Perfect Braiding Extension for Active Lifestyles',
         excerpt: 'For women on the go, finding the perfect hair solution that matches both style and convenience is...',
         date: 'Feb 24, 2025',
-        image: placeholderImages.find(p => p.id === 'style-101-2')?.imageUrl || 'https://picsum.photos/seed/style2/400/300',
+        image: 'https://ng.10by10styles.com/cdn/shop/articles/blog_800x.png?v=1740403919',
         imageHint: 'woman braids active',
         href: '#'
     },
