@@ -22,7 +22,7 @@ export const SECONDARY_NAV_LINKS = [
   { name: 'Weaves', href: '/shop?category=weaves' },
   { name: 'Crochet', href: '/shop?category=crochet' },
   { name: 'Ponytails', href: '/shop?category=ponytails' },
-  { name: 'All', href: '/shop' },
+  { name: 'Shop', href: '/shop' },
 ];
 
 export const NAV_LINKS = [...PRIMARY_NAV_LINKS, ...SECONDARY_NAV_LINKS];
