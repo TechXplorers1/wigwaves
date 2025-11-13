@@ -51,7 +51,7 @@ export const products: Wig[] = [
   },
   {
     id: 'w5',
-    name: 'Chinwe (Jet Black)',
+    name: 'Ogechi 2.0',
     price: 130.75,
     image: "https://laidbyify.com/cdn/shop/files/FullSizeRender_918ee82c-59db-4d15-9ea9-a7370ddf1267.jpg?v=1741957669",
     description: 'A modern and edgy pixie cut in a gorgeous silver-grey. Lightweight and easy to style.',
@@ -73,7 +73,7 @@ export const products: Wig[] = [
   },
   {
     id: 'w7',
-    name: 'Ogechi 2.0',
+    name: 'Chinwe (Jet Black)',
     price: 280.00,
     image: "https://laidbyify.com/cdn/shop/files/FullSizeRender.jpg?v=1742299791",
     description: 'Long, flowing waves with a beautiful dark root to warm sunset ombre transition.',
@@ -81,17 +81,6 @@ export const products: Wig[] = [
     color: 'Blonde',
     length: 'Long',
     material: 'Human Hair',
-  },
-  {
-    id: 'w8',
-    name: 'Ada',
-    price: 210.00,
-    image: getImage('wig8'),
-    description: 'A voluminous and beautiful afro-style wig that celebrates natural texture.',
-    style: 'Curly',
-    color: 'Black',
-    length: 'Medium',
-    material: 'Synthetic',
   },
   {
     id: 'w13',
