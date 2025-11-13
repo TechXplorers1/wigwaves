@@ -61,7 +61,7 @@ export const products: Wig[] = [
   },
   {
     id: 'w6',
-    name: 'Pastel Candy Floss',
+    name: 'Ifeoma',
     price: 175.00,
     image: "https://laidbyify.com/cdn/shop/files/FullSizeRender_a768257a-8218-4c15-b0fa-8fe21b490d14.jpg?v=1742301306",
     description: 'Live your pastel dreams with this shoulder-length pastel pink wig. Soft, wavy, and romantic.',
@@ -72,7 +72,7 @@ export const products: Wig[] = [
   },
   {
     id: 'w7',
-    name: 'Sunset Ombre',
+    name: 'Chinwe (Jet Black)',
     price: 280.00,
     image: "https://laidbyify.com/cdn/shop/files/FullSizeRender.jpg?v=1742299791",
     description: 'Long, flowing waves with a beautiful dark root to warm sunset ombre transition.',
