@@ -1,3 +1,4 @@
+
 import type { Wig } from './types';
 import { placeholderImages } from './placeholder-images';
 
