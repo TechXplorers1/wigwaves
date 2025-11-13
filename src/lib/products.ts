@@ -50,7 +50,7 @@ export const products: Wig[] = [
   },
   {
     id: 'w5',
-    name: 'Silver Pixie Dream',
+    name: 'Ogechi 2.0',
     price: 130.75,
     image: "https://laidbyify.com/cdn/shop/files/FullSizeRender_918ee82c-59db-4d15-9ea9-a7370ddf1267.jpg?v=1741957669",
     description: 'A modern and edgy pixie cut in a gorgeous silver-grey. Lightweight and easy to style.',
