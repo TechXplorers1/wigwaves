@@ -143,11 +143,11 @@ export default function Header() {
           </Sheet>
         </div>
         
-        <div className="flex lg:flex-none items-center">
+        <div className="mr-6 flex items-center">
             <Logo />
         </div>
 
-        <nav className="hidden lg:flex flex-1 justify-center items-center gap-x-6">
+        <nav className="hidden lg:flex flex-1 items-center gap-x-6">
             {PRIMARY_NAV_LINKS.map(link => (
                 <Link
                     key={link.name}
