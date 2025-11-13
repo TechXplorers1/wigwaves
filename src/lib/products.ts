@@ -84,9 +84,9 @@ export const products: Wig[] = [
   },
   {
     id: 'w13',
-    name: 'Bolanle',
+    name: 'Braid',
     price: 145.00,
-    image: 'https://picsum.photos/seed/wig13/600/800',
+    image: 'https://ng.10by10styles.com/cdn/shop/files/7R5A7294_900x.jpg?v=1754395085',
     description: 'A short and sassy curly bob that is full of life and personality.',
     style: 'Bob',
     color: 'Black',
