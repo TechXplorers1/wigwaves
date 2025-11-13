@@ -162,7 +162,7 @@ export default function Header() {
             ))}
         </nav>
         
-        {isClient && (
+        {isClient ? (
           <div className="flex items-center justify-end gap-2">
               <div className="relative hidden sm:block w-full max-w-[15rem]">
                   <Input
@@ -257,11 +257,13 @@ export default function Header() {
               </Button>
             )}
           </div>
-        )}
+        ) : <div className="h-10 w-[270px]" />}
       </div>
-      <div className="hidden lg:block">
-        <SubNav />
-      </div>
+      {isClient && (
+        <div className="hidden lg:block">
+          <SubNav />
+        </div>
+      )}
     </header>
   );
 }
