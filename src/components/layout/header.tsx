@@ -164,7 +164,7 @@ export default function Header() {
         
         {isClient && (
           <div className="flex items-center justify-end gap-2">
-              <div className="relative hidden sm:block w-full max-w-[17rem]">
+              <div className="relative hidden sm:block w-full max-w-[15rem]">
                   <Input
                       type="search"
                       placeholder="Search..."
@@ -188,6 +188,10 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent className="flex flex-col">
+                 <SheetHeader>
+                  <SheetTitle>Shopping Cart</SheetTitle>
+                  <SheetDescription>Your items</SheetDescription>
+                </SheetHeader>
                 <CartSheet closeCart={closeCart} />
               </SheetContent>
             </Sheet>
