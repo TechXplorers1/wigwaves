@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -23,7 +24,7 @@ export default function CartSheet({ closeCart }: { closeCart: () => void }) {
         <SheetDescription className="sr-only">A summary of the items in your shopping cart.</SheetDescription>
       </SheetHeader>
       {cartItems.length > 0 ? (
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col min-h-0">
           <ScrollArea className="flex-1 -mx-6">
             <div className="px-6 divide-y divide-border">
               {cartItems.map(item => (
