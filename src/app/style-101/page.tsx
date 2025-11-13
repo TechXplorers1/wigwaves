@@ -37,7 +37,7 @@ const styleArticles = [
         title: 'The Ultimate Hair Revolution: What Really is KANEKALON CLEAN FIBER?',
         excerpt: 'Ever seen the word "Kanekalon Clean" on your pack of 10x10 Pre-stretched Braid and wondered what...',
         date: 'Oct 19, 2024',
-        image: placeholderImages.find(p => p.id === 'style-101-4')?.imageUrl || 'https://picsum.photos/seed/style4/400/300',
+        image: 'https://ng.10by10styles.com/cdn/shop/articles/thumb_800x.png?v=1729369011',
         imageHint: 'hair style',
         href: '#'
     },
