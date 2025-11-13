@@ -65,7 +65,7 @@ const styleArticles = [
         title: 'Effortlessly Rocking Fiber Wigs in 2024',
         excerpt: 'Fiber Wigs are so 2024! Whether you\'re a seasoned wig wearer or considering your first purchase, ...',
         date: 'Jul 17, 2024',
-        image: placeholderImages.find(p => p.id === 'style-101-7')?.imageUrl || 'https://picsum.photos/seed/style7/400/300',
+        image: 'https://ng.10by10styles.com/cdn/shop/articles/gbm_800x.png?v=1721206959',
         imageHint: 'woman fiber wig',
         href: '#'
     },
