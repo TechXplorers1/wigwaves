@@ -58,7 +58,13 @@ const nextConfig: NextConfig = {
         hostname: 'ng.10by10styles.com',
         port: '',
         pathname: '/**',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'laidbyify.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

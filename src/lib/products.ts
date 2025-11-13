@@ -8,7 +8,7 @@ export const products: Wig[] = [
     id: 'w1',
     name: 'Golden Waves',
     price: 189.99,
-    image: getImage('wig1'),
+    image: "https://laidbyify.com/cdn/shop/files/34B90DCB-F114-469A-ACAD-7515530AE2BB.jpg?v=1756814058",
     description: 'Beautiful long, wavy blonde hair that flows naturally. Made from high-quality synthetic fibers.',
     style: 'Wavy',
     color: 'Blonde',
