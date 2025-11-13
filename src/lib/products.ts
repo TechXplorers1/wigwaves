@@ -28,7 +28,7 @@ export const products: Wig[] = [
   },
   {
     id: 'w3',
-    name: 'Fiery Red Curls',
+    name: 'Chika',
     price: 155.00,
     image: "https://laidbyify.com/cdn/shop/files/IMG-3873.jpg?v=1760919015&width=2200",
     description: 'Make a statement with these vibrant, bouncy red curls. Fun, fearless, and fabulous.',
