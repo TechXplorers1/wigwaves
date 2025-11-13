@@ -1,6 +1,7 @@
+
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/product/product-card';
@@ -21,6 +22,12 @@ export default function ShopPage() {
     materials: string[];
   }) => {
     let tempProducts = [...products];
+    const category = searchParams.get('category');
+
+    if (category === 'new') {
+        // Consider the last 4 added products as "new"
+        tempProducts = products.slice(-4);
+    }
 
     // Filter by search term
     if (filters.search) {
@@ -55,9 +62,31 @@ export default function ShopPage() {
     }
 
     setFilteredProducts(tempProducts);
-  }, []);
+  }, [searchParams]);
   
   const initialSearch = searchParams.get('search') || '';
+  
+  useEffect(() => {
+    // initial filter application
+    const category = searchParams.get('category');
+    const style = searchParams.get('style');
+    
+    if (category || style) {
+        let tempProducts = [...products];
+        if (category === 'new') {
+            tempProducts = products.slice(-4);
+        } else if (category) {
+             // This can be expanded for other categories like braids, weaves etc.
+        }
+
+        if (style) {
+            tempProducts = tempProducts.filter(p => p.style === style);
+        }
+        setFilteredProducts(tempProducts);
+    } else {
+        setFilteredProducts(products);
+    }
+  }, [searchParams]);
 
   return (
     <div className="container py-8">
