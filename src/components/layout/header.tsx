@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { Menu, Search, ShoppingCart, User, X, LogOut, LayoutDashboard, UserCircle, CreditCard, Settings, Heart, ChevronDown } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { PRIMARY_NAV_LINKS, SECONDARY_NAV_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
@@ -30,6 +30,37 @@ import {
 
 const SubNav = () => {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const getIsActive = (href: string) => {
+    const url = new URL(href, 'http://localhost');
+    const isPathMatch = url.pathname === pathname;
+    const hasSearchParams = Array.from(url.searchParams.keys()).length > 0;
+
+    if (!isPathMatch) return false;
+
+    if (hasSearchParams) {
+      let allParamsMatch = true;
+      for (const [key, value] of url.searchParams.entries()) {
+        if (searchParams.get(key) !== value) {
+          allParamsMatch = false;
+          break;
+        }
+      }
+      return allParamsMatch;
+    }
+    
+    // For links with no search params, they should only be active if the current page has no search params either
+    // (with the exception of /shop)
+    if (pathname === '/shop') return Array.from(searchParams.keys()).length === 0;
+
+    return isPathMatch && Array.from(searchParams.keys()).length === 0;
+  };
+  
+  const isWigsActive = () => {
+    return pathname.startsWith('/shop') && searchParams.has('style');
+  }
+
   return (
     <div className="border-b">
         <div className="container mx-auto">
@@ -38,7 +69,7 @@ const SubNav = () => {
                     link.sublinks ? (
                          <DropdownMenu key={link.name}>
                             <DropdownMenuTrigger asChild>
-                                <Link href={link.href} className={cn('sub-nav-link flex items-center gap-1', pathname.startsWith(link.href) ? 'active' : '')}>
+                                <Link href={link.href} className={cn('sub-nav-link flex items-center gap-1', isWigsActive() ? 'active' : '')}>
                                     {link.name}
                                     <ChevronDown className="h-4 w-4" />
                                 </Link>
@@ -52,7 +83,7 @@ const SubNav = () => {
                             </DropdownMenuContent>
                         </DropdownMenu>
                     ) : (
-                        <Link key={link.name} href={link.href} className={cn('sub-nav-link', pathname === link.href ? 'active' : '')}>
+                        <Link key={link.name} href={link.href} className={cn('sub-nav-link', getIsActive(link.href) ? 'active' : '')}>
                             {link.name}
                         </Link>
                     )
