@@ -55,14 +55,14 @@ export default function AdminLayout({
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               <Link
                 href="/admin/dashboard"
-                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <Home className="h-4 w-4" />
                 Dashboard
               </Link>
               <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                href="/admin/orders"
+                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
               >
                 <ShoppingCart className="h-4 w-4" />
                 Orders
@@ -109,24 +109,22 @@ export default function AdminLayout({
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="flex flex-col">
-                <SheetHeader className="sr-only">
-                  <SheetTitle>Admin Menu</SheetTitle>
-                  <SheetDescription>Navigation links for the admin dashboard.</SheetDescription>
+                <SheetHeader className="p-6 pb-0">
+                  <SheetTitle><Logo /></SheetTitle>
+                  <SheetDescription className="sr-only">Main mobile navigation menu</SheetDescription>
                 </SheetHeader>
-              <nav className="grid gap-2 text-lg font-medium">
-                <div className="flex items-center gap-2 text-lg font-semibold">
-                  <Logo />
-                </div>
+              <nav className="grid gap-2 text-lg font-medium p-6">
+                
                 <Link
                   href="/admin/dashboard"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <Home className="h-5 w-5" />
                   Dashboard
                 </Link>
                 <Link
-                  href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                  href="/admin/orders"
+                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
                 >
                   <ShoppingCart className="h-5 w-5" />
                   Orders

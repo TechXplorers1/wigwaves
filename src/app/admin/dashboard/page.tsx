@@ -45,18 +45,9 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useState } from 'react';
-
-const tabs = [
-    { value: 'overview', label: 'Overview' },
-    { value: 'upcoming', label: 'Upcoming' },
-    { value: 'returns', label: 'Returns' },
-    { value: 'exchanges', label: 'Exchanges' },
-    { value: 'canceled', label: 'Canceled' },
-];
+import Link from 'next/link';
 
 export default function AdminDashboardPage() {
-    const [activeTab, setActiveTab] = useState(tabs[0].value);
-
   return (
     <>
         <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
@@ -116,277 +107,141 @@ export default function AdminDashboardPage() {
           </Card>
         </div>
         <div className="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
-          <Card className="xl:col-span-2">
-            <CardHeader>
-              <CardTitle>Order Management</CardTitle>
-              <CardDescription>
-                Manage upcoming orders, returns, exchanges, and cancellations.
-              </CardDescription>
+           <Card className="xl:col-span-2">
+            <CardHeader className="flex flex-row items-center">
+              <div className="grid gap-2">
+                <CardTitle>Recent Transactions</CardTitle>
+                <CardDescription>
+                  Recent transactions from your store.
+                </CardDescription>
+              </div>
+              <Button asChild size="sm" className="ml-auto gap-1">
+                <Link href="/admin/orders">
+                  View All
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </Button>
             </CardHeader>
             <CardContent>
-              <Tabs value={activeTab} onValueChange={setActiveTab}>
-                <div className="sm:hidden">
-                    <Select onValueChange={setActiveTab} value={activeTab}>
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select a category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {tabs.map(tab => (
-                                <SelectItem key={tab.value} value={tab.value}>{tab.label}</SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
-                <div className="hidden sm:block overflow-x-auto pb-2">
-                  <TabsList>
-                    {tabs.map(tab => (
-                        <TabsTrigger key={tab.value} value={tab.value}>{tab.label}</TabsTrigger>
-                    ))}
-                  </TabsList>
-                </div>
-                <TabsContent value="overview">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="p-2 text-xs">Customer</TableHead>
-                        <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
-                        <TableHead className="hidden sm:table-cell p-2 text-xs">Status</TableHead>
-                        <TableHead className="hidden md:table-cell p-2 text-xs">
-                          Date
-                        </TableHead>
-                        <TableHead className="text-right p-2 text-xs">Amount</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell className="p-2">
-                          <div className="font-medium text-xs">Liam Johnson</div>
-                          <div className="hidden text-xs text-muted-foreground md:inline">
-                            liam@example.com
-                          </div>
-                        </TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-001</TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">
-                          <Badge className="text-xs" variant="outline">
-                            Pending
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell p-2 text-xs">
-                          2023-07-15
-                        </TableCell>
-                        <TableCell className="text-right p-2 text-xs">$250.00</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="p-2">
-                          <div className="font-medium text-xs">Olivia Smith</div>
-                          <div className="hidden text-xs text-muted-foreground md:inline">
-                            olivia@example.com
-                          </div>
-                        </TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-002</TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">
-                          <Badge className="text-xs" variant="outline">
-                            Processing
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell p-2 text-xs">
-                          2023-07-16
-                        </TableCell>
-                        <TableCell className="text-right p-2 text-xs">$150.00</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="p-2">
-                          <div className="font-medium text-xs">Noah Williams</div>
-                          <div className="hidden text-xs text-muted-foreground md:inline">
-                            noah@example.com
-                          </div>
-                        </TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-003</TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">
-                          <Badge className="text-xs" variant="outline">
-                            Pending
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell p-2 text-xs">
-                          2023-07-17
-                        </TableCell>
-                        <TableCell className="text-right p-2 text-xs">$350.00</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="p-2">
-                          <div className="font-medium text-xs">Emma Brown</div>
-                          <div className="hidden text-xs text-muted-foreground md:inline">
-                            emma@example.com
-                          </div>
-                        </TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-004</TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">
-                          <Badge className="text-xs" variant="outline">
-                            Shipped
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell p-2 text-xs">
-                          2023-07-18
-                        </TableCell>
-                        <TableCell className="text-right p-2 text-xs">$450.00</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="p-2">
-                          <div className="font-medium text-xs">Liam Johnson</div>
-                          <div className="hidden text-xs text-muted-foreground md:inline">
-                            liam@example.com
-                          </div>
-                        </TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-005</TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">
-                          <Badge className="text-xs" variant="outline">
-                            Delivered
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell p-2 text-xs">
-                          2023-07-19
-                        </TableCell>
-                        <TableCell className="text-right p-2 text-xs">$550.00</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TabsContent>
-                <TabsContent value="upcoming">
-                   <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="p-2 text-xs">Customer</TableHead>
-                        <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
-                        <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
-                        <TableHead className="p-2 text-xs">Amount</TableHead>
-                        <TableHead className="text-right p-2 text-xs">Actions</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell className="p-2">
-                          <div className="font-medium text-xs">Liam Johnson</div>
-                          <div className="hidden text-xs text-muted-foreground md:inline">
-                            liam@example.com
-                          </div>
-                        </TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-001</TableCell>
-                        <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-15</TableCell>
-                        <TableCell className="p-2 text-xs">$250.00</TableCell>
-                        <TableCell className="text-right p-2">
-                           <div className="flex flex-col sm:flex-row gap-2 justify-end">
-                            <Button variant="outline" size="sm">Approve</Button>
-                            <Button variant="destructive" size="sm">Decline</Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell className="p-2">
-                          <div className="font-medium text-xs">Noah Williams</div>
-                          <div className="hidden text-xs text-muted-foreground md:inline">
-                            noah@example.com
-                          </div>
-                        </TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-003</TableCell>
-                        <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-17</TableCell>
-                        <TableCell className="p-2 text-xs">$350.00</TableCell>
-                         <TableCell className="text-right p-2">
-                           <div className="flex flex-col sm:flex-row gap-2 justify-end">
-                            <Button variant="outline" size="sm">Approve</Button>
-                            <Button variant="destructive" size="sm">Decline</Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TabsContent>
-                <TabsContent value="returns">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="p-2 text-xs">Customer</TableHead>
-                        <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
-                        <TableHead className="hidden md:table-cell p-2 text-xs">Return Date</TableHead>
-                        <TableHead className="p-2 text-xs">Amount</TableHead>
-                        <TableHead className="text-right p-2 text-xs">Actions</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell className="p-2">
-                          <div className="font-medium text-xs">Olivia Smith</div>
-                          <div className="hidden text-xs text-muted-foreground md:inline">
-                            olivia@example.com
-                          </div>
-                        </TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-002</TableCell>
-                        <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-20</TableCell>
-                        <TableCell className="p-2 text-xs">$150.00</TableCell>
-                        <TableCell className="text-right p-2">
-                           <div className="flex flex-col sm:flex-row gap-2 justify-end">
-                            <Button variant="outline" size="sm">Process</Button>
-                            <Button variant="secondary" size="sm">Details</Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                        <TableRow>
-                        <TableCell className="p-2">
-                          <div className="font-medium text-xs">Emma Brown</div>
-                          <div className="hidden text-xs text-muted-foreground md:inline">
-                            emma@example.com
-                          </div>
-                        </TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-004</TableCell>
-                        <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-22</TableCell>
-                        <TableCell className="p-2 text-xs">$450.00</TableCell>
-                        <TableCell className="text-right p-2">
-                           <div className="flex flex-col sm:flex-row gap-2 justify-end">
-                            <Button variant="outline" size="sm" disabled>Refunded</Button>
-                            <Button variant="secondary" size="sm">Details</Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TabsContent>
-                <TabsContent value="exchanges">
-                   <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="p-2 text-xs">Customer</TableHead>
-                        <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
-                        <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
-                        <TableHead className="p-2 text-xs">New Item</TableHead>
-                        <TableHead className="text-right p-2 text-xs">Actions</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell className="p-2">
-                          <div className="font-medium text-xs">Jackson Lee</div>
-                          <div className="hidden text-xs text-muted-foreground md:inline">
-                            jackson.lee@email.com
-                          </div>
-                        </TableCell>
-                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-006</TableCell>
-                        <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-25</TableCell>
-                        <TableCell className="p-2 text-xs">Golden Waves</TableCell>
-                        <TableCell className="text-right p-2">
-                           <div className="flex flex-col sm:flex-row gap-2 justify-end">
-                            <Button variant="outline" size="sm">Approve</Button>
-                            <Button variant="destructive" size="sm">Decline</Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TabsContent>
-                <TabsContent value="canceled">
-                   <div className="flex items-center justify-center h-48">
-                    <p className="text-muted-foreground">No canceled orders to show.</p>
-                  </div>
-                </TabsContent>
-              </Tabs>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Customer</TableHead>
+                    <TableHead className="hidden xl:table-column">
+                      Type
+                    </TableHead>
+                    <TableHead className="hidden xl:table-column">
+                      Status
+                    </TableHead>
+                    <TableHead className="hidden xl:table-column">
+                      Date
+                    </TableHead>
+                    <TableHead className="text-right">Amount</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <div className="font-medium">Liam Johnson</div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">
+                        liam@example.com
+                      </div>
+                    </TableCell>
+                    <TableCell className="hidden xl:table-column">
+                      Sale
+                    </TableCell>
+                    <TableCell className="hidden xl:table-column">
+                      <Badge className="text-xs" variant="outline">
+                        Approved
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
+                      2023-06-23
+                    </TableCell>
+                    <TableCell className="text-right">$250.00</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <div className="font-medium">Olivia Smith</div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">
+                        olivia@example.com
+                      </div>
+                    </TableCell>
+                    <TableCell className="hidden xl:table-column">
+                      Refund
+                    </TableCell>
+                    <TableCell className="hidden xl:table-column">
+                      <Badge className="text-xs" variant="outline">
+                        Declined
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
+                      2023-06-24
+                    </TableCell>
+                    <TableCell className="text-right">$150.00</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <div className="font-medium">Noah Williams</div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">
+                        noah@example.com
+                      </div>
+                    </TableCell>
+                    <TableCell className="hidden xl:table-column">
+                      Subscription
+                    </TableCell>
+                    <TableCell className="hidden xl:table-column">
+                      <Badge className="text-xs" variant="outline">
+                        Approved
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
+                      2023-06-25
+                    </TableCell>
+                    <TableCell className="text-right">$350.00</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <div className="font-medium">Emma Brown</div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">
+                        emma@example.com
+                      </div>
+                    </TableCell>
+                    <TableCell className="hidden xl:table-column">
+                      Sale
+                    </TableCell>
+                    <TableCell className="hidden xl:table-column">
+                      <Badge className="text-xs" variant="outline">
+                        Approved
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
+                      2023-06-26
+                    </TableCell>
+                    <TableCell className="text-right">$450.00</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <div className="font-medium">Liam Johnson</div>
+                      <div className="hidden text-sm text-muted-foreground md:inline">
+                        liam@example.com
+                      </div>
+                    </TableCell>
+                    <TableCell className="hidden xl:table-column">
+                      Sale
+                    </TableCell>
+                    <TableCell className="hidden xl:table-column">
+                      <Badge className="text-xs" variant="outline">
+                        Approved
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
+                      2023-06-27
+                    </TableCell>
+                    <TableCell className="text-right">$550.00</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </CardContent>
           </Card>
           <Card>
