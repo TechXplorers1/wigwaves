@@ -37,8 +37,26 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/ui/tabs';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { useState } from 'react';
+
+const tabs = [
+    { value: 'overview', label: 'Overview' },
+    { value: 'upcoming', label: 'Upcoming' },
+    { value: 'returns', label: 'Returns' },
+    { value: 'exchanges', label: 'Exchanges' },
+    { value: 'canceled', label: 'Canceled' },
+];
 
 export default function AdminDashboardPage() {
+    const [activeTab, setActiveTab] = useState(tabs[0].value);
+
   return (
     <div className="flex min-h-screen w-full flex-col">
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
@@ -107,14 +125,24 @@ export default function AdminDashboardPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Tabs defaultValue="overview">
-                <div className="overflow-x-auto pb-2">
-                  <TabsList className="grid w-full grid-cols-3 sm:w-auto sm:inline-flex">
-                    <TabsTrigger value="overview">Overview</TabsTrigger>
-                    <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
-                    <TabsTrigger value="returns">Returns</TabsTrigger>
-                    <TabsTrigger value="exchanges">Exchanges</TabsTrigger>
-                    <TabsTrigger value="canceled">Canceled</TabsTrigger>
+              <Tabs value={activeTab} onValueChange={setActiveTab}>
+                <div className="sm:hidden">
+                    <Select onValueChange={setActiveTab} value={activeTab}>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {tabs.map(tab => (
+                                <SelectItem key={tab.value} value={tab.value}>{tab.label}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div className="hidden sm:block overflow-x-auto pb-2">
+                  <TabsList>
+                    {tabs.map(tab => (
+                        <TabsTrigger key={tab.value} value={tab.value}>{tab.label}</TabsTrigger>
+                    ))}
                   </TabsList>
                 </div>
                 <TabsContent value="overview">
@@ -464,3 +492,5 @@ export default function AdminDashboardPage() {
     </div>
   );
 }
+
+    
