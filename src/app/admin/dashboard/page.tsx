@@ -108,8 +108,8 @@ export default function AdminDashboardPage() {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="overview">
-                <div className="overflow-x-auto">
-                  <TabsList>
+                <div className="overflow-x-auto pb-2">
+                  <TabsList className="grid w-full grid-cols-3 sm:w-auto sm:inline-flex">
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                     <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
                     <TabsTrigger value="returns">Returns</TabsTrigger>
@@ -121,105 +121,105 @@ export default function AdminDashboardPage() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>Customer</TableHead>
-                        <TableHead className="hidden sm:table-cell">Order ID</TableHead>
-                        <TableHead className="hidden sm:table-cell">Status</TableHead>
-                        <TableHead className="hidden md:table-cell">
+                        <TableHead className="p-2 text-xs">Customer</TableHead>
+                        <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
+                        <TableHead className="hidden sm:table-cell p-2 text-xs">Status</TableHead>
+                        <TableHead className="hidden md:table-cell p-2 text-xs">
                           Date
                         </TableHead>
-                        <TableHead className="text-right">Amount</TableHead>
+                        <TableHead className="text-right p-2 text-xs">Amount</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       <TableRow>
-                        <TableCell>
-                          <div className="font-medium">Liam Johnson</div>
-                          <div className="hidden text-sm text-muted-foreground md:inline">
+                        <TableCell className="p-2">
+                          <div className="font-medium text-xs">Liam Johnson</div>
+                          <div className="hidden text-xs text-muted-foreground md:inline">
                             liam@example.com
                           </div>
                         </TableCell>
-                        <TableCell className="hidden sm:table-cell">#ORD-001</TableCell>
-                        <TableCell className="hidden sm:table-cell">
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-001</TableCell>
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">
                           <Badge className="text-xs" variant="outline">
                             Pending
                           </Badge>
                         </TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell p-2 text-xs">
                           2023-07-15
                         </TableCell>
-                        <TableCell className="text-right">$250.00</TableCell>
+                        <TableCell className="text-right p-2 text-xs">$250.00</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell>
-                          <div className="font-medium">Olivia Smith</div>
-                          <div className="hidden text-sm text-muted-foreground md:inline">
+                        <TableCell className="p-2">
+                          <div className="font-medium text-xs">Olivia Smith</div>
+                          <div className="hidden text-xs text-muted-foreground md:inline">
                             olivia@example.com
                           </div>
                         </TableCell>
-                        <TableCell className="hidden sm:table-cell">#ORD-002</TableCell>
-                        <TableCell className="hidden sm:table-cell">
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-002</TableCell>
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">
                           <Badge className="text-xs" variant="outline">
                             Processing
                           </Badge>
                         </TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell p-2 text-xs">
                           2023-07-16
                         </TableCell>
-                        <TableCell className="text-right">$150.00</TableCell>
+                        <TableCell className="text-right p-2 text-xs">$150.00</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell>
-                          <div className="font-medium">Noah Williams</div>
-                          <div className="hidden text-sm text-muted-foreground md:inline">
+                        <TableCell className="p-2">
+                          <div className="font-medium text-xs">Noah Williams</div>
+                          <div className="hidden text-xs text-muted-foreground md:inline">
                             noah@example.com
                           </div>
                         </TableCell>
-                        <TableCell className="hidden sm:table-cell">#ORD-003</TableCell>
-                        <TableCell className="hidden sm:table-cell">
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-003</TableCell>
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">
                           <Badge className="text-xs" variant="outline">
                             Pending
                           </Badge>
                         </TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell p-2 text-xs">
                           2023-07-17
                         </TableCell>
-                        <TableCell className="text-right">$350.00</TableCell>
+                        <TableCell className="text-right p-2 text-xs">$350.00</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell>
-                          <div className="font-medium">Emma Brown</div>
-                          <div className="hidden text-sm text-muted-foreground md:inline">
+                        <TableCell className="p-2">
+                          <div className="font-medium text-xs">Emma Brown</div>
+                          <div className="hidden text-xs text-muted-foreground md:inline">
                             emma@example.com
                           </div>
                         </TableCell>
-                        <TableCell className="hidden sm:table-cell">#ORD-004</TableCell>
-                        <TableCell className="hidden sm:table-cell">
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-004</TableCell>
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">
                           <Badge className="text-xs" variant="outline">
                             Shipped
                           </Badge>
                         </TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell p-2 text-xs">
                           2023-07-18
                         </TableCell>
-                        <TableCell className="text-right">$450.00</TableCell>
+                        <TableCell className="text-right p-2 text-xs">$450.00</TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell>
-                          <div className="font-medium">Liam Johnson</div>
-                          <div className="hidden text-sm text-muted-foreground md:inline">
+                        <TableCell className="p-2">
+                          <div className="font-medium text-xs">Liam Johnson</div>
+                          <div className="hidden text-xs text-muted-foreground md:inline">
                             liam@example.com
                           </div>
                         </TableCell>
-                        <TableCell className="hidden sm:table-cell">#ORD-005</TableCell>
-                        <TableCell className="hidden sm:table-cell">
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-005</TableCell>
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">
                           <Badge className="text-xs" variant="outline">
                             Delivered
                           </Badge>
                         </TableCell>
-                        <TableCell className="hidden md:table-cell">
+                        <TableCell className="hidden md:table-cell p-2 text-xs">
                           2023-07-19
                         </TableCell>
-                        <TableCell className="text-right">$550.00</TableCell>
+                        <TableCell className="text-right p-2 text-xs">$550.00</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
@@ -228,25 +228,25 @@ export default function AdminDashboardPage() {
                    <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>Customer</TableHead>
-                        <TableHead className="hidden sm:table-cell">Order ID</TableHead>
-                        <TableHead className="hidden md:table-cell">Date</TableHead>
-                        <TableHead>Amount</TableHead>
-                        <TableHead className="text-right">Actions</TableHead>
+                        <TableHead className="p-2 text-xs">Customer</TableHead>
+                        <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
+                        <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
+                        <TableHead className="p-2 text-xs">Amount</TableHead>
+                        <TableHead className="text-right p-2 text-xs">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       <TableRow>
-                        <TableCell>
-                          <div className="font-medium">Liam Johnson</div>
-                          <div className="hidden text-sm text-muted-foreground md:inline">
+                        <TableCell className="p-2">
+                          <div className="font-medium text-xs">Liam Johnson</div>
+                          <div className="hidden text-xs text-muted-foreground md:inline">
                             liam@example.com
                           </div>
                         </TableCell>
-                        <TableCell className="hidden sm:table-cell">#ORD-001</TableCell>
-                        <TableCell className="hidden md:table-cell">2023-07-15</TableCell>
-                        <TableCell>$250.00</TableCell>
-                        <TableCell className="text-right">
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-001</TableCell>
+                        <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-15</TableCell>
+                        <TableCell className="p-2 text-xs">$250.00</TableCell>
+                        <TableCell className="text-right p-2">
                            <div className="flex flex-col sm:flex-row gap-2 justify-end">
                             <Button variant="outline" size="sm">Approve</Button>
                             <Button variant="destructive" size="sm">Decline</Button>
@@ -254,16 +254,16 @@ export default function AdminDashboardPage() {
                         </TableCell>
                       </TableRow>
                       <TableRow>
-                        <TableCell>
-                          <div className="font-medium">Noah Williams</div>
-                          <div className="hidden text-sm text-muted-foreground md:inline">
+                        <TableCell className="p-2">
+                          <div className="font-medium text-xs">Noah Williams</div>
+                          <div className="hidden text-xs text-muted-foreground md:inline">
                             noah@example.com
                           </div>
                         </TableCell>
-                        <TableCell className="hidden sm:table-cell">#ORD-003</TableCell>
-                        <TableCell className="hidden md:table-cell">2023-07-17</TableCell>
-                        <TableCell>$350.00</TableCell>
-                         <TableCell className="text-right">
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-003</TableCell>
+                        <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-17</TableCell>
+                        <TableCell className="p-2 text-xs">$350.00</TableCell>
+                         <TableCell className="text-right p-2">
                            <div className="flex flex-col sm:flex-row gap-2 justify-end">
                             <Button variant="outline" size="sm">Approve</Button>
                             <Button variant="destructive" size="sm">Decline</Button>
@@ -277,25 +277,25 @@ export default function AdminDashboardPage() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>Customer</TableHead>
-                        <TableHead className="hidden sm:table-cell">Order ID</TableHead>
-                        <TableHead className="hidden md:table-cell">Return Date</TableHead>
-                        <TableHead>Amount</TableHead>
-                        <TableHead className="text-right">Actions</TableHead>
+                        <TableHead className="p-2 text-xs">Customer</TableHead>
+                        <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
+                        <TableHead className="hidden md:table-cell p-2 text-xs">Return Date</TableHead>
+                        <TableHead className="p-2 text-xs">Amount</TableHead>
+                        <TableHead className="text-right p-2 text-xs">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       <TableRow>
-                        <TableCell>
-                          <div className="font-medium">Olivia Smith</div>
-                          <div className="hidden text-sm text-muted-foreground md:inline">
+                        <TableCell className="p-2">
+                          <div className="font-medium text-xs">Olivia Smith</div>
+                          <div className="hidden text-xs text-muted-foreground md:inline">
                             olivia@example.com
                           </div>
                         </TableCell>
-                        <TableCell className="hidden sm:table-cell">#ORD-002</TableCell>
-                        <TableCell className="hidden md:table-cell">2023-07-20</TableCell>
-                        <TableCell>$150.00</TableCell>
-                        <TableCell className="text-right">
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-002</TableCell>
+                        <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-20</TableCell>
+                        <TableCell className="p-2 text-xs">$150.00</TableCell>
+                        <TableCell className="text-right p-2">
                            <div className="flex flex-col sm:flex-row gap-2 justify-end">
                             <Button variant="outline" size="sm">Process</Button>
                             <Button variant="secondary" size="sm">Details</Button>
@@ -303,16 +303,16 @@ export default function AdminDashboardPage() {
                         </TableCell>
                       </TableRow>
                         <TableRow>
-                        <TableCell>
-                          <div className="font-medium">Emma Brown</div>
-                          <div className="hidden text-sm text-muted-foreground md:inline">
+                        <TableCell className="p-2">
+                          <div className="font-medium text-xs">Emma Brown</div>
+                          <div className="hidden text-xs text-muted-foreground md:inline">
                             emma@example.com
                           </div>
                         </TableCell>
-                        <TableCell className="hidden sm:table-cell">#ORD-004</TableCell>
-                        <TableCell className="hidden md:table-cell">2023-07-22</TableCell>
-                        <TableCell>$450.00</TableCell>
-                        <TableCell className="text-right">
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-004</TableCell>
+                        <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-22</TableCell>
+                        <TableCell className="p-2 text-xs">$450.00</TableCell>
+                        <TableCell className="text-right p-2">
                            <div className="flex flex-col sm:flex-row gap-2 justify-end">
                             <Button variant="outline" size="sm" disabled>Refunded</Button>
                             <Button variant="secondary" size="sm">Details</Button>
@@ -326,25 +326,25 @@ export default function AdminDashboardPage() {
                    <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>Customer</TableHead>
-                        <TableHead className="hidden sm:table-cell">Order ID</TableHead>
-                        <TableHead className="hidden md:table-cell">Date</TableHead>
-                        <TableHead>New Item</TableHead>
-                        <TableHead className="text-right">Actions</TableHead>
+                        <TableHead className="p-2 text-xs">Customer</TableHead>
+                        <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
+                        <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
+                        <TableHead className="p-2 text-xs">New Item</TableHead>
+                        <TableHead className="text-right p-2 text-xs">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       <TableRow>
-                        <TableCell>
-                          <div className="font-medium">Jackson Lee</div>
-                          <div className="hidden text-sm text-muted-foreground md:inline">
+                        <TableCell className="p-2">
+                          <div className="font-medium text-xs">Jackson Lee</div>
+                          <div className="hidden text-xs text-muted-foreground md:inline">
                             jackson.lee@email.com
                           </div>
                         </TableCell>
-                        <TableCell className="hidden sm:table-cell">#ORD-006</TableCell>
-                        <TableCell className="hidden md:table-cell">2023-07-25</TableCell>
-                        <TableCell>Golden Waves</TableCell>
-                        <TableCell className="text-right">
+                        <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-006</TableCell>
+                        <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-25</TableCell>
+                        <TableCell className="p-2 text-xs">Golden Waves</TableCell>
+                        <TableCell className="text-right p-2">
                            <div className="flex flex-col sm:flex-row gap-2 justify-end">
                             <Button variant="outline" size="sm">Approve</Button>
                             <Button variant="destructive" size="sm">Decline</Button>
