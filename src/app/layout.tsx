@@ -3,9 +3,8 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { CartProvider } from '@/context/cart-context';
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
 import { AuthProvider } from '@/context/auth-context';
+import AppLayout from '@/components/layout/app-layout';
 
 export const metadata: Metadata = {
   title: 'WigVerse - Find Your Perfect Style',
@@ -31,11 +30,9 @@ export default function RootLayout({
       >
         <AuthProvider>
           <CartProvider>
-            <div className="relative flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
+            <AppLayout>
+              {children}
+            </AppLayout>
             <Toaster />
           </CartProvider>
         </AuthProvider>
