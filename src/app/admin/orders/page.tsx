@@ -377,9 +377,10 @@ export default function OrdersPage() {
                 <TableRow>
                   <TableHead className="p-2 text-xs">Customer</TableHead>
                   <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
-                  <TableHead className="hidden sm:table-cell p-2 text-xs">Status</TableHead>
                   <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
                   <TableHead className="text-right p-2 text-xs">Amount</TableHead>
+                  <TableHead className="text-right p-2 text-xs">Status</TableHead>
+                  <TableHead className="text-right p-2 text-xs">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -391,7 +392,11 @@ export default function OrdersPage() {
                     </div>
                   </TableCell>
                   <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-001</TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">
+                  <TableCell className="hidden md:table-cell p-2 text-xs">
+                    2023-07-15
+                  </TableCell>
+                  <TableCell className="text-right p-2 text-xs">$250.00</TableCell>
+                  <TableCell className="text-right p-2 text-xs">
                     <Select>
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select status" />
@@ -402,10 +407,11 @@ export default function OrdersPage() {
                       </SelectContent>
                     </Select>
                   </TableCell>
-                  <TableCell className="hidden md:table-cell p-2 text-xs">
-                    2023-07-15
+                  <TableCell className="text-right p-2">
+                    <Button variant="outline" size="sm">
+                      Edit
+                    </Button>
                   </TableCell>
-                  <TableCell className="text-right p-2 text-xs">$250.00</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
