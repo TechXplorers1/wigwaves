@@ -11,9 +11,9 @@ import { products } from "@/lib/products";
 import ProductCard from "@/components/product/product-card";
 
 const categories = [
-  { name: 'Wigs', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzB_tHlS6o5nJk5hY2x_mYd2k1Z5fXz7g3g&s', href: '/shop?category=wigs' },
-  { name: 'Hair Extension', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5_VwZJgH8s7sQ3wXy3R4E6d3d9K7_vYw&s', href: '/shop?category=extensions' },
-  { name: 'Toupees', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLb-p2hF4-9q3fJp2eH-jB7U9W5xW8fC-Q&s', href: '/shop?category=toupees' },
+  { name: 'Wigs', image: 'https://www.atozhair.net/wp-content/uploads/2021/03/women-natural-hair-wig-500x500-1.jpg', href: '/shop?category=wigs' },
+  { name: 'Hair Extension', image: 'https://img.tatacliq.com/images/i27//437Wx649H/MP000000026863845_437Wx649H_202510022344341.jpeg', href: '/shop?category=extensions' },
+  { name: 'Toupees', image: 'https://i.etsystatic.com/22505350/r/il/0d83c3/6352668740/il_fullxfull.6352668740_tdmi.jpg', href: '/shop?category=toupees' },
 ];
 
 export default function Home() {
