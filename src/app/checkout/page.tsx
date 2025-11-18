@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -34,73 +35,11 @@ export default function CheckoutPage() {
     <div className="container py-12 md:py-24">
       <Breadcrumb />
       <div className="text-center mb-12">
-        <h1 className="text-4xl sm:text-6xl font-headline tracking-tight">Checkout</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-headline tracking-tight">Checkout</h1>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        <div>
-          <h2 className="text-2xl font-headline mb-6">Shipping Information</h2>
-          <form className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="first-name">First Name</Label>
-                <Input id="first-name" placeholder="John" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="last-name">Last Name</Label>
-                <Input id="last-name" placeholder="Doe" />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="john.doe@example.com" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="address">Address</Label>
-              <Input id="address" placeholder="123 Wig Lane" />
-            </div>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="space-y-2 col-span-2">
-                <Label htmlFor="city">City</Label>
-                <Input id="city" placeholder="Styleville" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="zip">ZIP Code</Label>
-                <Input id="zip" placeholder="12345" />
-              </div>
-            </div>
-          </form>
-
-          <h2 className="text-2xl font-headline my-6 pt-6 border-t">Payment Method</h2>
-          <RadioGroup defaultValue="card" className="space-y-4">
-            <Label
-              htmlFor="card"
-              className="flex items-center gap-4 rounded-lg border p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground has-[input:checked]:bg-primary has-[input:checked]:text-primary-foreground has-[input:checked]:border-primary"
-            >
-              <RadioGroupItem value="card" id="card" className="sr-only" />
-              <CreditCard className="h-6 w-6" />
-              <span className="font-semibold">Credit Card</span>
-            </Label>
-            <Label
-              htmlFor="paypal"
-              className="flex items-center gap-4 rounded-lg border p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground has-[input:checked]:bg-primary has-[input:checked]:text-primary-foreground has-[input:checked]:border-primary"
-            >
-              <RadioGroupItem value="paypal" id="paypal" className="sr-only" />
-              <Landmark className="h-6 w-6" />
-              <span className="font-semibold">PayPal</span>
-            </Label>
-            <Label
-              htmlFor="google-pay"
-              className="flex items-center gap-4 rounded-lg border p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground has-[input:checked]:bg-primary has-[input:checked]:text-primary-foreground has-[input:checked]:border-primary"
-            >
-              <RadioGroupItem value="google-pay" id="google-pay" className="sr-only" />
-              <Wallet className="h-6 w-6" />
-              <span className="font-semibold">Google Pay</span>
-            </Label>
-          </RadioGroup>
-        </div>
-
-        <div className="sticky top-24">
-          <Card>
+        <div className="lg:order-2">
+          <Card className="sticky top-24">
             <CardHeader>
               <CardTitle>Order Summary</CardTitle>
             </CardHeader>
@@ -143,7 +82,71 @@ export default function CheckoutPage() {
             </CardContent>
           </Card>
         </div>
+
+        <div className="lg:order-1">
+          <h2 className="text-2xl font-headline mb-6">Shipping Information</h2>
+          <form className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="first-name">First Name</Label>
+                <Input id="first-name" placeholder="John" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="last-name">Last Name</Label>
+                <Input id="last-name" placeholder="Doe" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" placeholder="john.doe@example.com" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="address">Address</Label>
+              <Input id="address" placeholder="123 Wig Lane" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="space-y-2 col-span-1 sm:col-span-2">
+                <Label htmlFor="city">City</Label>
+                <Input id="city" placeholder="Styleville" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="zip">ZIP Code</Label>
+                <Input id="zip" placeholder="12345" />
+              </div>
+            </div>
+          </form>
+
+          <h2 className="text-2xl font-headline my-6 pt-6 border-t">Payment Method</h2>
+          <RadioGroup defaultValue="card" className="space-y-4">
+            <Label
+              htmlFor="card"
+              className="flex items-center gap-4 rounded-lg border p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground has-[input:checked]:bg-primary has-[input:checked]:text-primary-foreground has-[input:checked]:border-primary"
+            >
+              <RadioGroupItem value="card" id="card" className="sr-only" />
+              <CreditCard className="h-6 w-6" />
+              <span className="font-semibold">Credit Card</span>
+            </Label>
+            <Label
+              htmlFor="paypal"
+              className="flex items-center gap-4 rounded-lg border p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground has-[input:checked]:bg-primary has-[input:checked]:text-primary-foreground has-[input:checked]:border-primary"
+            >
+              <RadioGroupItem value="paypal" id="paypal" className="sr-only" />
+              <Landmark className="h-6 w-6" />
+              <span className="font-semibold">PayPal</span>
+            </Label>
+            <Label
+              htmlFor="google-pay"
+              className="flex items-center gap-4 rounded-lg border p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground has-[input:checked]:bg-primary has-[input:checked]:text-primary-foreground has-[input:checked]:border-primary"
+            >
+              <RadioGroupItem value="google-pay" id="google-pay" className="sr-only" />
+              <Wallet className="h-6 w-6" />
+              <span className="font-semibold">Google Pay</span>
+            </Label>
+          </RadioGroup>
+        </div>
       </div>
     </div>
   );
 }
+
+    

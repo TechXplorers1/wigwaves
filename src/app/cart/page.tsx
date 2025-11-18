@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -19,14 +20,14 @@ export default function CartPage() {
     <div className="container py-12 md:py-24">
       <Breadcrumb />
       <div className="text-center mb-12">
-        <h1 className="text-4xl sm:text-6xl font-headline tracking-tight">Your Shopping Cart</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-headline tracking-tight">Your Shopping Cart</h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
           Review your items and proceed to a secure checkout.
         </p>
       </div>
 
       {itemCount > 0 ? (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-2">
             <Card>
               <CardHeader>
@@ -34,13 +35,13 @@ export default function CartPage() {
               </CardHeader>
               <CardContent className="divide-y divide-border p-0">
                 {cartItems.map(item => (
-                  <div key={item.cartItemId} className="flex items-start gap-4 p-4">
+                  <div key={item.cartItemId} className="flex flex-col sm:flex-row items-start gap-4 p-4">
                     <Image
                       src={item.image}
                       alt={item.name}
-                      width={100}
-                      height={133}
-                      className="rounded-lg object-cover"
+                      width={120}
+                      height={160}
+                      className="rounded-lg object-cover w-full sm:w-32"
                     />
                     <div className="flex-1">
                       <h3 className="font-semibold text-lg">{item.name}</h3>
@@ -65,7 +66,7 @@ export default function CartPage() {
                         </Button>
                       </div>
                     </div>
-                    <div className="text-right">
+                    <div className="text-right self-center sm:self-auto">
                       <p className="font-bold text-lg">${(item.price * item.quantity).toFixed(2)}</p>
                       <Button variant="ghost" size="icon" className="mt-2 text-muted-foreground" onClick={() => item.cartItemId && removeFromCart(item.cartItemId)}>
                         <X className="h-5 w-5" />
@@ -118,3 +119,5 @@ export default function CartPage() {
     </div>
   );
 }
+
+    

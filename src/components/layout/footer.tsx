@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 
@@ -15,11 +16,27 @@ export default function Footer() {
     { name: 'FAQ', href: '/faq' },
   ];
 
+  const shopLinks = [
+    { name: 'Braids', href: '/shop?category=braids' },
+    { name: 'Weaves', href: '/shop?category=weaves' },
+    { name: 'Crochet', href: '/shop?category=crochet' },
+    { name: 'Ponytails', href: '/shop?category=ponytails' },
+    { name: 'Shop All', href: '/shop' },
+    { name: 'Hair Care Tips', href: '/hair-care-tips' },
+  ];
+
+  const companyLinks = [
+    { name: 'About Us', href: '/about' },
+    { name: 'Experience Center', href: '/experience-center' },
+    { name: 'Style 101', href: '/style-101' },
+    { name: 'Contact', href: '/contact' },
+  ];
+
   return (
     <footer className="bg-card border-t">
       <div className="container py-12">
-        <div className="grid gap-8 md:grid-cols-12">
-          <div className="md:col-span-4 space-y-4">
+        <div className="grid gap-8 grid-cols-2 md:grid-cols-12">
+          <div className="col-span-2 md:col-span-12 lg:col-span-4 space-y-4">
             <Logo />
             <p className="text-muted-foreground max-w-xs">
               Find your perfect style with our high-quality wigs and AI-powered recommendations.
@@ -28,15 +45,25 @@ export default function Footer() {
           <div className="md:col-span-2">
              <h3 className="font-semibold mb-4">Shop</h3>
               <ul className="space-y-2">
-                <li><Link href="/shop" className="text-muted-foreground hover:text-primary transition-colors">Shop</Link></li>
-                <li><Link href="/hair-care-tips" className="text-muted-foreground hover:text-primary transition-colors">Hair Care Tips</Link></li>
+                {shopLinks.map(link => (
+                    <li key={link.name}>
+                        <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors">
+                            {link.name}
+                        </Link>
+                    </li>
+                ))}
               </ul>
           </div>
            <div className="md:col-span-2">
              <h3 className="font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
-                <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
+                {companyLinks.map(link => (
+                    <li key={link.name}>
+                        <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors">
+                            {link.name}
+                        </Link>
+                    </li>
+                ))}
               </ul>
           </div>
           <div className="md:col-span-2">
@@ -51,7 +78,7 @@ export default function Footer() {
                 ))}
               </ul>
           </div>
-          <div className="md:col-span-2">
+          <div className="col-span-2 md:col-span-12 lg:col-span-2">
             <h3 className="font-semibold mb-4">Connect With Us</h3>
             <div className="flex space-x-4">
               {socialLinks.map(social => (
@@ -76,3 +103,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+    

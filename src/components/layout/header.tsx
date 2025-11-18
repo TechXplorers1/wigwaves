@@ -27,6 +27,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent
 } from "@/components/ui/dropdown-menu"
+import { ScrollArea } from '../ui/scroll-area';
 
 const SubNav = () => {
   const pathname = usePathname();
@@ -43,33 +44,35 @@ const SubNav = () => {
   }
 
   return (
-    <div className="border-b">
+    <div className="border-b bg-background">
         <div className="container mx-auto">
-            <nav className="flex h-12 items-center justify-center gap-x-8">
-                {SECONDARY_NAV_LINKS.map(link => (
-                    link.sublinks ? (
-                         <DropdownMenu key={link.name}>
-                            <DropdownMenuTrigger asChild>
-                                <Link href={link.href} className={cn('sub-nav-link flex items-center gap-1', isWigsActive() ? 'active' : '')}>
-                                    {link.name}
-                                    <ChevronDown className="h-4 w-4" />
-                                </Link>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                {link.sublinks.map(sublink => (
-                                    <DropdownMenuItem key={sublink.name} asChild>
-                                        <Link href={sublink.href}>{sublink.name}</Link>
-                                    </DropdownMenuItem>
-                                ))}
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    ) : (
-                        <Link key={link.name} href={link.href} className={cn('sub-nav-link', getIsActive(link.href) ? 'active' : '')}>
-                            {link.name}
-                        </Link>
-                    )
-                ))}
-            </nav>
+            <ScrollArea className="w-full">
+              <nav className="flex h-12 items-center justify-start sm:justify-center gap-x-6 sm:gap-x-8 whitespace-nowrap">
+                  {SECONDARY_NAV_LINKS.map(link => (
+                      link.sublinks ? (
+                           <DropdownMenu key={link.name}>
+                              <DropdownMenuTrigger asChild>
+                                  <Link href={link.href} className={cn('sub-nav-link flex items-center gap-1', isWigsActive() ? 'active' : '')}>
+                                      {link.name}
+                                      <ChevronDown className="h-4 w-4" />
+                                  </Link>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent>
+                                  {link.sublinks.map(sublink => (
+                                      <DropdownMenuItem key={sublink.name} asChild>
+                                          <Link href={sublink.href}>{sublink.name}</Link>
+                                      </DropdownMenuItem>
+                                  ))}
+                              </DropdownMenuContent>
+                          </DropdownMenu>
+                      ) : (
+                          <Link key={link.name} href={link.href} className={cn('sub-nav-link', getIsActive(link.href) ? 'active' : '')}>
+                              {link.name}
+                          </Link>
+                      )
+                  ))}
+              </nav>
+            </ScrollArea>
         </div>
     </div>
   )
@@ -93,6 +96,7 @@ export default function Header() {
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchQuery.trim() !== '') {
       router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
+      setIsMenuOpen(false);
     }
   };
 
@@ -105,7 +109,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 items-center">
+      <div className="container flex h-16 sm:h-20 items-center">
         <div className="flex items-center lg:hidden">
            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
@@ -113,12 +117,25 @@ export default function Header() {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className='w-full max-w-sm'>
-                <SheetHeader>
+            <SheetContent side="left" className='w-full max-w-sm p-0'>
+                <SheetHeader className="p-6 pb-0">
                   <SheetTitle><Logo /></SheetTitle>
                   <SheetDescription className="sr-only">Main mobile navigation menu</SheetDescription>
                 </SheetHeader>
-              <nav className="grid gap-4 text-base font-medium mt-8">
+                <div className="p-6">
+                    <div className="relative w-full mb-4">
+                        <Input
+                            type="search"
+                            placeholder="Search..."
+                            className="h-9 pr-10"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onKeyDown={handleSearch}
+                        />
+                        <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    </div>
+                </div>
+              <nav className="grid gap-4 text-base font-medium px-6">
                 {[...PRIMARY_NAV_LINKS, ...SECONDARY_NAV_LINKS].map(link => (
                     link.sublinks ? (
                         <DropdownMenu key={link.name}>
@@ -174,7 +191,7 @@ export default function Header() {
             ))}
         </nav>
         
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex flex-1 lg:flex-initial items-center justify-end gap-2">
             <div className="relative hidden sm:block w-full max-w-[15rem]">
                 <Input
                     type="search"
@@ -272,10 +289,10 @@ export default function Header() {
         </div>
       </div>
       {isClient && (
-        <div className="hidden lg:block">
           <SubNav />
-        </div>
       )}
     </header>
   );
 }
+
+    

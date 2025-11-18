@@ -93,7 +93,7 @@ export default function ProductDetailPage() {
                     priority
                 />
             </div>
-             <div className="grid grid-cols-5 gap-4">
+             <div className="grid grid-cols-5 gap-2 sm:gap-4">
                 {[...Array(2)].map((_, i) => (
                     <div key={i} className="aspect-square relative rounded-md overflow-hidden border-2 border-primary">
                         <Image src={product.image} alt={`${product.name} thumbnail ${i + 1}`} fill className="object-cover" />
@@ -106,15 +106,15 @@ export default function ProductDetailPage() {
         {/* Product Details */}
         <div>
           <div className="flex justify-between items-start">
-            <h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-2 uppercase">{product.name}</h1>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight mb-2 uppercase">{product.name}</h1>
             <Button variant="ghost" size="icon">
               <Heart className="w-6 h-6"/>
             </Button>
           </div>
 
-          <div className="flex items-center gap-4 mb-4">
-            <p className="text-2xl font-bold text-destructive">${salePrice.toFixed(2)}</p>
-            <p className="text-xl text-muted-foreground line-through">${currentPrice.toFixed(2)}</p>
+          <div className="flex items-center gap-2 sm:gap-4 mb-4">
+            <p className="text-xl sm:text-2xl font-bold text-destructive">${salePrice.toFixed(2)}</p>
+            <p className="text-lg sm:text-xl text-muted-foreground line-through">${currentPrice.toFixed(2)}</p>
             {discount > 0 && (
                 <span className="px-2 py-0.5 bg-destructive text-destructive-foreground text-xs font-semibold rounded-md">-{discount}%</span>
             )}
@@ -123,9 +123,9 @@ export default function ProductDetailPage() {
           <div className="space-y-4 mb-6">
             <div>
               <p className="text-sm font-semibold mb-2">Cap Size : <span className="text-muted-foreground">{selectedCapSize}</span></p>
-              <div className="flex gap-2">
+              <div className="flex gap-2 flex-wrap">
                 {capSizes.map(size => (
-                   <Button key={size} variant={selectedCapSize === size ? 'default' : 'outline'} onClick={() => setSelectedCapSize(size)}>
+                   <Button key={size} variant={selectedCapSize === size ? 'default' : 'outline'} size="sm" onClick={() => setSelectedCapSize(size)}>
                     {size}
                   </Button>
                 ))}
@@ -135,7 +135,7 @@ export default function ProductDetailPage() {
               <p className="text-sm font-semibold mb-2">Length : <span className="text-muted-foreground">{selectedLength}</span></p>
               <div className="flex gap-2 flex-wrap">
                 {lengths.map(length => (
-                  <Button key={length} variant={selectedLength === length ? 'default' : 'outline'} onClick={() => setSelectedLength(length)}>
+                  <Button key={length} variant={selectedLength === length ? 'default' : 'outline'} size="sm" onClick={() => setSelectedLength(length)}>
                     {length}
                   </Button>
                 ))}
@@ -143,7 +143,7 @@ export default function ProductDetailPage() {
             </div>
           </div>
           
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row items-center gap-4 mb-6">
             <div className="flex items-center border rounded-md">
               <Button variant="ghost" size="icon" onClick={decrementQuantity} className="h-11 w-11"><Minus className="w-4 h-4"/></Button>
               <span className="w-10 text-center font-bold text-lg">{quantity}</span>
@@ -200,11 +200,11 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-       <div className="my-24">
+       <div className="my-16 md:my-24">
         <Tabs defaultValue="description">
-            <TabsList className="w-full justify-start bg-transparent border-b rounded-none p-0 h-auto">
-                <TabsTrigger value="description" className="text-lg font-semibold rounded-none data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none -mb-px">Description</TabsTrigger>
-                <TabsTrigger value="care" className="text-lg font-semibold rounded-none data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none -mb-px">Care</TabsTrigger>
+            <TabsList className="w-full justify-start bg-transparent border-b rounded-none p-0 h-auto overflow-x-auto">
+                <TabsTrigger value="description" className="text-base sm:text-lg font-semibold rounded-none data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none -mb-px">Description</TabsTrigger>
+                <TabsTrigger value="care" className="text-base sm:text-lg font-semibold rounded-none data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-none -mb-px">Care</TabsTrigger>
             </TabsList>
             <TabsContent value="description" className="py-6 text-muted-foreground text-base">
               <h4 className="font-bold text-foreground mb-2">Wig Specs:</h4>
@@ -225,9 +225,9 @@ export default function ProductDetailPage() {
       
        {/* Related Products */}
       {relatedProducts.length > 0 && (
-        <div className="mt-24">
+        <div className="mt-16 md:mt-24">
           <h2 className="text-3xl font-headline text-center mb-8">You Might Also Like</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {relatedProducts.map(p => (
               <ProductCard key={p.id} product={p} />
             ))}
@@ -237,3 +237,5 @@ export default function ProductDetailPage() {
     </div>
   );
 }
+
+    
