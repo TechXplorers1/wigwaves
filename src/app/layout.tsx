@@ -8,7 +8,7 @@ import AppLayout from '@/components/layout/app-layout';
 import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
-  title: 'GG Wig - The Best Quality Hair and Wig Extensions',
+  title: 'WigWaves - The Best Quality Hair and Wig Extensions',
   description: 'High-quality wigs, hair extensions, and toupees.',
 };
 

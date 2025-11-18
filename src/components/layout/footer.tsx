@@ -73,7 +73,7 @@ export default function Footer() {
         </div>
         <div className="mt-12 pt-8 border-t">
           <p className="text-center text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} GG Wig. All Rights Reserved.
+            &copy; {new Date().getFullYear()} WigWaves. All Rights Reserved.
           </p>
         </div>
       </div>

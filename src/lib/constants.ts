@@ -1,4 +1,4 @@
-export const APP_NAME = 'GG Wig';
+export const APP_NAME = 'WigWaves';
 
 export const PRIMARY_NAV_LINKS = [
   { name: 'Home', href: '/' },
