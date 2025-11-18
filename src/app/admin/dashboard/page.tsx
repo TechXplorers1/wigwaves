@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -107,13 +108,15 @@ export default function AdminDashboardPage() {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="overview">
-                <TabsList className="grid w-full grid-cols-3 sm:w-auto sm:inline-flex">
-                  <TabsTrigger value="overview">Overview</TabsTrigger>
-                  <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
-                  <TabsTrigger value="returns">Returns</TabsTrigger>
-                  <TabsTrigger value="exchanges" className="hidden sm:inline-flex">Exchanges</TabsTrigger>
-                  <TabsTrigger value="canceled" className="hidden sm:inline-flex">Canceled</TabsTrigger>
-                </TabsList>
+                <div className="overflow-x-auto">
+                  <TabsList>
+                    <TabsTrigger value="overview">Overview</TabsTrigger>
+                    <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
+                    <TabsTrigger value="returns">Returns</TabsTrigger>
+                    <TabsTrigger value="exchanges">Exchanges</TabsTrigger>
+                    <TabsTrigger value="canceled">Canceled</TabsTrigger>
+                  </TabsList>
+                </div>
                 <TabsContent value="overview">
                   <Table>
                     <TableHeader>
@@ -491,3 +494,5 @@ export default function AdminDashboardPage() {
     </div>
   );
 }
+
+  
