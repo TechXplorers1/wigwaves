@@ -103,7 +103,7 @@ export default function Home() {
                         <h3 className="text-sm font-semibold h-10 line-clamp-2">{product.name}</h3>
                       </CardContent>
                       <CardFooter className="flex flex-col items-center gap-2 p-4 pt-0">
-                          <p className="font-bold text-lg">{product.price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</p>
+                          <p className="font-bold text-lg">${product.price.toFixed(2)}</p>
                           <Button size="sm" variant="outline" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                               <ShoppingCartIcon className="mr-2 h-4 w-4" /> Add
                           </Button>

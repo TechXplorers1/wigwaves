@@ -8,7 +8,7 @@ export const products: Wig[] = [
   {
     id: 'w1',
     name: 'Ngozi',
-    price: 189.99,
+    price: 1899.99,
     image: "https://laidbyify.com/cdn/shop/files/34B90DCB-F114-469A-ACAD-7515530AE2BB.jpg?v=1756814058&width=2200",
     description: 'Beautiful long, wavy blonde hair that flows naturally. Made from high-quality synthetic fibers.',
     style: 'Wavy',
@@ -19,7 +19,7 @@ export const products: Wig[] = [
   {
     id: 'w2',
     name: 'Nkem (Natural Black)',
-    price: 220.50,
+    price: 2200.50,
     image: "https://laidbyify.com/cdn/shop/files/7D5C1F71-C620-45CB-95E6-A77B8EFD8E7E.jpg?v=1762186440&width=2200",
     description: 'A timeless and chic bob cut in a rich brunette shade. Made from 100% human hair.',
     style: 'Bob',
@@ -30,7 +30,7 @@ export const products: Wig[] = [
   {
     id: 'w3',
     name: 'Chika',
-    price: 155.00,
+    price: 1550.00,
     image: "https://laidbyify.com/cdn/shop/files/IMG-3873.jpg?v=1760919015&width=2200",
     description: 'Make a statement with these vibrant, bouncy red curls. Fun, fearless, and fabulous.',
     style: 'Curly',
@@ -41,7 +41,7 @@ export const products: Wig[] = [
   {
     id: 'w4',
     name: 'Amarachi (Jet Black)',
-    price: 250.00,
+    price: 2500.00,
     image: "https://laidbyify.com/cdn/shop/files/FullSizeRender_a768257a-8218-4c15-b0fa-8fe21b490d14.jpg?v=1742301306",
     description: 'A stunningly sleek and straight wig in a deep black. Perfect for a sophisticated look.',
     style: 'Straight',
@@ -52,7 +52,7 @@ export const products: Wig[] = [
   {
     id: 'w5',
     name: 'Ogechi 2.0',
-    price: 130.75,
+    price: 1630.75,
     image: "https://laidbyify.com/cdn/shop/files/FullSizeRender_918ee82c-59db-4d15-9ea9-a7370ddf1267.jpg?v=1741957669",
     description: 'A modern and edgy pixie cut in a gorgeous silver-grey. Lightweight and easy to style.',
     style: 'Pixie',
@@ -63,7 +63,7 @@ export const products: Wig[] = [
   {
     id: 'w6',
     name: 'Ifeoma',
-    price: 175.00,
+    price: 1750.00,
     image: "https://laidbyify.com/cdn/shop/files/6A058DEE-B870-4B35-A59C-437A3E1CBA4F.jpg?v=1742293717&width=2200",
     description: 'Live your pastel dreams with this shoulder-length pastel pink wig. Soft, wavy, and romantic.',
     style: 'Wavy',
@@ -74,7 +74,7 @@ export const products: Wig[] = [
   {
     id: 'w7',
     name: 'Chinwe (Jet Black)',
-    price: 280.00,
+    price: 2800.00,
     image: "https://laidbyify.com/cdn/shop/files/FullSizeRender.jpg?v=1742299791",
     description: 'Long, flowing waves with a beautiful dark root to warm sunset ombre transition.',
     style: 'Wavy',
@@ -85,7 +85,7 @@ export const products: Wig[] = [
   {
     id: 'w13',
     name: '10x10 Active Pre-Stretched Braid',
-    price: 145.00,
+    price: 1545.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/7R5A7294_900x.jpg?v=1754395085',
     description: 'A short and sassy curly bob that is full of life and personality.',
     style: 'Bob',
@@ -97,7 +97,7 @@ export const products: Wig[] = [
   {
     id: 'w14',
     name: '10x10 Complete Braid',
-    price: 265.00,
+    price: 2650.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/DSC8378_900x.jpg?v=1733833776',
     description: 'Elegant long straight hair with face-framing layers.',
     style: 'Straight',
@@ -109,7 +109,7 @@ export const products: Wig[] = [
   {
     id: 'w15',
     name: '10x10 Active Braid',
-    price: 155.00,
+    price: 1555.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/a18_900x.jpg?v=1733840505',
     description: 'A playful pixie cut with a touch of purple.',
     style: 'Pixie',
@@ -121,7 +121,7 @@ export const products: Wig[] = [
   {
     id: 'w16',
     name: 'BUTTERFLY LOCS 18',
-    price: 225.00,
+    price: 2250.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/DSCF0986_1289be46-9ab8-4787-9e67-2a0400fbcfe4_900x.jpg?v=1706549737',
     description: 'Deep red waves that command attention.',
     style: 'Wavy',
@@ -133,7 +133,7 @@ export const products: Wig[] = [
   {
     id: 'w17',
     name: 'DEEP CURL',
-    price: 195.00,
+    price: 1950.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/DEEPCURL_OM23033_1_5c008655-3bb5-4b51-bc45-abe35047ba28_900x.jpg?v=1716373394',
     description: 'A chic, asymmetrical bob in a striking silver color.',
     style: 'Bob',
@@ -145,7 +145,7 @@ export const products: Wig[] = [
   {
     id: 'w18',
     name: 'BODY WAVE PONYTAIL',
-    price: 310.00,
+    price: 3100.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/IMG4_900x.jpg?v=1716372671',
     description: 'Luxurious, tight curls in a natural black tone.',
     style: 'Curly',
