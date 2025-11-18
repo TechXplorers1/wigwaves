@@ -46,32 +46,34 @@ const SubNav = () => {
   return (
     <div className="border-b bg-background">
         <div className="container mx-auto">
-            <ScrollArea className="w-full">
-              <nav className="flex h-12 items-center justify-start sm:justify-center gap-x-6 sm:gap-x-8 whitespace-nowrap">
-                  {SECONDARY_NAV_LINKS.map(link => (
-                      link.sublinks ? (
-                           <DropdownMenu key={link.name}>
-                              <DropdownMenuTrigger asChild>
-                                  <div className={cn('sub-nav-link flex items-center gap-1 cursor-pointer', isWigsActive() ? 'active' : '')}>
-                                      {link.name}
-                                      <ChevronDown className="h-4 w-4" />
-                                  </div>
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent>
-                                  {link.sublinks.map(sublink => (
-                                      <DropdownMenuItem key={sublink.name} asChild>
-                                          <Link href={sublink.href}>{sublink.name}</Link>
-                                      </DropdownMenuItem>
-                                  ))}
-                              </DropdownMenuContent>
-                          </DropdownMenu>
-                      ) : (
-                          <Link key={link.name} href={link.href} className={cn('sub-nav-link', getIsActive(link.href) ? 'active' : '')}>
-                              {link.name}
-                          </Link>
-                      )
-                  ))}
-              </nav>
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="w-full">
+                <nav className="flex h-12 items-center justify-start sm:justify-center gap-x-6 sm:gap-x-8">
+                    {SECONDARY_NAV_LINKS.map(link => (
+                        link.sublinks ? (
+                            <DropdownMenu key={link.name}>
+                                <DropdownMenuTrigger asChild>
+                                    <div className={cn('sub-nav-link flex items-center gap-1 cursor-pointer', isWigsActive() ? 'active' : '')}>
+                                        {link.name}
+                                        <ChevronDown className="h-4 w-4" />
+                                    </div>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    {link.sublinks.map(sublink => (
+                                        <DropdownMenuItem key={sublink.name} asChild>
+                                            <Link href={sublink.href}>{sublink.name}</Link>
+                                        </DropdownMenuItem>
+                                    ))}
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        ) : (
+                            <Link key={link.name} href={link.href} className={cn('sub-nav-link', getIsActive(link.href) ? 'active' : '')}>
+                                {link.name}
+                            </Link>
+                        )
+                    ))}
+                </nav>
+              </div>
             </ScrollArea>
         </div>
     </div>
