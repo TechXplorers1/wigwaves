@@ -25,31 +25,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-const TopBar = () => (
-    <div className="bg-[#332222] text-white py-2">
-        <div className="container flex justify-between items-center text-xs">
-            <div className="flex items-center gap-4">
-                <div className="flex items-center gap-1">
-                    <Phone className="w-3 h-3" />
-                    <span>+91-8888888888</span>
-                </div>
-                <div className="flex items-center gap-1">
-                    <Mail className="w-3 h-3" />
-                    <span>websupport@justdial.com</span>
-                </div>
-            </div>
-            <div className="flex items-center gap-4">
-                <div className="flex items-center gap-1">
-                    <MapPin className="w-3 h-3" />
-                    <span>Malad West</span>
-                </div>
-                <Link href="#" className="hover:underline">Track Order</Link>
-                <Link href="/login" className="hover:underline">Log In | Sign Up</Link>
-            </div>
-        </div>
-    </div>
-)
-
 export default function Header() {
   const { itemCount } = useCart();
   const { user, logout } = useAuth();
@@ -82,7 +57,6 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      {isClient && <TopBar />}
       <div className="container flex h-16 sm:h-20 items-center">
         <div className="mr-6 flex items-center">
             <Logo />
