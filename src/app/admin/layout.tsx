@@ -24,7 +24,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
 import Logo from '@/components/logo';
 import { cn } from '@/lib/utils';
@@ -38,7 +37,7 @@ export default function AdminLayout({
 
   const navLinks = [
     { href: "/admin/dashboard", label: "Dashboard", icon: Home },
-    { href: "/admin/orders", label: "Orders", icon: ShoppingCart, badge: 6 },
+    { href: "/admin/orders", label: "Order Management", icon: ShoppingCart },
     { href: "#", label: "Products", icon: Package },
     { href: "#", label: "Customers", icon: Users },
     { href: "#", label: "Analytics", icon: LineChart },
