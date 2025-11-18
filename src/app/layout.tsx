@@ -8,8 +8,8 @@ import AppLayout from '@/components/layout/app-layout';
 import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
-  title: 'WigVerse - Find Your Perfect Style',
-  description: 'High-quality wigs with an AI-powered recommendation tool.',
+  title: 'GG Wig - The Best Quality Hair and Wig Extensions',
+  description: 'High-quality wigs, hair extensions, and toupees.',
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet" />
       </head>
       <body
         className={cn(
