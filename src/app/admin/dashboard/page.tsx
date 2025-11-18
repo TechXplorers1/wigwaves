@@ -230,10 +230,9 @@ export default function AdminDashboardPage() {
                       <TableRow>
                         <TableHead>Customer</TableHead>
                         <TableHead className="hidden sm:table-cell">Order ID</TableHead>
-                        <TableHead className="hidden sm:table-cell">Status</TableHead>
                         <TableHead className="hidden md:table-cell">Date</TableHead>
                         <TableHead className="text-right">Amount</TableHead>
-                        <TableHead className="text-right">Actions</TableHead>
+                        <TableHead className="sr-only sm:not-sr-only text-right">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -245,11 +244,6 @@ export default function AdminDashboardPage() {
                           </div>
                         </TableCell>
                         <TableCell className="hidden sm:table-cell">#ORD-001</TableCell>
-                        <TableCell className="hidden sm:table-cell">
-                          <Badge className="text-xs" variant="outline">
-                            Pending
-                          </Badge>
-                        </TableCell>
                         <TableCell className="hidden md:table-cell">2023-07-15</TableCell>
                         <TableCell className="text-right">$250.00</TableCell>
                         <TableCell className="text-right">
@@ -267,11 +261,6 @@ export default function AdminDashboardPage() {
                           </div>
                         </TableCell>
                         <TableCell className="hidden sm:table-cell">#ORD-003</TableCell>
-                        <TableCell className="hidden sm:table-cell">
-                          <Badge className="text-xs" variant="outline">
-                            Pending
-                          </Badge>
-                        </TableCell>
                         <TableCell className="hidden md:table-cell">2023-07-17</TableCell>
                         <TableCell className="text-right">$350.00</TableCell>
                          <TableCell className="text-right">
@@ -290,10 +279,9 @@ export default function AdminDashboardPage() {
                       <TableRow>
                         <TableHead>Customer</TableHead>
                         <TableHead className="hidden sm:table-cell">Order ID</TableHead>
-                        <TableHead className="hidden sm:table-cell">Status</TableHead>
                         <TableHead className="hidden md:table-cell">Return Date</TableHead>
                         <TableHead className="text-right">Amount</TableHead>
-                        <TableHead className="text-right">Actions</TableHead>
+                        <TableHead className="sr-only sm:not-sr-only text-right">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -305,17 +293,12 @@ export default function AdminDashboardPage() {
                           </div>
                         </TableCell>
                         <TableCell className="hidden sm:table-cell">#ORD-002</TableCell>
-                        <TableCell className="hidden sm:table-cell">
-                          <Badge className="text-xs" variant="outline">
-                            Pending Inspection
-                          </Badge>
-                        </TableCell>
                         <TableCell className="hidden md:table-cell">2023-07-20</TableCell>
                         <TableCell className="text-right">$150.00</TableCell>
                         <TableCell className="text-right">
                            <div className="flex gap-2 justify-end">
-                            <Button variant="outline" size="sm">Process Refund</Button>
-                            <Button variant="secondary" size="sm">View Details</Button>
+                            <Button variant="outline" size="sm">Process</Button>
+                            <Button variant="secondary" size="sm">Details</Button>
                           </div>
                         </TableCell>
                       </TableRow>
@@ -327,17 +310,12 @@ export default function AdminDashboardPage() {
                           </div>
                         </TableCell>
                         <TableCell className="hidden sm:table-cell">#ORD-004</TableCell>
-                        <TableCell className="hidden sm:table-cell">
-                          <Badge className="text-xs" variant="outline">
-                            Approved
-                          </Badge>
-                        </TableCell>
                         <TableCell className="hidden md:table-cell">2023-07-22</TableCell>
                         <TableCell className="text-right">$450.00</TableCell>
                         <TableCell className="text-right">
                            <div className="flex gap-2 justify-end">
                             <Button variant="outline" size="sm" disabled>Refunded</Button>
-                            <Button variant="secondary" size="sm">View Details</Button>
+                            <Button variant="secondary" size="sm">Details</Button>
                           </div>
                         </TableCell>
                       </TableRow>
@@ -350,11 +328,9 @@ export default function AdminDashboardPage() {
                       <TableRow>
                         <TableHead>Customer</TableHead>
                         <TableHead className="hidden sm:table-cell">Order ID</TableHead>
-                        <TableHead className="hidden sm:table-cell">Status</TableHead>
-                        <TableHead className="hidden md:table-cell">Exchange Date</TableHead>
-                        <TableHead className="text-right">Original Item</TableHead>
+                        <TableHead className="hidden md:table-cell">Date</TableHead>
                         <TableHead className="text-right">New Item</TableHead>
-                        <TableHead className="text-right">Actions</TableHead>
+                        <TableHead className="sr-only sm:not-sr-only text-right">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -366,13 +342,7 @@ export default function AdminDashboardPage() {
                           </div>
                         </TableCell>
                         <TableCell className="hidden sm:table-cell">#ORD-006</TableCell>
-                        <TableCell className="hidden sm:table-cell">
-                          <Badge className="text-xs" variant="outline">
-                            Pending Approval
-                          </Badge>
-                        </TableCell>
                         <TableCell className="hidden md:table-cell">2023-07-25</TableCell>
-                        <TableCell className="text-right">Sleek Midnight</TableCell>
                         <TableCell className="text-right">Golden Waves</TableCell>
                         <TableCell className="text-right">
                            <div className="flex gap-2 justify-end">
@@ -495,4 +465,4 @@ export default function AdminDashboardPage() {
   );
 }
 
-  
+    
