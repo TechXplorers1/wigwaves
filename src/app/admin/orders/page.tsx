@@ -45,6 +45,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useState } from 'react';
+import { Separator } from '@/components/ui/separator';
 
 const tabs = [
     { value: 'overview', label: 'Overview' },
@@ -330,9 +331,74 @@ export default function OrdersPage() {
             </div>
           </TabsContent>
           <TabsContent value="details">
-             <div className="flex items-center justify-center h-48">
-              <p className="text-muted-foreground">Select an order to see details.</p>
-            </div>
+            <Card>
+                <CardHeader className="flex flex-row items-center justify-between">
+                    <div>
+                        <CardTitle>Order #ORD-001</CardTitle>
+                        <CardDescription>
+                            Date: July 15, 2023
+                        </CardDescription>
+                    </div>
+                    <div>
+                        <Badge variant="outline">Pending</Badge>
+                    </div>
+                </CardHeader>
+                <CardContent>
+                    <div className="grid gap-6">
+                        <div className="grid gap-2">
+                            <h3 className="font-semibold">Customer Details</h3>
+                            <Separator />
+                            <div className="grid grid-cols-2 gap-2 text-sm">
+                                <p className="text-muted-foreground">Customer</p>
+                                <p>Liam Johnson</p>
+                                <p className="text-muted-foreground">Email</p>
+                                <p>liam@example.com</p>
+                                <p className="text-muted-foreground">Shipping Address</p>
+                                <p>123 Main St, Anytown, USA 12345</p>
+                            </div>
+                        </div>
+                         <div className="grid gap-2">
+                            <h3 className="font-semibold">Order Items</h3>
+                            <Separator />
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>Product</TableHead>
+                                        <TableHead>Quantity</TableHead>
+                                        <TableHead className="text-right">Price</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell>Ngozi</TableCell>
+                                        <TableCell>1</TableCell>
+                                        <TableCell className="text-right">$189.99</TableCell>
+                                    </TableRow>
+                                     <TableRow>
+                                        <TableCell>Nkem (Natural Black)</TableCell>
+                                        <TableCell>1</TableCell>
+                                        <TableCell className="text-right">$60.01</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </div>
+                        <div className="grid gap-2">
+                            <h3 className="font-semibold">Payment Details</h3>
+                            <Separator />
+                            <div className="grid grid-cols-2 gap-2 text-sm">
+                                <p className="text-muted-foreground">Subtotal</p>
+                                <p className="text-right">$250.00</p>
+                                <p className="text-muted-foreground">Shipping</p>
+                                <p className="text-right">$15.00</p>
+                                <p className="text-muted-foreground">Tax</p>
+                                <p className="text-right">$20.00</p>
+                                <p className="font-bold">Total</p>
+                                <p className="font-bold text-right">$285.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </CardContent>
