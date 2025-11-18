@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -22,7 +23,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <Link href={`/shop/${product.id}`} className="group block">
+    <Link href={`/shop/${product.id}`} className="group block h-full">
       <Card className="w-full overflow-hidden transition-all group-hover:shadow-lg h-full flex flex-col">
         <CardHeader className="p-0">
           <div className="aspect-[3/4] relative">
@@ -41,7 +42,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         </CardHeader>
         <CardContent className="p-4 flex-grow">
-          <CardTitle className="text-lg font-semibold tracking-normal font-body">{product.name}</CardTitle>
+          <CardTitle className="text-lg font-semibold tracking-normal font-body h-12 line-clamp-2">{product.name}</CardTitle>
           <CardDescription className="text-sm mt-1">{product.style} | {product.color}</CardDescription>
         </CardContent>
         <CardFooter className="p-4 pt-0 flex justify-between items-center mt-auto">
