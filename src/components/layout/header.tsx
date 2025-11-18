@@ -52,10 +52,10 @@ const SubNav = () => {
                       link.sublinks ? (
                            <DropdownMenu key={link.name}>
                               <DropdownMenuTrigger asChild>
-                                  <Link href={link.href} className={cn('sub-nav-link flex items-center gap-1', isWigsActive() ? 'active' : '')}>
+                                  <div className={cn('sub-nav-link flex items-center gap-1 cursor-pointer', isWigsActive() ? 'active' : '')}>
                                       {link.name}
                                       <ChevronDown className="h-4 w-4" />
-                                  </Link>
+                                  </div>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent>
                                   {link.sublinks.map(sublink => (
@@ -141,7 +141,7 @@ export default function Header() {
                         <DropdownMenu key={link.name}>
                             <DropdownMenuTrigger asChild>
                                 <div className='flex items-center justify-between'>
-                                    <Link href={link.href} className={cn('transition-colors hover:text-primary', pathname.startsWith(link.href) ? 'text-primary' : 'text-muted-foreground')} onClick={() => setIsMenuOpen(false)}>{link.name}</Link>
+                                    <span className={cn('transition-colors hover:text-primary', pathname.startsWith('/shop') ? 'text-primary' : 'text-muted-foreground')}>{link.name}</span>
                                     <ChevronDown className="h-4 w-4" />
                                 </div>
                             </DropdownMenuTrigger>

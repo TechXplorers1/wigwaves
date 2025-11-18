@@ -107,20 +107,20 @@ export default function AdminDashboardPage() {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="overview">
-                <TabsList>
+                <TabsList className="grid w-full grid-cols-3 sm:w-auto sm:inline-flex">
                   <TabsTrigger value="overview">Overview</TabsTrigger>
-                  <TabsTrigger value="upcoming">Upcoming Orders</TabsTrigger>
+                  <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
                   <TabsTrigger value="returns">Returns</TabsTrigger>
-                  <TabsTrigger value="exchanges">Exchanges</TabsTrigger>
-                  <TabsTrigger value="canceled">Canceled</TabsTrigger>
+                  <TabsTrigger value="exchanges" className="hidden sm:inline-flex">Exchanges</TabsTrigger>
+                  <TabsTrigger value="canceled" className="hidden sm:inline-flex">Canceled</TabsTrigger>
                 </TabsList>
                 <TabsContent value="overview">
                   <Table>
                     <TableHeader>
                       <TableRow>
                         <TableHead>Customer</TableHead>
-                        <TableHead>Order ID</TableHead>
-                        <TableHead>Status</TableHead>
+                        <TableHead className="hidden sm:table-cell">Order ID</TableHead>
+                        <TableHead className="hidden sm:table-cell">Status</TableHead>
                         <TableHead className="hidden md:table-cell">
                           Date
                         </TableHead>
@@ -135,8 +135,8 @@ export default function AdminDashboardPage() {
                             liam@example.com
                           </div>
                         </TableCell>
-                        <TableCell>#ORD-001</TableCell>
-                        <TableCell>
+                        <TableCell className="hidden sm:table-cell">#ORD-001</TableCell>
+                        <TableCell className="hidden sm:table-cell">
                           <Badge className="text-xs" variant="outline">
                             Pending
                           </Badge>
@@ -153,8 +153,8 @@ export default function AdminDashboardPage() {
                             olivia@example.com
                           </div>
                         </TableCell>
-                        <TableCell>#ORD-002</TableCell>
-                        <TableCell>
+                        <TableCell className="hidden sm:table-cell">#ORD-002</TableCell>
+                        <TableCell className="hidden sm:table-cell">
                           <Badge className="text-xs" variant="outline">
                             Processing
                           </Badge>
@@ -171,8 +171,8 @@ export default function AdminDashboardPage() {
                             noah@example.com
                           </div>
                         </TableCell>
-                        <TableCell>#ORD-003</TableCell>
-                        <TableCell>
+                        <TableCell className="hidden sm:table-cell">#ORD-003</TableCell>
+                        <TableCell className="hidden sm:table-cell">
                           <Badge className="text-xs" variant="outline">
                             Pending
                           </Badge>
@@ -189,8 +189,8 @@ export default function AdminDashboardPage() {
                             emma@example.com
                           </div>
                         </TableCell>
-                        <TableCell>#ORD-004</TableCell>
-                        <TableCell>
+                        <TableCell className="hidden sm:table-cell">#ORD-004</TableCell>
+                        <TableCell className="hidden sm:table-cell">
                           <Badge className="text-xs" variant="outline">
                             Shipped
                           </Badge>
@@ -207,8 +207,8 @@ export default function AdminDashboardPage() {
                             liam@example.com
                           </div>
                         </TableCell>
-                        <TableCell>#ORD-005</TableCell>
-                        <TableCell>
+                        <TableCell className="hidden sm:table-cell">#ORD-005</TableCell>
+                        <TableCell className="hidden sm:table-cell">
                           <Badge className="text-xs" variant="outline">
                             Delivered
                           </Badge>

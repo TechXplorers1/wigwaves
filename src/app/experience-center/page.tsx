@@ -103,15 +103,15 @@ const ExperienceCenterPage = () => {
                 You can try on the Wigs in our store. This is a great way to check the style and fit before you buy. You can also have on-the-spot product training and have all your questions answered. It's a shopping experience tailored to all your needs.
               </p>
             </div>
-            <div className="order-1 md:order-2">
-              <Image src="https://picsum.photos/seed/experience-store/600/400" alt="WigVerse Store Interior" width={600} height={400} className="rounded-lg shadow-md object-cover" data-ai-hint="store interior" />
+            <div className="order-1 md:order-2 aspect-square md:aspect-auto">
+              <Image src="https://picsum.photos/seed/experience-store/600/400" alt="WigVerse Store Interior" width={600} height={400} className="rounded-lg shadow-md object-cover w-full h-full" data-ai-hint="store interior" />
             </div>
           </div>
 
           {/* Professional Stylists */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div>
-              <Image src="https://picsum.photos/seed/experience-stylist/600/400" alt="Professional stylist station" width={600} height={400} className="rounded-lg shadow-md object-cover" data-ai-hint="salon chair" />
+            <div className="aspect-square md:aspect-auto">
+              <Image src="https://picsum.photos/seed/experience-stylist/600/400" alt="Professional stylist station" width={600} height={400} className="rounded-lg shadow-md object-cover w-full h-full" data-ai-hint="salon chair" />
             </div>
             <div>
               <h3 className="text-2xl md:text-3xl font-headline text-foreground mb-4">Professional Stylists Are Here For You</h3>
@@ -136,15 +136,15 @@ const ExperienceCenterPage = () => {
                 The workshop sessions give our users the opportunity to take part in product development. <a href="#" className="underline text-primary">Click Here</a> for the latest information on seminars, trainings and workshops.
               </p>
             </div>
-            <div className="order-1 md:order-2">
-              <Image src="https://picsum.photos/seed/experience-workshop/600/400" alt="Workshop and training area" width={600} height={400} className="rounded-lg shadow-md object-cover" data-ai-hint="workshop room" />
+            <div className="order-1 md:order-2 aspect-square md:aspect-auto">
+              <Image src="https://picsum.photos/seed/experience-workshop/600/400" alt="Workshop and training area" width={600} height={400} className="rounded-lg shadow-md object-cover w-full h-full" data-ai-hint="workshop room" />
             </div>
           </div>
 
           {/* Patronage Reward */}
            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div>
-              <Image src="https://picsum.photos/seed/experience-reward/600/400" alt="Customer being attended to" width={600} height={400} className="rounded-lg shadow-md object-cover" data-ai-hint="salon reception" />
+            <div className="aspect-square md:aspect-auto">
+              <Image src="https://picsum.photos/seed/experience-reward/600/400" alt="Customer being attended to" width={600} height={400} className="rounded-lg shadow-md object-cover w-full h-full" data-ai-hint="salon reception" />
             </div>
             <div>
               <h3 className="text-2xl md:text-3xl font-headline text-foreground mb-4">Patronage Reward</h3>
