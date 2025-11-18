@@ -2,7 +2,7 @@ export const APP_NAME = 'WigWaves';
 
 export const PRIMARY_NAV_LINKS = [
   { name: 'Home', href: '/' },
-  { name: 'Category', href: '/shop' },
+  { name: 'Category', href: '/category' },
   { name: 'Products', href: '/shop' },
   { name: 'About Us', href: '/about' },
   { name: 'Gallery', href: '#' },
