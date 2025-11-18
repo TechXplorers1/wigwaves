@@ -56,7 +56,7 @@ const tabs = [
 ];
 
 const orderDetailsTabs = [
-    { value: 'approved', label: 'Approved' },
+    { value: 'approved', label: 'Approved order' },
     { value: 'packing', label: 'Packing' },
     { value: 'shipping', label: 'Shipping' },
     { value: 'out-for-delivery', label: 'Out for Delivery' },
