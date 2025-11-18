@@ -12,7 +12,7 @@ import ProductCard from "@/components/product/product-card";
 
 const categories = [
   { name: 'Wigs', image: 'https://www.atozhair.net/wp-content/uploads/2021/03/women-natural-hair-wig-500x500-1.jpg', href: '/shop?category=wigs' },
-  { name: 'Hair Extension', image: 'https://img.tatacliq.com/images/i27//437Wx649H/MP000000026863845_437Wx649H_202510022344341.jpeg', href: '/shop?category=extensions' },
+  { name: 'Hair Extension', image: 'https://frontrow.co.za/cdn/shop/files/brownblackkinkystraightextensionsf.jpg?v=1701087156', href: '/shop?category=extensions' },
   { name: 'Toupees', image: 'https://i.etsystatic.com/22505350/r/il/0d83c3/6352668740/il_fullxfull.6352668740_tdmi.jpg', href: '/shop?category=toupees' },
 ];
 

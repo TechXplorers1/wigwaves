@@ -94,6 +94,12 @@ const nextConfig: NextConfig = {
         hostname: 'i.etsystatic.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'frontrow.co.za',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
