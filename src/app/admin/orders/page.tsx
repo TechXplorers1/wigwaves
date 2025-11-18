@@ -55,9 +55,16 @@ const tabs = [
     { value: 'canceled', label: 'Canceled' },
 ];
 
+const orderDetailsTabs = [
+    { value: 'approved', label: 'Approved' },
+    { value: 'packing', label: 'Packing' },
+    { value: 'shipping', label: 'Shipping' },
+    { value: 'out-for-delivery', label: 'Out for Delivery' },
+];
+
 export default function OrdersPage() {
     const [activeTab, setActiveTab] = useState(tabs[0].value);
-    const [activeTab2, setActiveTab2] = useState(tabs[0].value);
+    const [activeTab2, setActiveTab2] = useState(orderDetailsTabs[0].value);
 
   return (
     <>
@@ -338,7 +345,7 @@ export default function OrdersPage() {
       <CardHeader>
         <CardTitle>Order Details</CardTitle>
         <CardDescription>
-          Manage upcoming orders, returns, exchanges, and cancellations.
+          Manage the order fulfillment process.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -349,7 +356,7 @@ export default function OrdersPage() {
                       <SelectValue placeholder="Select a category" />
                   </SelectTrigger>
                   <SelectContent>
-                      {tabs.map(tab => (
+                      {orderDetailsTabs.map(tab => (
                           <SelectItem key={tab.value} value={tab.value}>{tab.label}</SelectItem>
                       ))}
                   </SelectContent>
@@ -357,21 +364,18 @@ export default function OrdersPage() {
           </div>
           <div className="hidden sm:block overflow-x-auto pb-2">
             <TabsList>
-              {tabs.map(tab => (
+              {orderDetailsTabs.map(tab => (
                   <TabsTrigger key={tab.value} value={tab.value}>{tab.label}</TabsTrigger>
               ))}
             </TabsList>
           </div>
-          <TabsContent value="overview">
+          <TabsContent value="approved">
             <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead className="p-2 text-xs">Customer</TableHead>
                   <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
-                  <TableHead className="hidden sm:table-cell p-2 text-xs">Status</TableHead>
-                  <TableHead className="hidden md:table-cell p-2 text-xs">
-                    Date
-                  </TableHead>
+                  <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
                   <TableHead className="text-right p-2 text-xs">Amount</TableHead>
                 </TableRow>
               </TableHeader>
@@ -384,120 +388,25 @@ export default function OrdersPage() {
                     </div>
                   </TableCell>
                   <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-001</TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">
-                    <Badge className="text-xs" variant="outline">
-                      Pending
-                    </Badge>
-                  </TableCell>
                   <TableCell className="hidden md:table-cell p-2 text-xs">
                     2023-07-15
                   </TableCell>
                   <TableCell className="text-right p-2 text-xs">$250.00</TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell className="p-2">
-                    <div className="font-medium text-xs">Olivia Smith</div>
-                    <div className="hidden text-xs text-muted-foreground md:inline">
-                      olivia@example.com
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-002</TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">
-                    <Badge className="text-xs" variant="outline">
-                      Processing
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell p-2 text-xs">
-                    2023-07-16
-                  </TableCell>
-                  <TableCell className="text-right p-2 text-xs">$150.00</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="p-2">
-                    <div className="font-medium text-xs">Noah Williams</div>
-                    <div className="hidden text-xs text-muted-foreground md:inline">
-                      noah@example.com
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-003</TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">
-                    <Badge className="text-xs" variant="outline">
-                      Pending
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell p-2 text-xs">
-                    2023-07-17
-                  </TableCell>
-                  <TableCell className="text-right p-2 text-xs">$350.00</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="p-2">
-                    <div className="font-medium text-xs">Emma Brown</div>
-                    <div className="hidden text-xs text-muted-foreground md:inline">
-                      emma@example.com
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-004</TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">
-                    <Badge className="text-xs" variant="outline">
-                      Shipped
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell p-2 text-xs">
-                    2023-07-18
-                  </TableCell>
-                  <TableCell className="text-right p-2 text-xs">$450.00</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="p-2">
-                    <div className="font-medium text-xs">Liam Johnson</div>
-                    <div className="hidden text-xs text-muted-foreground md:inline">
-                      liam@example.com
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-005</TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">
-                    <Badge className="text-xs" variant="outline">
-                      Delivered
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell p-2 text-xs">
-                    2023-07-19
-                  </TableCell>
-                  <TableCell className="text-right p-2 text-xs">$550.00</TableCell>
-                </TableRow>
               </TableBody>
             </Table>
           </TabsContent>
-          <TabsContent value="upcoming">
+          <TabsContent value="packing">
              <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead className="p-2 text-xs">Customer</TableHead>
                   <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
                   <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
-                  <TableHead className="p-2 text-xs">Amount</TableHead>
-                  <TableHead className="text-right p-2 text-xs">Actions</TableHead>
+                  <TableHead className="text-right p-2 text-xs">Amount</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow>
-                  <TableCell className="p-2">
-                    <div className="font-medium text-xs">Liam Johnson</div>
-                    <div className="hidden text-xs text-muted-foreground md:inline">
-                      liam@example.com
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-001</TableCell>
-                  <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-15</TableCell>
-                  <TableCell className="p-2 text-xs">$250.00</TableCell>
-                  <TableCell className="text-right p-2">
-                     <div className="flex flex-col sm:flex-row gap-2 justify-end">
-                      <Button variant="outline" size="sm">Approve</Button>
-                      <Button variant="destructive" size="sm">Decline</Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
                 <TableRow>
                   <TableCell className="p-2">
                     <div className="font-medium text-xs">Noah Williams</div>
@@ -507,46 +416,22 @@ export default function OrdersPage() {
                   </TableCell>
                   <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-003</TableCell>
                   <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-17</TableCell>
-                  <TableCell className="p-2 text-xs">$350.00</TableCell>
-                   <TableCell className="text-right p-2">
-                     <div className="flex flex-col sm:flex-row gap-2 justify-end">
-                      <Button variant="outline" size="sm">Approve</Button>
-                      <Button variant="destructive" size="sm">Decline</Button>
-                    </div>
-                  </TableCell>
+                  <TableCell className="text-right p-2 text-xs">$350.00</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </TabsContent>
-          <TabsContent value="returns">
+          <TabsContent value="shipping">
             <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead className="p-2 text-xs">Customer</TableHead>
                   <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
-                  <TableHead className="hidden md:table-cell p-2 text-xs">Return Date</TableHead>
-                  <TableHead className="p-2 text-xs">Amount</TableHead>
-                  <TableHead className="text-right p-2 text-xs">Actions</TableHead>
+                  <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
+                  <TableHead className="text-right p-2 text-xs">Amount</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow>
-                  <TableCell className="p-2">
-                    <div className="font-medium text-xs">Olivia Smith</div>
-                    <div className="hidden text-xs text-muted-foreground md:inline">
-                      olivia@example.com
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-002</TableCell>
-                  <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-20</TableCell>
-                  <TableCell className="p-2 text-xs">$150.00</TableCell>
-                  <TableCell className="text-right p-2">
-                     <div className="flex flex-col sm:flex-row gap-2 justify-end">
-                      <Button variant="outline" size="sm">Process</Button>
-                      <Button variant="secondary" size="sm">Details</Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
                   <TableRow>
                   <TableCell className="p-2">
                     <div className="font-medium text-xs">Emma Brown</div>
@@ -555,54 +440,38 @@ export default function OrdersPage() {
                     </div>
                   </TableCell>
                   <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-004</TableCell>
-                  <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-22</TableCell>
-                  <TableCell className="p-2 text-xs">$450.00</TableCell>
-                  <TableCell className="text-right p-2">
-                     <div className="flex flex-col sm:flex-row gap-2 justify-end">
-                      <Button variant="outline" size="sm" disabled>Refunded</Button>
-                      <Button variant="secondary" size="sm">Details</Button>
-                    </div>
-                  </TableCell>
+                  <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-18</TableCell>
+                  <TableCell className="text-right p-2 text-xs">$450.00</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </TabsContent>
-          <TabsContent value="exchanges">
+          <TabsContent value="out-for-delivery">
              <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead className="p-2 text-xs">Customer</TableHead>
                   <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
                   <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
-                  <TableHead className="p-2 text-xs">New Item</TableHead>
-                  <TableHead className="text-right p-2 text-xs">Actions</TableHead>
+                  <TableHead className="text-right p-2 text-xs">Amount</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 <TableRow>
                   <TableCell className="p-2">
-                    <div className="font-medium text-xs">Jackson Lee</div>
+                    <div className="font-medium text-xs">Liam Johnson</div>
                     <div className="hidden text-xs text-muted-foreground md:inline">
-                      jackson.lee@email.com
+                      liam@example.com
                     </div>
                   </TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-006</TableCell>
-                  <TableCell className="hidden md:table-cell p-2 text-xs">2023-07-25</TableCell>
-                  <TableCell className="p-2 text-xs">Golden Waves</TableCell>
-                  <TableCell className="text-right p-2">
-                     <div className="flex flex-col sm:flex-row gap-2 justify-end">
-                      <Button variant="outline" size="sm">Approve</Button>
-                      <Button variant="destructive" size="sm">Decline</Button>
-                    </div>
+                  <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-005</TableCell>
+                  <TableCell className="hidden md:table-cell p-2 text-xs">
+                    2023-07-19
                   </TableCell>
+                  <TableCell className="text-right p-2 text-xs">$550.00</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
-          </TabsContent>
-          <TabsContent value="canceled">
-             <div className="flex items-center justify-center h-48">
-              <p className="text-muted-foreground">No canceled orders to show.</p>
-            </div>
           </TabsContent>
         </Tabs>
       </CardContent>
@@ -610,3 +479,4 @@ export default function OrdersPage() {
     </>
   );
 }
+
