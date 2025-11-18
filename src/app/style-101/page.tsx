@@ -100,11 +100,11 @@ export default function Style101Page() {
                 <h1 className="text-4xl sm:text-6xl font-headline tracking-tight">STYLE 101</h1>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {styleArticles.map((article) => (
                     <Link href={article.href} key={article.id} className="group">
                         <Card className="overflow-hidden flex flex-col h-full">
-                             <div className="relative bg-muted aspect-square w-full h-64">
+                             <div className="relative bg-muted w-full h-64 sm:h-56 md:h-64">
                                 <Image
                                     src={article.image}
                                     alt={article.title}
