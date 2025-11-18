@@ -379,8 +379,8 @@ export default function OrdersPage() {
                   <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
                   <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
                   <TableHead className="text-right p-2 text-xs">Amount</TableHead>
-                  <TableHead className="text-right p-2 text-xs">Status</TableHead>
-                  <TableHead className="text-right p-2 text-xs">Actions</TableHead>
+                  <TableHead className="text-center p-2 text-xs">Status</TableHead>
+                  <TableHead className="text-center p-2 text-xs">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -396,7 +396,7 @@ export default function OrdersPage() {
                     2023-07-15
                   </TableCell>
                   <TableCell className="text-right p-2 text-xs">$250.00</TableCell>
-                  <TableCell className="text-right p-2 text-xs">
+                  <TableCell className="text-center p-2 text-xs">
                     <Select>
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select status" />
@@ -407,7 +407,7 @@ export default function OrdersPage() {
                       </SelectContent>
                     </Select>
                   </TableCell>
-                  <TableCell className="text-right p-2">
+                  <TableCell className="text-center p-2">
                     <Button variant="outline" size="sm">
                       Edit
                     </Button>
