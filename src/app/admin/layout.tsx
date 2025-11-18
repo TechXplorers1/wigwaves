@@ -12,6 +12,7 @@ import {
   Package,
   ShoppingCart,
   Users,
+  Archive,
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
@@ -39,6 +40,7 @@ export default function AdminLayout({
     { href: "/admin/dashboard", label: "Dashboard", icon: Home },
     { href: "/admin/orders", label: "Order Management", icon: ShoppingCart },
     { href: "#", label: "Products", icon: Package },
+    { href: "/admin/inventory", label: "Inventory", icon: Archive },
     { href: "#", label: "Customers", icon: Users },
     { href: "#", label: "Analytics", icon: LineChart },
   ];
@@ -67,11 +69,6 @@ export default function AdminLayout({
                 >
                   <link.icon className="h-4 w-4" />
                   {link.label}
-                  {link.badge && (
-                    <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                      {link.badge}
-                    </Badge>
-                  )}
                 </Link>
               ))}
             </nav>
@@ -108,11 +105,6 @@ export default function AdminLayout({
                   >
                     <link.icon className="h-5 w-5" />
                     {link.label}
-                    {link.badge && (
-                      <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                        {link.badge}
-                      </Badge>
-                    )}
                   </Link>
                 ))}
               </nav>
