@@ -15,6 +15,7 @@ export const products: Wig[] = [
     color: 'Blonde',
     length: 'Long',
     material: 'Synthetic',
+    type: 'wig',
   },
   {
     id: 'w2',
@@ -26,6 +27,7 @@ export const products: Wig[] = [
     color: 'Brunette',
     length: 'Short',
     material: 'Human Hair',
+    type: 'wig',
   },
   {
     id: 'w3',
@@ -37,6 +39,7 @@ export const products: Wig[] = [
     color: 'Red',
     length: 'Medium',
     material: 'Synthetic',
+    type: 'wig',
   },
   {
     id: 'w4',
@@ -48,6 +51,7 @@ export const products: Wig[] = [
     color: 'Black',
     length: 'Long',
     material: 'Human Hair',
+    type: 'wig',
   },
   {
     id: 'w5',
@@ -59,6 +63,7 @@ export const products: Wig[] = [
     color: 'Grey',
     length: 'Short',
     material: 'Synthetic',
+    type: 'wig',
   },
   {
     id: 'w6',
@@ -70,6 +75,7 @@ export const products: Wig[] = [
     color: 'Pastel',
     length: 'Medium',
     material: 'Synthetic',
+    type: 'wig',
   },
   {
     id: 'w7',
@@ -81,10 +87,11 @@ export const products: Wig[] = [
     color: 'Blonde',
     length: 'Long',
     material: 'Human Hair',
+    type: 'wig',
   },
   {
     id: 'w13',
-    name: '10x10 Active Pre-Stretched Braid',
+    name: '10x10 Active Pre-Stretched Braid (Hair Extension)',
     price: 1545.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/7R5A7294_900x.jpg?v=1754395085',
     description: 'A short and sassy curly bob that is full of life and personality.',
@@ -93,10 +100,11 @@ export const products: Wig[] = [
     length: 'Short',
     material: 'Synthetic',
     isNew: true,
+    type: 'extension',
   },
   {
     id: 'w14',
-    name: '10x10 Complete Braid',
+    name: '10x10 Complete Braid (Hair Extension)',
     price: 2650.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/DSC8378_900x.jpg?v=1733833776',
     description: 'Elegant long straight hair with face-framing layers.',
@@ -105,10 +113,11 @@ export const products: Wig[] = [
     length: 'Long',
     material: 'Human Hair',
     isNew: true,
+    type: 'extension',
   },
   {
     id: 'w15',
-    name: '10x10 Active Braid',
+    name: '10x10 Active Braid (Hair Extension)',
     price: 1555.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/a18_900x.jpg?v=1733840505',
     description: 'A playful pixie cut with a touch of purple.',
@@ -117,10 +126,11 @@ export const products: Wig[] = [
     length: 'Short',
     material: 'Synthetic',
     isNew: true,
+    type: 'extension',
   },
   {
     id: 'w16',
-    name: 'BUTTERFLY LOCS 18',
+    name: 'BUTTERFLY LOCS 18 (Toupee)',
     price: 2250.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/DSCF0986_1289be46-9ab8-4787-9e67-2a0400fbcfe4_900x.jpg?v=1706549737',
     description: 'Deep red waves that command attention.',
@@ -129,10 +139,11 @@ export const products: Wig[] = [
     length: 'Medium',
     material: 'Human Hair',
     isNew: true,
+    type: 'toupee',
   },
   {
     id: 'w17',
-    name: 'DEEP CURL',
+    name: 'DEEP CURL (Toupee)',
     price: 1950.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/DEEPCURL_OM23033_1_5c008655-3bb5-4b51-bc45-abe35047ba28_900x.jpg?v=1716373394',
     description: 'A chic, asymmetrical bob in a striking silver color.',
@@ -141,10 +152,11 @@ export const products: Wig[] = [
     length: 'Short',
     material: 'Synthetic',
     isNew: true,
+    type: 'toupee',
   },
   {
     id: 'w18',
-    name: 'BODY WAVE PONYTAIL',
+    name: 'BODY WAVE PONYTAIL (Toupee)',
     price: 3100.00,
     image: 'https://ng.10by10styles.com/cdn/shop/files/IMG4_900x.jpg?v=1716372671',
     description: 'Luxurious, tight curls in a natural black tone.',
@@ -153,5 +165,6 @@ export const products: Wig[] = [
     length: 'Long',
     material: 'Human Hair',
     isNew: true,
+    type: 'toupee',
   }
 ];

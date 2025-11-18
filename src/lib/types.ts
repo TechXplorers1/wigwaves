@@ -9,6 +9,7 @@ export type Wig = {
   length: 'Short' | 'Medium' | 'Long';
   material: 'Human Hair' | 'Synthetic';
   isNew?: boolean;
+  type?: 'wig' | 'extension' | 'toupee';
 };
 
 export type CartItem = Wig & {
