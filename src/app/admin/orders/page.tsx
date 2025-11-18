@@ -52,6 +52,7 @@ const tabs = [
     { value: 'returns', label: 'Returns' },
     { value: 'exchanges', label: 'Exchanges' },
     { value: 'canceled', label: 'Canceled' },
+    { value: 'details', label: 'Order Details' },
 ];
 
 export default function OrdersPage() {
@@ -326,6 +327,11 @@ export default function OrdersPage() {
           <TabsContent value="canceled">
              <div className="flex items-center justify-center h-48">
               <p className="text-muted-foreground">No canceled orders to show.</p>
+            </div>
+          </TabsContent>
+          <TabsContent value="details">
+             <div className="flex items-center justify-center h-48">
+              <p className="text-muted-foreground">Select an order to see details.</p>
             </div>
           </TabsContent>
         </Tabs>
