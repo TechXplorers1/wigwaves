@@ -60,6 +60,7 @@ const orderDetailsTabs = [
     { value: 'packing', label: 'Packing' },
     { value: 'shipping', label: 'Shipping' },
     { value: 'out-for-delivery', label: 'Out for Delivery' },
+    { value: 'delivered', label: 'Delivered' },
 ];
 
 export default function OrdersPage() {
@@ -473,10 +474,36 @@ export default function OrdersPage() {
               </TableBody>
             </Table>
           </TabsContent>
+          <TabsContent value="delivered">
+             <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="p-2 text-xs">Customer</TableHead>
+                  <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
+                  <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
+                  <TableHead className="text-right p-2 text-xs">Amount</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell className="p-2">
+                    <div className="font-medium text-xs">Olivia Smith</div>
+                    <div className="hidden text-xs text-muted-foreground md:inline">
+                      olivia@example.com
+                    </div>
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-002</TableCell>
+                  <TableCell className="hidden md:table-cell p-2 text-xs">
+                    2023-07-20
+                  </TableCell>
+                  <TableCell className="text-right p-2 text-xs">$150.00</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TabsContent>
         </Tabs>
       </CardContent>
     </Card>
     </>
   );
 }
-
