@@ -14,21 +14,21 @@ export default function Footer() {
             <MapPin className='w-7 h-7 text-primary mb-2'/>
             <h3 className="font-semibold text-lg">Our Office Address</h3>
             <address className="not-italic text-muted-foreground">
-                Palm Court Bldg M 501/8, 5th Floor, New Link Road, Beside Goregaon Sports Complex, Malad West, Mumbai, Maharashtra 400064
+                Eleganza House, 15B Joseph Street, Marina, Lagos, Nigeria
             </address>
           </div>
            <div className="flex flex-col gap-2">
             <Mail className='w-7 h-7 text-primary mb-2'/>
             <h3 className="font-semibold text-lg">General Enquiries</h3>
             <p className="text-muted-foreground">
-                <Link href="mailto:websupport@justdial.com" className="hover:text-primary">websupport@justdial.com</Link>
+                <Link href="mailto:ng-contact@wigwaves.com" className="hover:text-primary">ng-contact@wigwaves.com</Link>
             </p>
           </div>
            <div className="flex flex-col gap-2">
             <Phone className='w-7 h-7 text-primary mb-2'/>
             <h3 className="font-semibold text-lg">Call Us</h3>
              <p className="text-muted-foreground">
-                <Link href="tel:+918888888888" className="hover:text-primary">+91-8888888888</Link>
+                <Link href="tel:+2349098101010" className="hover:text-primary">+234 909 810 1010</Link>
             </p>
           </div>
            <div className="flex flex-col gap-2">
