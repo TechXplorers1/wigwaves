@@ -336,7 +336,7 @@ export default function OrdersPage() {
     </Card>
     <Card className="mt-8">
       <CardHeader>
-        <CardTitle>Order Management</CardTitle>
+        <CardTitle>Order Details</CardTitle>
         <CardDescription>
           Manage upcoming orders, returns, exchanges, and cancellations.
         </CardDescription>
