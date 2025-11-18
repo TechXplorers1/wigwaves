@@ -10,12 +10,12 @@ import { useDoc } from './firestore/use-doc';
 import { useUser } from './auth/use-user';
 import {
   FirebaseProvider,
-  FirebaseClientProvider,
   useFirebase,
   useFirebaseApp,
   useFirestore,
   useAuth as useFirebaseAuth,
 } from './provider';
+import { FirebaseClientProvider } from './client-provider';
 
 let firebaseApp: FirebaseApp | undefined;
 let auth: Auth | undefined;
