@@ -392,9 +392,15 @@ export default function OrdersPage() {
                   </TableCell>
                   <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-001</TableCell>
                   <TableCell className="hidden sm:table-cell p-2 text-xs">
-                    <Badge className="text-xs" variant="secondary">
-                      Approved
-                    </Badge>
+                    <Select>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Select status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="approve">Approve packing</SelectItem>
+                        <SelectItem value="delay">Delay packing</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </TableCell>
                   <TableCell className="hidden md:table-cell p-2 text-xs">
                     2023-07-15
