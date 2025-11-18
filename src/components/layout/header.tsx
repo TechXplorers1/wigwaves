@@ -24,6 +24,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const categories = [
+  { name: 'Wigs', href: '/shop?category=wigs' },
+  { name: 'Hair Extension', href: '/shop?category=extensions' },
+  { name: 'Toupees', href: '/shop?category=toupees' },
+];
 
 export default function Header() {
   const { itemCount } = useCart();
@@ -89,19 +101,46 @@ export default function Header() {
                     </form>
                 </div>
               <nav className="grid gap-4 text-base font-medium px-6">
-                {PRIMARY_NAV_LINKS.map(link => (
+                {PRIMARY_NAV_LINKS.map(link => {
+                  if (link.name === 'Category') {
+                    return (
+                       <Accordion type="single" collapsible key={link.name}>
+                        <AccordionItem value="item-1" className="border-b-0">
+                          <AccordionTrigger className="hover:no-underline text-muted-foreground hover:text-primary transition-colors py-2">
+                              {link.name}
+                          </AccordionTrigger>
+                          <AccordionContent className="pl-4">
+                            <nav className="grid gap-4 text-base font-medium">
+                              {categories.map(category => (
+                                <Link
+                                  key={category.name}
+                                  href={category.href}
+                                  className="text-muted-foreground hover:text-primary transition-colors"
+                                  onClick={() => setIsMenuOpen(false)}
+                                >
+                                  {category.name}
+                                </Link>
+                              ))}
+                            </nav>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    )
+                  }
+                  return (
                     <Link
                         key={link.name}
                         href={link.href}
                         className={cn(
-                        'transition-colors hover:text-primary',
+                        'transition-colors hover:text-primary py-2',
                         pathname === link.href ? 'text-primary' : 'text-muted-foreground'
                         )}
                         onClick={() => setIsMenuOpen(false)}
                     >
                         {link.name}
                     </Link>
-                ))}
+                  )
+                })}
               </nav>
             </SheetContent>
           </Sheet>
@@ -109,7 +148,34 @@ export default function Header() {
         
 
         <nav className="hidden lg:flex flex-1 justify-center items-center gap-x-6">
-            {PRIMARY_NAV_LINKS.map(link => (
+            {PRIMARY_NAV_LINKS.map(link => {
+                 if (link.name === 'Category') {
+                    return (
+                        <DropdownMenu key={link.name}>
+                            <DropdownMenuTrigger asChild>
+                                <Button
+                                    variant="ghost"
+                                    className={cn(
+                                        'text-sm font-medium transition-colors hover:text-primary hover:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0',
+                                        pathname.startsWith('/shop') ? 'text-primary font-bold' : 'text-foreground'
+                                    )}
+                                >
+                                    Category
+                                    <ChevronDown className='ml-1 h-4 w-4'/>
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                {categories.map(category => (
+                                    <DropdownMenuItem key={category.name} asChild>
+                                        <Link href={category.href}>{category.name}</Link>
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    )
+                }
+
+                return(
                 <Link
                     key={link.name}
                     href={link.href}
@@ -120,7 +186,7 @@ export default function Header() {
                 >
                     {link.name}
                 </Link>
-            ))}
+            )})}
         </nav>
         
         <div className="hidden lg:flex flex-initial items-center justify-end gap-2">
