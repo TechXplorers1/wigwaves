@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="bg-card border-t">
       <div className="container py-12">
-        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           <div className="flex flex-col gap-2">
             <MapPin className='w-7 h-7 text-primary mb-2'/>
             <h3 className="font-semibold text-lg">Our Office Address</h3>
@@ -29,13 +29,6 @@ export default function Footer() {
             <h3 className="font-semibold text-lg">Call Us</h3>
              <p className="text-muted-foreground">
                 <Link href="tel:+918888888888" className="hover:text-primary">+91-8888888888</Link>
-            </p>
-          </div>
-           <div className="flex flex-col gap-2">
-            <Clock className='w-7 h-7 text-primary mb-2'/>
-            <h3 className="font-semibold text-lg">Our Timings</h3>
-             <p className="text-muted-foreground">
-                Mon - Sun: 10:00 AM - 07:00 PM
             </p>
           </div>
         </div>
