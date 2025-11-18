@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { CartProvider } from '@/context/cart-context';
 import { AuthProvider } from '@/context/auth-context';
 import AppLayout from '@/components/layout/app-layout';
+import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
   title: 'WigVerse - Find Your Perfect Style',
@@ -28,14 +29,16 @@ export default function RootLayout({
           "min-h-screen bg-background font-body antialiased",
         )}
       >
-        <AuthProvider>
-          <CartProvider>
-            <AppLayout>
-              {children}
-            </AppLayout>
-            <Toaster />
-          </CartProvider>
-        </AuthProvider>
+        <FirebaseClientProvider>
+          <AuthProvider>
+            <CartProvider>
+              <AppLayout>
+                {children}
+              </AppLayout>
+              <Toaster />
+            </CartProvider>
+          </AuthProvider>
+        </FirebaseClientProvider>
       </body>
     </html>
   );
