@@ -216,6 +216,18 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="w-full h-[400px] md:h-[500px]">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.743469992083!2d3.402224074749365!3d6.427181893568853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b30f81a1671%3A0x8a949b39d6756456!2sElegaza%20House!5e0!3m2!1sen!2sus!4v1717866345678!5m2!1sen!2sus" 
+          width="100%" 
+          height="100%" 
+          style={{ border: 0 }} 
+          allowFullScreen={true}
+          loading="lazy" 
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </section>
     </div>
   );
 }
