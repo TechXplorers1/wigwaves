@@ -19,6 +19,16 @@ export function FirebaseErrorListener() {
       });
     };
 
+    const handleOfflineError = (error: Error) => {
+      if (error.message.includes('offline')) {
+        toast({
+            variant: 'destructive',
+            title: 'Network Error',
+            description: 'You appear to be offline. Please check your connection.',
+        });
+      }
+    }
+
     errorEmitter.on('permission-error', handleError);
 
     return () => {

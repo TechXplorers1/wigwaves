@@ -35,7 +35,7 @@ export default function RegisterPage() {
        toast({
         variant: 'destructive',
         title: 'Registration Failed',
-        description: error.message,
+        description: error.message || 'An unknown error occurred.',
       });
     } finally {
       setIsLoading(false);

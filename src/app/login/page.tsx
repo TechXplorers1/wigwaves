@@ -31,10 +31,13 @@ export default function LoginPage() {
       });
       router.push('/profile');
     } catch (error: any) {
+      console.error("Login failed:", error);
       toast({
         variant: 'destructive',
         title: 'Login Failed',
-        description: error.message,
+        description: error.code === 'auth/invalid-credential' 
+          ? 'Invalid email or password.'
+          : error.message || 'An unexpected error occurred.',
       });
     } finally {
         setIsLoading(false);
