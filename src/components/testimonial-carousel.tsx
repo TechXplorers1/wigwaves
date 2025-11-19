@@ -13,7 +13,7 @@ import {
 
 const testimonials = [
   {
-    name: 'Atul Mistry',
+    name: 'Prakash',
     quote: 'Volume and length of hair is too good. I am satisfied.',
     image: 'https://avatars.githubusercontent.com/u/192782454?v=4',
     imageHint: 'testimonial avatar'
