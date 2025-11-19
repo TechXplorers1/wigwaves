@@ -57,7 +57,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setLoading(false);
         }, (error) => {
             console.error("Error fetching user document:", error);
-            setUser(null);
+            // If there's an error (e.g., permissions), we can still set a basic user object
+            setUser({
+              uid: firebaseUser.uid,
+              email: firebaseUser.email,
+              displayName: firebaseUser.displayName,
+              role: 'user',
+            });
             setLoading(false);
         });
 
