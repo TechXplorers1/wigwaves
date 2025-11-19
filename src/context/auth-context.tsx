@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
               uid: firebaseUser.uid,
               email: firebaseUser.email,
               displayName: firebaseUser.displayName,
-              role: 'user'
+              role: firebaseUser.email === 'admin@gmail.com' ? 'admin' : 'user'
             };
             setDoc(userDocRef, newUser).then(() => {
                 setUser(newUser);
@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         uid: firebaseUser.uid,
         email: firebaseUser.email,
         displayName: name,
-        role: 'user',
+        role: email === 'admin@gmail.com' ? 'admin' : 'user',
     };
 
     const userDocRef = doc(firestore, 'users', firebaseUser.uid);
