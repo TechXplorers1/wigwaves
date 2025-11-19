@@ -44,9 +44,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           if (userDoc.exists()) {
             setUser({ uid: firebaseUser.uid, ...userDoc.data() } as User);
           } else {
-            // User is authenticated but no document exists. This can happen right after registration.
-            // The register function will create it. Or if they somehow exist in Auth but not Firestore.
-            // We'll set a basic user object for now.
             setUser({
               uid: firebaseUser.uid,
               email: firebaseUser.email,
@@ -57,13 +54,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setLoading(false);
         }, (error) => {
             console.error("Error fetching user document:", error);
-            // If there's an error (e.g., permissions), we can still set a basic user object
-            setUser({
-              uid: firebaseUser.uid,
-              email: firebaseUser.email,
-              displayName: firebaseUser.displayName,
-              role: 'user',
-            });
+            // This is a fallback for when Firestore is offline or there are permission errors.
+            // It allows the user to still be logged in with basic info.
+            if (error.code === 'unavailable' || (error.message && error.message.includes('offline'))) {
+              setUser({
+                uid: firebaseUser.uid,
+                email: firebaseUser.email,
+                displayName: firebaseUser.displayName,
+                role: 'user',
+              });
+            }
             setLoading(false);
         });
 
@@ -90,16 +90,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const firebaseUser = userCredential.user;
 
     const userDocRef = doc(firestore, 'users', firebaseUser.uid);
-    const userDoc = await getDoc(userDocRef);
+    try {
+      const userDoc = await getDoc(userDocRef);
 
-    if (!userDoc.exists()) {
-        const newUser: User = {
-            uid: firebaseUser.uid,
-            email: firebaseUser.email,
-            displayName: firebaseUser.displayName,
-            role: 'user'
-        };
-        await setDoc(userDocRef, newUser);
+      if (!userDoc.exists()) {
+          const newUser: User = {
+              uid: firebaseUser.uid,
+              email: firebaseUser.email,
+              displayName: firebaseUser.displayName,
+              role: 'user'
+          };
+          await setDoc(userDocRef, newUser);
+      }
+    } catch(e) {
+      console.error("Failed to check/create user document on login:", e);
     }
   };
 
@@ -119,7 +123,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const userDocRef = doc(firestore, 'users', firebaseUser.uid);
-    await setDoc(userDocRef, newUser);
+    try {
+      await setDoc(userDocRef, newUser);
+    } catch(e) {
+      console.error("Failed to create user document on register:", e);
+    }
   };
 
   return (
