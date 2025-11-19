@@ -11,6 +11,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import Autoplay from "embla-carousel-autoplay"
+import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
@@ -40,38 +41,33 @@ export default function TestimonialCarousel() {
         align: 'start',
         loop: true,
       }}
-      autoplayDelay={5000}
-      className="w-full max-w-5xl mx-auto"
+      plugins={[
+        Autoplay({
+          delay: 5000,
+          stopOnInteraction: false,
+        })
+      ]}
+      className="w-full max-w-3xl mx-auto"
     >
       <CarouselContent>
         {testimonials.map((testimonial, index) => (
-          <CarouselItem key={index} className="md:basis-1/2">
-            <div className="p-1">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 text-center sm:text-left">
-                    <div className="relative w-48 h-48 sm:w-64 sm:h-64 flex-shrink-0">
-                        <Image
-                            src={testimonial.image}
-                            alt="Sleek Hair product box"
-                            fill
-                            className="rounded-lg object-cover"
-                            data-ai-hint={testimonial.imageHint}
-                        />
-                    </div>
-                    <div className="flex flex-col items-center sm:items-start">
-                        <p className="text-lg md:text-xl font-semibold italic text-muted-foreground max-w-xs">
-                         &ldquo;{testimonial.quote}&rdquo;
-                        </p>
-                        <p className="mt-4 text-base font-bold text-foreground">
-                          - {testimonial.name}
-                        </p>
-                    </div>
-                </div>
+          <CarouselItem key={index}>
+            <div className="p-1 text-center text-white">
+                <Quote className="w-12 h-12 text-primary mx-auto mb-4" />
+                <p className="text-lg md:text-xl font-semibold italic max-w-2xl mx-auto">
+                    {testimonial.quote}
+                </p>
+                <p className="mt-4 text-base font-bold">
+                    - {testimonial.name}
+                </p>
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="absolute left-[-1rem] top-1/2 -translate-y-1/2 z-10" />
-      <CarouselNext className="absolute right-[-1rem] top-1/2 -translate-y-1/2 z-10" />
+      <CarouselPrevious className="absolute left-[-2.5rem] top-1/2 -translate-y-1/2 z-10 bg-transparent border-none text-white hover:text-primary" />
+      <CarouselNext className="absolute right-[-2.5rem] top-1/2 -translate-y-1/2 z-10 bg-transparent border-none text-white hover:text-primary" />
     </Carousel>
   );
 }
+
+    

@@ -233,7 +233,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="testimonials" className="w-full py-12 md:py-24 bg-gray-50">
+      <section id="testimonials" className="w-full py-12 md:py-24 bg-zinc-900 text-white">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Testimonials</h2>
@@ -293,6 +293,8 @@ export default function Home() {
 
 
 
+
+    
 
     
 
