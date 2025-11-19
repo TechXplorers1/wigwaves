@@ -1,3 +1,4 @@
+
 'use client'
 import { usePathname } from "next/navigation";
 import Header from "./header";
@@ -13,7 +14,7 @@ export default function AppLayout({
 
   return (
     <div className="relative flex min-h-screen flex-col">
-      {!isAdminRoute && <Header />}
+      <Header />
       <main className={isAdminRoute ? '' : 'flex-1'}>{children}</main>
       {!isAdminRoute && <Footer />}
     </div>
