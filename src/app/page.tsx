@@ -161,6 +161,11 @@ export default function Home() {
               <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
               <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
             </Carousel>
+             <div className="text-center mt-8">
+              <Button asChild size="lg">
+                <Link href="/shop">View All Products</Link>
+              </Button>
+            </div>
         </div>
       </section>
       
@@ -277,3 +282,6 @@ export default function Home() {
     
 
 
+
+
+    
