@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Image from "next/image";
@@ -157,10 +158,19 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Videos</h2>
           </div>
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="aspect-video overflow-hidden rounded-lg">
               <iframe
                 src="https://www.youtube.com/embed/KgpnfT5bgLY"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
+            </div>
+            <div className="aspect-video overflow-hidden rounded-lg">
+              <iframe
+                src="https://www.youtube.com/embed/MKUDHKf_pkg"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -211,5 +221,7 @@ export default function Home() {
       </section>
     </div>
   );
+
+    
 
     
