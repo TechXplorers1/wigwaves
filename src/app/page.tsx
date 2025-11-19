@@ -4,7 +4,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ShoppingCart as ShoppingCartIcon, PlayCircle } from "lucide-react";
+import { ArrowRight, ShoppingCart as ShoppingCartIcon, PlayCircle, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -172,7 +172,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-12 md:py-24">
           <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
             <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wider">About Us</h2>
+              <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">About Us</h2>
               <p className="text-base md:text-lg text-zinc-300 leading-relaxed">
                 We, WigWaves at Malad West in Mumbai, Maharashtra, are one of the most reputed hair & wig extensions suppliers in the city. You can choose from various colours of hair extension and different lengths to choose in the wigs. You can definitely find the one that suits you & your personality perfectly. We are always pursuing better hair quality and at the same time, keeping our customers as our only priority.
               </p>
@@ -265,7 +265,7 @@ export default function Home() {
 
       <section className="w-full h-[400px] md:h-[500px]">
         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.743469992083!2d3.402224074749365!3d6.427181893568853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b30f81a1671%3A0x8a949b39d6756456!2sElegaza%20House!5e0!3m2!1sen!2sus!4v1717866345678!5m2!1sen!2sus"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.743469992083!2d3.402224074749365!3d6.427181893568853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b30f81a1671%3A0x8a949b3s6756456!2sElegaza%20House!5e0!3m2!1sen!2sus!4v1717866345678!5m2!1sen!2sus"
             width="100%"
             height="100%"
             style={{ border: 0 }}
@@ -293,6 +293,8 @@ export default function Home() {
 
 
 
+
+    
 
     
 
