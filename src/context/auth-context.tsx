@@ -43,10 +43,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         unsubscribeFromFirestore = onSnapshot(userDocRef, (userDoc) => {
           if (userDoc.exists()) {
             setUser({ uid: firebaseUser.uid, ...userDoc.data() } as User);
+          } else {
+            // User is authenticated but no document exists. This can happen right after registration.
+            // The register function will create it. Or if they somehow exist in Auth but not Firestore.
+            // We'll set a basic user object for now.
+            setUser({
+              uid: firebaseUser.uid,
+              email: firebaseUser.email,
+              displayName: firebaseUser.displayName,
+              role: 'user',
+            });
           }
-          // The user document might not exist yet if they just registered.
-          // The register function will create it. If they exist in auth but not
-          // firestore for any other reason, we'll handle that on login/register.
           setLoading(false);
         }, (error) => {
             console.error("Error fetching user document:", error);
