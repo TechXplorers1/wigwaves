@@ -79,8 +79,8 @@ export default function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex" />
-          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex" />
+          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex text-black" />
+          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex text-black" />
         </Carousel>
       </section>
 
@@ -256,4 +256,5 @@ export default function Home() {
     
 
     
+
 
