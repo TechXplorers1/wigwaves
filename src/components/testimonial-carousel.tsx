@@ -15,20 +15,20 @@ const testimonials = [
   {
     name: 'Atul Mistry',
     quote: 'Volume and length of hair is too good. I am satisfied.',
-    image: 'https://picsum.photos/seed/hairproduct/600/400',
-    imageHint: 'hair product box'
+    image: 'https://avatars.githubusercontent.com/u/192782454?v=4',
+    imageHint: 'testimonial avatar'
   },
   {
     name: 'Prakriti Lilani',
     quote: 'They have the best wigs and extensions for each and every event.',
-    image: 'https://picsum.photos/seed/hairproduct/600/400',
-    imageHint: 'hair product box'
+    image: 'https://avatars.githubusercontent.com/u/192782454?v=4',
+    imageHint: 'testimonial avatar'
   },
    {
     name: 'Jessica Smith',
     quote: 'The quality is amazing and it looks so natural. I get compliments all the time!',
-    image: 'https://picsum.photos/seed/hairproduct/600/400',
-    imageHint: 'hair product box'
+    image: 'https://avatars.githubusercontent.com/u/192782454?v=4',
+    imageHint: 'testimonial avatar'
   },
 ];
 

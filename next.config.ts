@@ -126,12 +126,6 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
-      {
-        protocol: 'https',
-        hostname: 'www.billboard.com',
-        port: '',
-        pathname: '/**',
-      }
     ],
   },
 };
