@@ -37,6 +37,12 @@ const heroItems = [
     title: "Summer Styles Are Here",
     subtitle: "Find your perfect look for the season",
     alt: "Megan Thee Stallion on her Hot Girl Summer Tour",
+  },
+  {
+    image: "https://www.billboard.com/wp-content/uploads/2023/03/Megan-Thee-Stallion-vanity-fair-oscar-party-billboard-1548.jpg",
+    title: "Hollywood Glamour",
+    subtitle: "Shine like a star",
+    alt: "Megan Thee Stallion at an Oscar party",
   }
 ];
 
@@ -241,7 +247,7 @@ export default function Home() {
 
       <section className="w-full h-[400px] md:h-[500px]">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.743469992083!2d3.402224074749365!3d6.427181893568853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b30f81a1671%3A0x8a949b39d6756456!2sElegaza%20House!5e0!3m2!1sen!2sus!4v1717866345678!5m2!1sen!2sus" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.743469992083!2d3.402224074749365!3d6.427181893568853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b30f81a1671%3A0x8a949b30f81a1671!2sElegaza%20House!5e0!3m2!1sen!2sus!4v1717866345678!5m2!1sen!2sus" 
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 
@@ -258,3 +264,6 @@ export default function Home() {
     
 
 
+
+
+    
