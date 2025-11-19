@@ -157,24 +157,15 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Videos</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="text-center">
-                <div className="relative aspect-video overflow-hidden rounded-lg group">
-                    <Image src="https://picsum.photos/seed/video1/1280/720" alt="How to wear extensions" fill className="object-cover" data-ai-hint="woman tutorial"/>
-                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                        <PlayCircle className="w-16 h-16 text-white/80 group-hover:scale-110 transition-transform" />
-                    </div>
-                </div>
-                <h3 className="font-semibold mt-4 text-lg">How to wear extension the right way</h3>
-            </div>
-             <div className="text-center">
-                <div className="relative aspect-video overflow-hidden rounded-lg group">
-                    <Image src="https://picsum.photos/seed/video2/1280/720" alt="Ultimate guide to hair extensions" fill className="object-cover" data-ai-hint="beauty vlogger"/>
-                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                        <PlayCircle className="w-16 h-16 text-white/80 group-hover:scale-110 transition-transform" />
-                    </div>
-                </div>
-                <h3 className="font-semibold mt-4 text-lg">Ultimate guide to hair extensions</h3>
+          <div className="max-w-3xl mx-auto">
+            <div className="aspect-video overflow-hidden rounded-lg">
+              <iframe
+                src="https://www.youtube.com/embed/KgpnfT5bgLY"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -220,4 +211,5 @@ export default function Home() {
       </section>
     </div>
   );
-}
+
+    
