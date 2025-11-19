@@ -55,6 +55,7 @@ export default function Home() {
         <Carousel
           className="w-full h-full"
           opts={{ loop: true }}
+          autoplayDelay={5000}
         >
           <CarouselContent>
             {heroItems.map((item, index) => (
@@ -84,8 +85,8 @@ export default function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex" />
-          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex" />
+          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex bg-black/50 text-white border-none hover:bg-black" />
+          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex bg-black/50 text-white border-none hover:bg-black" />
         </Carousel>
       </section>
 
@@ -274,3 +275,4 @@ export default function Home() {
     
 
     
+
