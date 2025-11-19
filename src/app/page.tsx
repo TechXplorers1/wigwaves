@@ -25,32 +25,63 @@ const galleryImages = [
     { src: 'https://picsum.photos/seed/gallery3/600/400', alt: 'Close-up of hair extensions being fitted', hint: 'hair fitting'},
 ]
 
+const heroItems = [
+  {
+    image: "https://media.istockphoto.com/id/1281698360/photo/natural-afro-hair-wide-toothy-smile-and-expression-of-gladness-on-the-face-of-young-brown.jpg?s=612x612&w=0&k=20&c=zuINrArEtdq26QLUjsakZPY6wvjeS3k5_me_8yUzp4E=",
+    title: "Get The Best Quality",
+    subtitle: "Hair and Wig Extensions Here",
+    alt: "Woman with beautiful natural afro hair smiling",
+  },
+  {
+    image: "https://cdn.shopify.com/s/files/1/0598/4668/8930/files/Megan_Thee_Stallio_Hot_Girl_Summer_Tour_5_480x480.jpg?v=1717689550",
+    title: "Summer Styles Are Here",
+    subtitle: "Find your perfect look for the season",
+    alt: "Megan Thee Stallion on her Hot Girl Summer Tour",
+  }
+];
+
 export default function Home() {
   const featuredProducts = products.slice(0, 8);
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <section className="relative w-full h-[50vh] md:h-[70vh] bg-gray-900 text-white">
-        <Image
-          src="https://media.istockphoto.com/id/1281698360/photo/natural-afro-hair-wide-toothy-smile-and-expression-of-gladness-on-the-face-of-young-brown.jpg?s=612x612&w=0&k=20&c=zuINrArEtdq26QLUjsakZPY6wvjeS3k5_me_8yUzp4E="
-          alt="Woman with beautiful hair"
-          fill
-          className="object-cover object-center opacity-40"
-          priority
-        />
-        <div className="relative h-full flex flex-col items-center justify-center text-center p-4">
-          <h1 className="text-4xl md:text-6xl font-headline tracking-tight text-white">
-            Get The Best Quality
-          </h1>
-          <p className="mt-2 text-2xl md:text-4xl text-white/90">
-            Hair and Wig Extensions Here
-          </p>
-          <Button asChild size="lg" className="mt-6 bg-primary text-primary-foreground hover:bg-primary/90">
-            <Link href="/shop">
-              Shop Now <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
-        </div>
+        <Carousel
+          className="w-full h-full"
+          opts={{ loop: true }}
+          autoplayDelay={5000}
+        >
+          <CarouselContent>
+            {heroItems.map((item, index) => (
+              <CarouselItem key={index}>
+                <div className="relative w-full h-[50vh] md:h-[70vh]">
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    className="object-cover object-center opacity-40"
+                    priority={index === 0}
+                  />
+                  <div className="relative h-full flex flex-col items-center justify-center text-center p-4">
+                    <h1 className="text-4xl md:text-6xl font-headline tracking-tight text-white">
+                      {item.title}
+                    </h1>
+                    <p className="mt-2 text-2xl md:text-4xl text-white/90">
+                      {item.subtitle}
+                    </p>
+                    <Button asChild size="lg" className="mt-6 bg-primary text-primary-foreground hover:bg-primary/90">
+                      <Link href="/shop">
+                        Shop Now <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex" />
+          <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 hidden sm:flex" />
+        </Carousel>
       </section>
 
       <section className="w-full py-12 md:py-24 bg-background">
@@ -225,3 +256,4 @@ export default function Home() {
     
 
     
+
