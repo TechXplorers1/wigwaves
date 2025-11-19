@@ -137,13 +137,15 @@ const nextConfig: NextConfig = {
         hostname: 'www.elevatestyles.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.vectorstock.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
 };
 
 export default nextConfig;
-
-    
-
-    
