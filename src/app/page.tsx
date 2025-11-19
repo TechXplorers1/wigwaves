@@ -55,7 +55,6 @@ export default function Home() {
         <Carousel
           className="w-full h-full"
           opts={{ loop: true }}
-          autoplayDelay={5000}
         >
           <CarouselContent>
             {heroItems.map((item, index) => (
@@ -169,13 +168,24 @@ export default function Home() {
         </div>
       </section>
       
-      <section id="about" className="w-full py-12 md:py-24 bg-background">
-        <div className="container grid items-center gap-6 px-4 md:px-6">
-          <div className="space-y-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">About Us</h2>
-            <p className="max-w-[600px] text-muted-foreground md:text-lg/relaxed mx-auto">
-              We, WigWaves at Malad West in Mumbai, Maharashtra, are one of the most reputed hair & wig extensions suppliers in the city. You can choose from various colours of hair extension and different lengths to choose in the wigs. You can definitely find the one that suits you & your personality perfectly. We are always pursuing better hair quality and at the same time, keeping our customers as our only priority.
-            </p>
+      <section id="about" className="w-full bg-zinc-900 text-white">
+        <div className="container mx-auto px-4 py-12 md:py-24">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+            <div className="space-y-4">
+              <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wider">About Us</h2>
+              <p className="text-base md:text-lg text-zinc-300 leading-relaxed">
+                We, WigWaves at Malad West in Mumbai, Maharashtra, are one of the most reputed hair & wig extensions suppliers in the city. You can choose from various colours of hair extension and different lengths to choose in the wigs. You can definitely find the one that suits you & your personality perfectly. We are always pursuing better hair quality and at the same time, keeping our customers as our only priority.
+              </p>
+            </div>
+            <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden">
+                <Image
+                  src="https://png.pngtree.com/png-vector/20231018/ourmid/pngtree-beautiful-woman-with-black-hair-and-red-lipstick-png-image_10214811.png"
+                  alt="Woman with black bob haircut"
+                  fill
+                  className="object-cover"
+                  data-ai-hint="woman model"
+                />
+            </div>
           </div>
         </div>
       </section>
@@ -283,5 +293,7 @@ export default function Home() {
 
 
 
+
+    
 
     
