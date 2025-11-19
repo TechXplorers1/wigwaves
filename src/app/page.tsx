@@ -179,7 +179,7 @@ export default function Home() {
             </div>
             <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden">
                 <Image
-                  src="https://png.pngtree.com/png-vector/20231018/ourmid/pngtree-beautiful-woman-with-black-hair-and-red-lipstick-png-image_10214811.png"
+                  src="https://www.elevatestyles.com/cdn/shop/products/QHMPPWNW20_WW-Natural-Wave-20_Left_200x.jpg?v=1645560724"
                   alt="Woman with black bob haircut"
                   fill
                   className="object-cover"
@@ -293,6 +293,8 @@ export default function Home() {
 
 
 
+
+    
 
     
 
