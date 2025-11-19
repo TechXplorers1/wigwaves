@@ -44,7 +44,7 @@ export default function RootLayout({
           <AuthProvider>
             <CartProvider>
               <div className="relative flex min-h-screen flex-col">
-                <Header />
+                {!isAdminRoute && <Header />}
                 <main className={isAdminRoute ? '' : 'flex-1'}>{children}</main>
                 {!isAdminRoute && <Footer />}
               </div>
