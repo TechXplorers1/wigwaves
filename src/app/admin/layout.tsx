@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   Bell,
   CircleUser,
@@ -13,6 +13,7 @@ import {
   ShoppingCart,
   Users,
   Archive,
+  LogOut,
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
@@ -28,6 +29,7 @@ import {
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
 import Logo from '@/components/logo';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/context/auth-context';
 
 export default function AdminLayout({
   children,
@@ -35,6 +37,14 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const { logout } = useAuth();
+  const router = useRouter();
+
+
+  const handleLogout = async () => {
+    await logout();
+    router.push('/');
+  };
 
   const navLinks = [
     { href: "/admin/dashboard", label: "Dashboard", icon: Home },
@@ -125,7 +135,10 @@ export default function AdminLayout({
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogout}>
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Logout</span>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
