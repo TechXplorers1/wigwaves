@@ -220,6 +220,9 @@ export default function Home() {
 
       <section className="w-full py-12 md:py-24 bg-gray-50">
         <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Testimonials</h2>
+          </div>
            <TestimonialCarousel />
         </div>
       </section>
@@ -265,5 +268,7 @@ export default function Home() {
 
 
 
+
+    
 
     
