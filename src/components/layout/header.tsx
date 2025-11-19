@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, Search, ShoppingCart, User, X, LogOut, LayoutDashboard, UserCircle, CreditCard, Settings, Heart, ChevronDown, Phone, Mail, MapPin } from 'lucide-react';
+import { Menu, Search, ShoppingCart, User, X, LogOut, LayoutDashboard, UserCircle, CreditCard, Settings, Heart, ChevronDown, Phone, Mail, MapPin, Facebook, Instagram, Twitter, Truck } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import { PRIMARY_NAV_LINKS, SECONDARY_NAV_LINKS } from '@/lib/constants';
@@ -68,7 +68,80 @@ export default function Header() {
   const closeCart = () => setIsCartOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="bg-secondary/50 text-secondary-foreground py-2 text-xs">
+          <div className="container flex justify-between items-center">
+              <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                      <Link href="#" className="hover:text-primary"><Facebook className="w-4 h-4" /></Link>
+                      <Link href="#" className="hover:text-primary"><Instagram className="w-4 h-4" /></Link>
+                      <Link href="#" className="hover:text-primary"><Twitter className="w-4 h-4" /></Link>
+                  </div>
+                  <div className="hidden sm:flex items-center gap-4">
+                      <div className="flex items-center gap-1.5">
+                          <Phone className="w-4 h-4" />
+                          <a href="tel:+2349098101010" className="hover:text-primary">+234 909 810 1010</a>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                          <Mail className="w-4 h-4" />
+                          <a href="mailto:ng-contact@wigwaves.com" className="hover:text-primary">ng-contact@wigwaves.com</a>
+                      </div>
+                  </div>
+              </div>
+               <div className="flex items-center gap-4">
+                  <div className="hidden md:flex items-center gap-1.5">
+                      <MapPin className="w-4 h-4" />
+                      <span>Lagos, Nigeria</span>
+                  </div>
+                   <div className="hidden md:flex items-center gap-1.5">
+                      <Truck className="w-4 h-4" />
+                      <Link href="#" className="hover:text-primary">Track Order</Link>
+                  </div>
+                   {user ? (
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" className="h-auto p-0 flex items-center gap-1.5 text-xs hover:bg-transparent hover:text-primary">
+                            <User className="w-4 h-4" />
+                            {user.name}
+                            <ChevronDown className="w-4 h-4 opacity-50" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                          <DropdownMenuSeparator />
+                          {user.role === 'admin' && (
+                             <DropdownMenuItem asChild>
+                              <Link href="/admin/dashboard"><LayoutDashboard className="mr-2 h-4 w-4" />Dashboard</Link>
+                            </DropdownMenuItem>
+                          )}
+                          <DropdownMenuItem asChild>
+                            <Link href="/profile"><UserCircle className="mr-2 h-4 w-4" />Profile</Link>
+                          </DropdownMenuItem>
+                           <DropdownMenuItem asChild>
+                            <Link href="/billing"><CreditCard className="mr-2 h-4 w-4" />Billing</Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem asChild>
+                            <Link href="/settings"><Settings className="mr-2 h-4 w-4" />Settings</Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem onClick={handleLogout}>
+                            <LogOut className="mr-2 h-4 w-4" />
+                            <span>Logout</span>
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    ) : (
+                      <div className="flex items-center gap-1.5">
+                          <User className="w-4 h-4" />
+                          <Link href="/login" className="hover:text-primary">Log In</Link>
+                          <span className="opacity-50">|</span>
+                          <Link href="/register" className="hover:text-primary">Sign Up</Link>
+                      </div>
+                    )}
+              </div>
+          </div>
+      </div>
+    <header className="border-b">
       <div className="container flex h-16 sm:h-20 items-center">
         <div className="mr-6 flex items-center">
             <Logo />
@@ -169,5 +242,6 @@ export default function Header() {
         </div>
       </div>
     </header>
+    </div>
   );
 }
