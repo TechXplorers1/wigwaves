@@ -169,7 +169,7 @@ export default function Home() {
           <div className="space-y-4 text-center">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">About Us</h2>
             <p className="max-w-[600px] text-muted-foreground md:text-lg/relaxed mx-auto">
-              We, GG Wig at Malad West in Mumbai, Maharashtra, are one of the most reputed hair & wig extensions suppliers in the city. You can choose from various colours of hair extension and different lengths to choose in the wigs. You can definitely find the one that suits you & your personality perfectly. We are always pursuing better hair quality and at the same time, keeping our customers as our only priority.
+              We, WigWaves at Malad West in Mumbai, Maharashtra, are one of the most reputed hair & wig extensions suppliers in the city. You can choose from various colours of hair extension and different lengths to choose in the wigs. You can definitely find the one that suits you & your personality perfectly. We are always pursuing better hair quality and at the same time, keeping our customers as our only priority.
             </p>
           </div>
         </div>
@@ -268,6 +268,8 @@ export default function Home() {
 
 
 
+
+    
 
     
 
