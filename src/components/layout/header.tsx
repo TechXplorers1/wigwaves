@@ -60,8 +60,8 @@ export default function Header() {
     }
   };
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     router.push('/');
   }
 
@@ -102,7 +102,7 @@ export default function Header() {
                         <DropdownMenuTrigger asChild>
                           <Button variant="ghost" className="h-auto p-0 flex items-center gap-1.5 text-xs hover:bg-transparent hover:text-primary">
                             <User className="w-4 h-4" />
-                            {user.name}
+                            {user.displayName}
                             <ChevronDown className="w-4 h-4 opacity-50" />
                           </Button>
                         </DropdownMenuTrigger>

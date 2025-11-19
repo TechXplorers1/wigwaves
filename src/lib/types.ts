@@ -1,3 +1,4 @@
+
 export type Wig = {
   id: string;
   name: string;
@@ -15,4 +16,12 @@ export type Wig = {
 export type CartItem = Wig & {
   quantity: number;
   cartItemId?: string;
+};
+
+export type User = {
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+  photoURL?: string | null;
+  role: 'admin' | 'user';
 };

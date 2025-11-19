@@ -11,19 +11,61 @@ import { ArrowLeft, Bell, Brush, User } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function SettingsPage() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) {
+    if (!loading && !user) {
       router.push('/login');
     }
-  }, [user, router]);
+  }, [user, loading, router]);
 
-  if (!user) {
-    return null; // or a loading spinner
+  if (loading || !user) {
+    return (
+       <div className="container py-12 md:py-24">
+        <div className="max-w-3xl mx-auto">
+          <Skeleton className="h-10 w-36 mb-4" />
+          <Card>
+            <CardHeader>
+              <Skeleton className="h-8 w-32" />
+              <Skeleton className="h-5 w-72 mt-2" />
+            </CardHeader>
+            <CardContent className="space-y-8">
+              <div className="space-y-4">
+                <Skeleton className="h-7 w-40" />
+                <div className="pl-9 space-y-4">
+                  <Skeleton className="h-5 w-full" />
+                  <div className="flex gap-4">
+                    <Skeleton className="h-10 w-28" />
+                    <Skeleton className="h-10 w-40" />
+                  </div>
+                </div>
+              </div>
+              <Separator />
+               <div className="space-y-4">
+                <Skeleton className="h-7 w-48" />
+                <div className="pl-9 space-y-4">
+                   <Skeleton className="h-5 w-full" />
+                  <Skeleton className="h-16 w-full" />
+                  <Skeleton className="h-16 w-full" />
+                </div>
+              </div>
+               <Separator />
+               <div className="space-y-4">
+                <Skeleton className="h-7 w-44" />
+                <div className="pl-9 space-y-4">
+                   <Skeleton className="h-5 w-full" />
+                  <Skeleton className="h-16 w-full" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
   }
 
   return (

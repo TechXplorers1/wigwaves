@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -22,6 +23,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const mockBillingHistory = [
   {
@@ -45,17 +47,36 @@ const mockBillingHistory = [
 ];
 
 export default function BillingPage() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) {
+    if (!loading && !user) {
       router.push('/login');
     }
-  }, [user, router]);
+  }, [user, loading, router]);
 
-  if (!user) {
-    return null; // or a loading spinner
+  if (loading || !user) {
+    return (
+      <div className="container py-12 md:py-24">
+        <div className="max-w-4xl mx-auto">
+          <Skeleton className="h-10 w-36 mb-4" />
+          <Card>
+            <CardHeader>
+              <Skeleton className="h-8 w-48" />
+              <Skeleton className="h-5 w-96 mt-2" />
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <Skeleton className="h-12 w-full" />
+                <Skeleton className="h-12 w-full" />
+                <Skeleton className="h-12 w-full" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
   }
 
   return (
