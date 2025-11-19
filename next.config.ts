@@ -118,6 +118,12 @@ const nextConfig: NextConfig = {
         hostname: 'png.pngtree.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
