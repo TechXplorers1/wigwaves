@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import CartSheet from '../cart/cart-sheet';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Input } from '../ui/input';
 import { useAuth } from '@/context/auth-context';
 import {
@@ -46,10 +46,39 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [activeLink, setActiveLink] = useState('');
+  const sectionsRef = useRef<{[key: string]: HTMLElement | null}>({});
 
   useEffect(() => {
     setIsClient(true);
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveLink(`/#${entry.target.id}`);
+        }
+      });
+    }, { threshold: 0.5, rootMargin: "-100px 0px -50% 0px" });
+
+    PRIMARY_NAV_LINKS.forEach(link => {
+      const id = link.href.split('#')[1];
+      if (id) {
+        const element = document.getElementById(id);
+        if (element) {
+          sectionsRef.current[link.href] = element;
+          observer.observe(element);
+        }
+      }
+    });
+
+    return () => {
+      Object.values(sectionsRef.current).forEach(element => {
+        if (element) {
+          observer.unobserve(element);
+        }
+      });
+    };
+
   }, []);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -66,6 +95,21 @@ export default function Header() {
   }
 
   const closeCart = () => setIsCartOpen(false);
+  
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#')) {
+      e.preventDefault();
+      const id = href.substring(2);
+      const element = document.getElementById(id);
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop - 80, // Adjust for header height
+          behavior: 'smooth',
+        });
+      }
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <div className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -178,11 +222,11 @@ export default function Header() {
                     <Link
                         key={link.name}
                         href={link.href}
+                        onClick={(e) => handleNavClick(e, link.href)}
                         className={cn(
                         'transition-colors hover:text-primary py-2',
-                        pathname === link.href ? 'text-primary' : 'text-muted-foreground'
+                        activeLink === link.href ? 'text-primary' : 'text-muted-foreground'
                         )}
-                        onClick={() => setIsMenuOpen(false)}
                     >
                         {link.name}
                     </Link>
@@ -199,9 +243,10 @@ export default function Header() {
                 <Link
                     key={link.name}
                     href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className={cn(
                         'text-sm font-medium transition-colors hover:text-primary',
-                        (pathname === link.href || (link.name === 'Category' && pathname.startsWith('/shop'))) ? 'text-primary font-bold' : 'text-foreground'
+                        (activeLink === link.href) ? 'text-primary font-bold' : 'text-foreground'
                     )}
                 >
                     {link.name}

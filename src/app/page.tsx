@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <section className="relative w-full h-[50vh] md:h-[70vh] bg-gray-900 text-white">
+      <section id="home" className="relative w-full h-[50vh] md:h-[70vh] bg-gray-900 text-white">
         <Carousel
           className="w-full h-full"
           opts={{ loop: true }}
@@ -90,7 +90,7 @@ export default function Home() {
         </Carousel>
       </section>
 
-      <section className="w-full py-12 md:py-24 bg-background">
+      <section id="category" className="w-full py-12 md:py-24 bg-background">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Category</h2>
@@ -119,7 +119,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 bg-gray-50">
+      <section id="products" className="w-full py-12 md:py-24 bg-gray-50">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Products</h2>
@@ -164,7 +164,7 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="w-full py-12 md:py-24 bg-background">
+      <section id="about" className="w-full py-12 md:py-24 bg-background">
         <div className="container grid items-center gap-6 px-4 md:px-6">
           <div className="space-y-4 text-center">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">About Us</h2>
@@ -175,7 +175,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 bg-gray-50">
+      <section id="gallery" className="w-full py-12 md:py-24 bg-gray-50">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Gallery</h2>
@@ -190,7 +190,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 bg-background">
+      <section id="videos" className="w-full py-12 md:py-24 bg-background">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Videos</h2>
@@ -218,7 +218,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 bg-gray-50">
+      <section id="testimonials" className="w-full py-12 md:py-24 bg-gray-50">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Testimonials</h2>
@@ -227,7 +227,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 bg-background">
+      <section id="contact" className="w-full py-12 md:py-24 bg-background">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Contact Us</h2>
@@ -275,4 +275,5 @@ export default function Home() {
     
 
     
+
 

@@ -1,14 +1,14 @@
 export const APP_NAME = 'WigWaves';
 
 export const PRIMARY_NAV_LINKS = [
-  { name: 'Home', href: '/' },
-  { name: 'Category', href: '/category' },
-  { name: 'Products', href: '/shop' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Gallery', href: '#' },
-  { name: 'Videos', href: '#' },
-  { name: 'Testimonials', href: '#' },
-  { name: 'Contact Us', href: '/contact' },
+  { name: 'Home', href: '/#home' },
+  { name: 'Category', href: '/#category' },
+  { name: 'Products', href: '/#products' },
+  { name: 'About Us', href: '/#about' },
+  { name: 'Gallery', href: '/#gallery' },
+  { name: 'Videos', href: '/#videos' },
+  { name: 'Testimonials', href: '/#testimonials' },
+  { name: 'Contact Us', href: '/#contact' },
 ];
 
 export const SECONDARY_NAV_LINKS = [
