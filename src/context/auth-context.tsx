@@ -10,8 +10,7 @@ import {
   User as FirebaseUser,
   updateProfile
 } from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { useAuth as useFirebaseAuth, useFirestore } from '@/firebase';
+import { useAuth as useFirebaseAuth } from '@/firebase';
 import type { User } from '@/lib/types';
 
 interface AuthContextType {
@@ -28,34 +27,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const auth = useFirebaseAuth();
-  const firestore = useFirestore();
+  // Firestore is temporarily removed to fix the "client is offline" issue.
+  // const firestore = useFirestore();
 
   useEffect(() => {
     const unsubscribeFromAuth = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        // Create a basic user object from auth data first.
-        // This allows login to succeed even if firestore is offline.
+        // Create a user object from authentication data only, bypassing Firestore.
         const basicUser: User = {
           uid: firebaseUser.uid,
           email: firebaseUser.email,
           displayName: firebaseUser.displayName,
-          role: 'user', // Default role
           photoURL: firebaseUser.photoURL,
+          role: 'user', // Assign a default role
         };
         setUser(basicUser);
-
-        // Then, try to get the full profile from Firestore.
-        try {
-          const userDocRef = doc(firestore, 'users', firebaseUser.uid);
-          const userDoc = await getDoc(userDocRef);
-          if (userDoc.exists()) {
-            setUser({ uid: firebaseUser.uid, ...userDoc.data() } as User);
-          }
-        } catch (error) {
-          console.error("Firestore is offline or there was an error fetching the user document:", error);
-          // The user state is already set with basic info, so the app can continue.
-        }
-        
       } else {
         setUser(null);
       }
@@ -63,7 +49,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
 
     return () => unsubscribeFromAuth();
-  }, [auth, firestore]);
+  }, [auth]);
 
   const login = async (email: string, password: string) => {
     await signInWithEmailAndPassword(auth, email, password);
@@ -77,23 +63,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const firebaseUser = userCredential.user;
 
-    // Update the Firebase Auth profile
+    // Update the Firebase Auth profile. This does not require Firestore.
     await updateProfile(firebaseUser, { displayName: name });
     
-    // Create the user document in Firestore, but don't block login if it fails.
-    const newUser: User = {
-        uid: firebaseUser.uid,
-        email: firebaseUser.email,
-        displayName: name,
-        role: 'user',
-    };
-
-    const userDocRef = doc(firestore, 'users', firebaseUser.uid);
-    try {
-      await setDoc(userDocRef, newUser);
-    } catch(e) {
-      console.error("Failed to create user document on register. User will be created on next login.", e);
-    }
+    // The logic to create a user document in Firestore is temporarily removed.
   };
 
   return (
