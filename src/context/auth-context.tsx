@@ -9,7 +9,7 @@ import {
   signOut,
   User as FirebaseUser
 } from 'firebase/auth';
-import { doc, setDoc, onSnapshot, Unsubscribe } from 'firebase/firestore';
+import { doc, setDoc, onSnapshot, Unsubscribe, getDoc } from 'firebase/firestore';
 import { useAuth as useFirebaseAuth, useFirestore } from '@/firebase';
 import type { User } from '@/lib/types';
 
@@ -36,26 +36,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (firebaseUser) {
         const userDocRef = doc(firestore, 'users', firebaseUser.uid);
         
-        // Unsubscribe from previous listener if it exists
         if (unsubscribeFromFirestore) {
             unsubscribeFromFirestore();
         }
 
         unsubscribeFromFirestore = onSnapshot(userDocRef, (userDoc) => {
           if (userDoc.exists()) {
-            setUser({ ...userDoc.data(), uid: firebaseUser.uid } as User);
-          } else {
-            // If user exists in Auth but not Firestore, create a doc
-            const newUser: User = {
-              uid: firebaseUser.uid,
-              email: firebaseUser.email,
-              displayName: firebaseUser.displayName,
-              role: firebaseUser.email === 'admin@gmail.com' ? 'admin' : 'user'
-            };
-            setDoc(userDocRef, newUser).then(() => {
-                setUser(newUser);
-            });
+            setUser({ uid: firebaseUser.uid, ...userDoc.data() } as User);
           }
+          // The user document might not exist yet if they just registered.
+          // The register function will create it. If they exist in auth but not
+          // firestore for any other reason, we'll handle that on login/register.
           setLoading(false);
         }, (error) => {
             console.error("Error fetching user document:", error);
@@ -64,7 +55,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         });
 
       } else {
-        // User is signed out
         if (unsubscribeFromFirestore) {
           unsubscribeFromFirestore();
           unsubscribeFromFirestore = null;
@@ -83,7 +73,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [auth, firestore]);
 
   const login = async (email: string, password: string) => {
-    await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const firebaseUser = userCredential.user;
+
+    const userDocRef = doc(firestore, 'users', firebaseUser.uid);
+    const userDoc = await getDoc(userDocRef);
+
+    if (!userDoc.exists()) {
+        const newUser: User = {
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+            displayName: firebaseUser.displayName,
+            role: 'user'
+        };
+        await setDoc(userDocRef, newUser);
+    }
   };
 
   const logout = async () => {
@@ -98,12 +102,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         uid: firebaseUser.uid,
         email: firebaseUser.email,
         displayName: name,
-        role: email === 'admin@gmail.com' ? 'admin' : 'user',
+        role: 'user',
     };
 
     const userDocRef = doc(firestore, 'users', firebaseUser.uid);
     await setDoc(userDocRef, newUser);
-    // The onAuthStateChanged listener will handle setting the user state
   };
 
   return (
