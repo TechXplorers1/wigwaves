@@ -7,9 +7,10 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
-  User as FirebaseUser
+  User as FirebaseUser,
+  updateProfile
 } from 'firebase/auth';
-import { doc, setDoc, onSnapshot, Unsubscribe, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useAuth as useFirebaseAuth, useFirestore } from '@/firebase';
 import type { User } from '@/lib/types';
 
@@ -30,81 +31,42 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const firestore = useFirestore();
 
   useEffect(() => {
-    let unsubscribeFromFirestore: Unsubscribe | null = null;
-
-    const unsubscribeFromAuth = onAuthStateChanged(auth, (firebaseUser) => {
+    const unsubscribeFromAuth = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        const userDocRef = doc(firestore, 'users', firebaseUser.uid);
-        
-        if (unsubscribeFromFirestore) {
-            unsubscribeFromFirestore();
-        }
+        // Create a basic user object from auth data first.
+        // This allows login to succeed even if firestore is offline.
+        const basicUser: User = {
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          displayName: firebaseUser.displayName,
+          role: 'user', // Default role
+          photoURL: firebaseUser.photoURL,
+        };
+        setUser(basicUser);
 
-        unsubscribeFromFirestore = onSnapshot(userDocRef, (userDoc) => {
+        // Then, try to get the full profile from Firestore.
+        try {
+          const userDocRef = doc(firestore, 'users', firebaseUser.uid);
+          const userDoc = await getDoc(userDocRef);
           if (userDoc.exists()) {
             setUser({ uid: firebaseUser.uid, ...userDoc.data() } as User);
-          } else {
-            setUser({
-              uid: firebaseUser.uid,
-              email: firebaseUser.email,
-              displayName: firebaseUser.displayName,
-              role: 'user',
-            });
           }
-          setLoading(false);
-        }, (error) => {
-            console.error("Error fetching user document:", error);
-            // This is a fallback for when Firestore is offline or there are permission errors.
-            // It allows the user to still be logged in with basic info.
-            if (error.code === 'unavailable' || (error.message && error.message.includes('offline'))) {
-              setUser({
-                uid: firebaseUser.uid,
-                email: firebaseUser.email,
-                displayName: firebaseUser.displayName,
-                role: 'user',
-              });
-            }
-            setLoading(false);
-        });
-
-      } else {
-        if (unsubscribeFromFirestore) {
-          unsubscribeFromFirestore();
-          unsubscribeFromFirestore = null;
+        } catch (error) {
+          console.error("Firestore is offline or there was an error fetching the user document:", error);
+          // The user state is already set with basic info, so the app can continue.
         }
+        
+      } else {
         setUser(null);
-        setLoading(false);
       }
+      setLoading(false);
     });
 
-    return () => {
-        unsubscribeFromAuth();
-        if (unsubscribeFromFirestore) {
-            unsubscribeFromFirestore();
-        }
-    };
+    return () => unsubscribeFromAuth();
   }, [auth, firestore]);
 
   const login = async (email: string, password: string) => {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const firebaseUser = userCredential.user;
-
-    const userDocRef = doc(firestore, 'users', firebaseUser.uid);
-    try {
-      const userDoc = await getDoc(userDocRef);
-
-      if (!userDoc.exists()) {
-          const newUser: User = {
-              uid: firebaseUser.uid,
-              email: firebaseUser.email,
-              displayName: firebaseUser.displayName,
-              role: 'user'
-          };
-          await setDoc(userDocRef, newUser);
-      }
-    } catch(e) {
-      console.error("Failed to check/create user document on login:", e);
-    }
+    await signInWithEmailAndPassword(auth, email, password);
   };
 
   const logout = async () => {
@@ -114,7 +76,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const register = async (name: string, email: string, password: string) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const firebaseUser = userCredential.user;
+
+    // Update the Firebase Auth profile
+    await updateProfile(firebaseUser, { displayName: name });
     
+    // Create the user document in Firestore, but don't block login if it fails.
     const newUser: User = {
         uid: firebaseUser.uid,
         email: firebaseUser.email,
@@ -126,7 +92,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       await setDoc(userDocRef, newUser);
     } catch(e) {
-      console.error("Failed to create user document on register:", e);
+      console.error("Failed to create user document on register. User will be created on next login.", e);
     }
   };
 
