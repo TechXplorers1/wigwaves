@@ -8,9 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { CartProvider } from '@/context/cart-context';
 import { AuthProvider } from '@/context/auth-context';
 import { FirebaseClientProvider } from '@/firebase';
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
-import { usePathname } from 'next/navigation';
+import AppLayout from '@/components/layout/app-layout';
 
 // Using a variable for metadata to be compatible with 'use client'
 const metadata: Metadata = {
@@ -23,8 +21,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const isAdminRoute = pathname.startsWith('/admin');
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -43,15 +39,9 @@ export default function RootLayout({
         <FirebaseClientProvider>
           <AuthProvider>
             <CartProvider>
-              <div className="relative flex min-h-screen flex-col">
-                <div className={isAdminRoute ? 'hidden' : ''}>
-                    <Header />
-                </div>
-                <main className={isAdminRoute ? '' : 'flex-1'}>{children}</main>
-                 <div className={isAdminRoute ? 'hidden' : ''}>
-                    <Footer />
-                </div>
-              </div>
+                <AppLayout>
+                    {children}
+                </AppLayout>
               <Toaster />
             </CartProvider>
           </AuthProvider>

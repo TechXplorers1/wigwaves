@@ -13,10 +13,10 @@ export default function AppLayout({
   const isAdminRoute = pathname.startsWith('/admin');
 
   return (
-    <>
-        <Header />
+    <div className="relative flex min-h-screen flex-col">
+        {!isAdminRoute && <Header />}
         <main className={isAdminRoute ? '' : 'flex-1'}>{children}</main>
         {!isAdminRoute && <Footer />}
-    </>
+    </div>
   );
 }
