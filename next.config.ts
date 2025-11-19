@@ -100,6 +100,12 @@ const nextConfig: NextConfig = {
         hostname: 'frontrow.co.za',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.istockphoto.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

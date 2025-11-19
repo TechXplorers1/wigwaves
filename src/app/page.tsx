@@ -32,7 +32,7 @@ export default function Home() {
     <div className="flex flex-col min-h-[100dvh]">
       <section className="relative w-full h-[50vh] md:h-[70vh] bg-gray-900 text-white">
         <Image
-          src="https://images.unsplash.com/photo-1596755094514-935154a18903?q=80&w=2070&auto=format&fit=crop"
+          src="https://media.istockphoto.com/id/1281698360/photo/natural-afro-hair-wide-toothy-smile-and-expression-of-gladness-on-the-face-of-young-brown.jpg?s=612x612&w=0&k=20&c=zuINrArEtdq26QLUjsakZPY6wvjeS3k5_me_8yUzp4E="
           alt="Woman with beautiful hair"
           fill
           className="object-cover object-center opacity-40"
