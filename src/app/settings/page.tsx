@@ -12,10 +12,12 @@ import { Separator } from '@/components/ui/separator';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useTheme } from 'next-themes';
 
 export default function SettingsPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     if (!loading && !user) {
@@ -140,7 +142,11 @@ export default function SettingsPage() {
                     <Label htmlFor="dark-mode">Dark Mode</Label>
                     <p className="text-sm text-muted-foreground">Toggle between light and dark themes.</p>
                   </div>
-                  <Switch id="dark-mode" disabled />
+                  <Switch
+                    id="dark-mode"
+                    checked={theme === 'dark'}
+                    onCheckedChange={(checked) => setTheme(checked ? 'dark' : 'light')}
+                  />
                 </div>
               </div>
             </div>

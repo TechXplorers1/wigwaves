@@ -9,6 +9,7 @@ import { CartProvider } from '@/context/cart-context';
 import { AuthProvider } from '@/context/auth-context';
 import { FirebaseClientProvider } from '@/firebase';
 import AppLayout from '@/components/layout/app-layout';
+import { ThemeProvider } from '@/context/theme-provider';
 
 // Using a variable for metadata to be compatible with 'use client'
 const metadata: Metadata = {
@@ -36,16 +37,23 @@ export default function RootLayout({
           "min-h-screen bg-background font-body antialiased",
         )}
       >
-        <FirebaseClientProvider>
-          <AuthProvider>
-            <CartProvider>
-                <AppLayout>
-                    {children}
-                </AppLayout>
-              <Toaster />
-            </CartProvider>
-          </AuthProvider>
-        </FirebaseClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <FirebaseClientProvider>
+            <AuthProvider>
+              <CartProvider>
+                  <AppLayout>
+                      {children}
+                  </AppLayout>
+                <Toaster />
+              </CartProvider>
+            </AuthProvider>
+          </FirebaseClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
