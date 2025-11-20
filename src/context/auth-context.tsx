@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           email: firebaseUser.email,
           displayName: firebaseUser.displayName,
           photoURL: firebaseUser.photoURL,
-          role: 'user', // Assign a default role
+          role: firebaseUser.email === 'admin@gmail.com' ? 'admin' : 'user', // Assign role based on email
         };
         setUser(appUser);
       } else {
