@@ -135,7 +135,7 @@ export default function AdminLayout({
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link href="/admin/dashboard">
+                <Link href="/">
                   <LayoutDashboard className="mr-2 h-4 w-4" />
                   <span>Home</span>
                 </Link>
