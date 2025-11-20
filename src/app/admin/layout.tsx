@@ -137,7 +137,7 @@ export default function AdminLayout({
               <DropdownMenuItem asChild>
                 <Link href="/admin/dashboard">
                   <LayoutDashboard className="mr-2 h-4 w-4" />
-                  <span>Dashboard</span>
+                  <span>Home</span>
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
