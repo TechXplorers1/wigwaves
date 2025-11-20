@@ -27,28 +27,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const auth = useFirebaseAuth();
-  // Firestore is temporarily removed to fix the "client is offline" issue.
-  // const firestore = useFirestore();
 
   useEffect(() => {
-    const unsubscribeFromAuth = onAuthStateChanged(auth, async (firebaseUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         // Create a user object from authentication data only, bypassing Firestore.
-        const basicUser: User = {
+        const appUser: User = {
           uid: firebaseUser.uid,
           email: firebaseUser.email,
           displayName: firebaseUser.displayName,
           photoURL: firebaseUser.photoURL,
           role: 'user', // Assign a default role
         };
-        setUser(basicUser);
+        setUser(appUser);
       } else {
         setUser(null);
       }
       setLoading(false);
     });
 
-    return () => unsubscribeFromAuth();
+    return () => unsubscribe();
   }, [auth]);
 
   const login = async (email: string, password: string) => {
@@ -64,9 +62,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const firebaseUser = userCredential.user;
 
     // Update the Firebase Auth profile. This does not require Firestore.
-    await updateProfile(firebaseUser, { displayName: name });
-    
-    // The logic to create a user document in Firestore is temporarily removed.
+    if (firebaseUser) {
+        await updateProfile(firebaseUser, { displayName: name });
+    }
   };
 
   return (
