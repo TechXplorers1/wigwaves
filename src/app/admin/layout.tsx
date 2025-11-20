@@ -15,6 +15,7 @@ import {
   Archive,
   LogOut,
   Settings,
+  LayoutDashboard,
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
@@ -133,6 +134,12 @@ export default function AdminLayout({
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link href="/admin/dashboard">
+                  <LayoutDashboard className="mr-2 h-4 w-4" />
+                  <span>Dashboard</span>
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="/settings">
                   <Settings className="mr-2 h-4 w-4" />
