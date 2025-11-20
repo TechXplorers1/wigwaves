@@ -142,9 +142,9 @@ export default function AdminDashboardPage() {
                 <TableBody>
                   <TableRow>
                     <TableCell>
-                      <div className="font-medium">Liam Johnson</div>
+                      <div className="font-medium">Admin</div>
                       <div className="hidden text-sm text-muted-foreground md:inline">
-                        liam@example.com
+                        Admin@gmail.com
                       </div>
                     </TableCell>
                     <TableCell className="hidden xl:table-column">
