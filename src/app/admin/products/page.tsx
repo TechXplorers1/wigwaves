@@ -39,26 +39,13 @@ export default function ProductsPage() {
     setIsFormOpen(true);
   };
 
-  const handleFormSubmit = (data: Product) => {
+  const handleFormSubmit = (data: Omit<Product, 'id'>) => {
     if (editingProduct) {
       // Logic for updating an existing product
-      const currentProduct = products.find(p => p.id === editingProduct.id);
-      if (currentProduct) {
-        updateProduct({ ...currentProduct, ...data, sku: currentProduct.id });
-      }
+      updateProduct({ ...editingProduct, ...data });
     } else {
       // Logic for adding a new product
-      addProduct({
-        name: data.name,
-        price: data.price,
-        image: data.image,
-        description: data.description,
-        style: data.style,
-        color: data.color,
-        length: data.length,
-        material: data.material,
-        type: data.type,
-      });
+      addProduct(data);
     }
     setIsFormOpen(false);
     setEditingProduct(undefined);

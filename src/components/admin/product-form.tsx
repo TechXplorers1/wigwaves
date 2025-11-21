@@ -51,7 +51,7 @@ type ProductFormData = z.infer<typeof productSchema>;
 interface ProductFormProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: Product) => void;
+  onSubmit: (data: Omit<Product, 'id'>) => void;
   product?: Product;
 }
 
@@ -95,10 +95,7 @@ export function ProductForm({ isOpen, onClose, onSubmit, product }: ProductFormP
   }, [product, form, isOpen]);
 
   const handleFormSubmit = (data: ProductFormData) => {
-    onSubmit({
-      ...data,
-      id: product?.id || '', // Keep original ID if editing
-    });
+    onSubmit(data);
   };
 
   return (

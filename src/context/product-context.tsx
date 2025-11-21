@@ -20,7 +20,8 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     setProducts(prevProducts => {
         const newProduct: Wig = {
             ...product,
-            id: `w${prevProducts.length + 1}`,
+            // Generate a more unique ID for the SKU
+            id: `SKU-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
             isNew: true,
         };
         return [newProduct, ...prevProducts];
