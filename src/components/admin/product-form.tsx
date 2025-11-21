@@ -30,7 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import type { InventoryItem } from '@/app/admin/inventory/page';
+import type { Product } from '@/app/admin/products/page';
 
 const productSchema = z.object({
   name: z.string().min(1, 'Product name is required'),
@@ -45,8 +45,8 @@ type ProductFormData = z.infer<typeof productSchema>;
 interface ProductFormProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: InventoryItem) => void;
-  product?: InventoryItem;
+  onSubmit: (data: Product) => void;
+  product?: Product;
 }
 
 export function ProductForm({ isOpen, onClose, onSubmit, product }: ProductFormProps) {

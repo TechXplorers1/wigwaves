@@ -22,7 +22,7 @@ import {
 import { ProductForm } from '@/components/admin/product-form';
 import Image from 'next/image';
 
-export interface InventoryItem {
+export interface Product {
   sku: string;
   name: string;
   stock: number;
@@ -30,7 +30,7 @@ export interface InventoryItem {
   image: string;
 }
 
-const initialInventoryItems: InventoryItem[] = [
+const initialProducts: Product[] = [
   { name: 'Ngozi', sku: 'W1', stock: 15, status: 'In Stock', image: 'https://laidbyify.com/cdn/shop/files/34B90DCB-F114-469A-ACAD-7515530AE2BB.jpg?v=1756814058&width=2200' },
   { name: 'Nkem (Natural Black)', sku: 'W2', stock: 8, status: 'In Stock', image: 'https://laidbyify.com/cdn/shop/files/7D5C1F71-C620-45CB-95E6-A77B8EFD8E7E.jpg?v=1762186440&width=2200' },
   { name: 'Chika', sku: 'W3', stock: 0, status: 'Out of Stock', image: 'https://laidbyify.com/cdn/shop/files/IMG-3873.jpg?v=1760919015&width=2200' },
@@ -38,30 +38,30 @@ const initialInventoryItems: InventoryItem[] = [
   { name: 'Ogechi 2.0', sku: 'W5', stock: 20, status: 'In Stock', image: 'https://laidbyify.com/cdn/shop/files/FullSizeRender_918ee82c-59db-4d15-9ea9-a7370ddf1267.jpg?v=1741957669' },
 ];
 
-export default function InventoryPage() {
-  const [inventoryItems, setInventoryItems] = useState<InventoryItem[]>(initialInventoryItems);
+export default function ProductsPage() {
+  const [products, setProducts] = useState<Product[]>(initialProducts);
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<InventoryItem | undefined>(undefined);
+  const [editingProduct, setEditingProduct] = useState<Product | undefined>(undefined);
 
   const handleAddProduct = () => {
     setEditingProduct(undefined);
     setIsFormOpen(true);
   };
 
-  const handleEditProduct = (product: InventoryItem) => {
+  const handleEditProduct = (product: Product) => {
     setEditingProduct(product);
     setIsFormOpen(true);
   };
 
-  const handleFormSubmit = (product: InventoryItem) => {
+  const handleFormSubmit = (product: Product) => {
     if (editingProduct) {
       // Update existing product
-      setInventoryItems(prevItems => 
+      setProducts(prevItems => 
         prevItems.map(item => item.sku === product.sku ? product : item)
       );
     } else {
       // Add new product
-      setInventoryItems(prevItems => [
+      setProducts(prevItems => [
         { ...product, sku: `W${prevItems.length + 1}` }, // Simple SKU generation
         ...prevItems
       ]);
@@ -74,9 +74,9 @@ export default function InventoryPage() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Inventory Management</CardTitle>
+          <CardTitle>Product Management</CardTitle>
           <CardDescription>
-            Track and manage your product inventory.
+            Track and manage your products.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -95,7 +95,7 @@ export default function InventoryPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {inventoryItems.map((item) => (
+              {products.map((item) => (
                 <TableRow key={item.sku}>
                   <TableCell className="hidden sm:table-cell">
                     <Image 

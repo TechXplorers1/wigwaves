@@ -51,8 +51,7 @@ export default function AdminLayout({
   const navLinks = [
     { href: "/admin/dashboard", label: "Dashboard", icon: Home },
     { href: "/admin/orders", label: "Order Management", icon: ShoppingCart },
-    { href: "#", label: "Products", icon: Package },
-    { href: "/admin/inventory", label: "Inventory", icon: Archive },
+    { href: "/admin/products", label: "Products", icon: Package },
     { href: "#", label: "Customers", icon: Users },
     { href: "#", label: "Analytics", icon: LineChart },
   ];
