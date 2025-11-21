@@ -1,9 +1,9 @@
 
+
 'use client';
 
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
-import { products } from '@/lib/products';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/cart-context';
 import { Star, Truck, ShieldCheck, Tag, Heart, Minus, Plus, ShoppingBag, Leaf, Lock, Award, Eye } from 'lucide-react';
@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState, useEffect } from 'react';
+import { useProducts } from '@/context/product-context';
 
 const capSizes = ["Small 21\"", "Medium 22\"", "Large 23\""];
 const lengths = ["18", "20", "22", "24", "26"];
@@ -39,6 +40,7 @@ const lengthAdjustments: { [key: string]: number } = {
 export default function ProductDetailPage() {
   const params = useParams();
   const { id } = params;
+  const { products } = useProducts();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [selectedCapSize, setSelectedCapSize] = useState(capSizes[1]);

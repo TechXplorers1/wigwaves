@@ -30,14 +30,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import type { Product } from '@/app/admin/products/page';
+import type { Wig as Product } from '@/lib/types';
+import { Textarea } from '../ui/textarea';
 
 const productSchema = z.object({
   name: z.string().min(1, 'Product name is required'),
-  sku: z.string(), // SKU is not editable for existing products
-  stock: z.coerce.number().min(0, 'Stock cannot be negative'),
-  status: z.enum(['In Stock', 'Out of Stock', 'Low Stock']),
+  price: z.coerce.number().min(0, 'Price must be a positive number'),
   image: z.string().url('Must be a valid URL').min(1, 'Image URL is required'),
+  description: z.string().min(1, 'Description is required'),
+  style: z.enum(['Straight', 'Wavy', 'Curly', 'Pixie', 'Bob']),
+  color: z.enum(['Blonde', 'Brunette', 'Black', 'Red', 'Grey', 'Pastel']),
+  length: z.enum(['Short', 'Medium', 'Long']),
+  material: z.enum(['Human Hair', 'Synthetic']),
+  stock: z.coerce.number().min(0, 'Stock cannot be negative'),
+  type: z.enum(['wig', 'extension', 'toupee']).optional(),
 });
 
 type ProductFormData = z.infer<typeof productSchema>;
@@ -54,37 +60,50 @@ export function ProductForm({ isOpen, onClose, onSubmit, product }: ProductFormP
     resolver: zodResolver(productSchema),
     defaultValues: {
       name: '',
-      sku: '',
-      stock: 0,
-      status: 'In Stock',
+      price: 0,
       image: '',
+      description: '',
+      style: 'Straight',
+      color: 'Black',
+      length: 'Medium',
+      material: 'Synthetic',
+      stock: 10,
+      type: 'wig',
     },
   });
 
   useEffect(() => {
     if (product) {
-      form.reset(product);
+      form.reset({
+        ...product,
+        stock: (product as any).stock ?? 10,
+      });
     } else {
       form.reset({
         name: '',
-        sku: '',
-        stock: 0,
-        status: 'In Stock',
+        price: 0,
         image: '',
+        description: '',
+        style: 'Straight',
+        color: 'Black',
+        length: 'Medium',
+        material: 'Synthetic',
+        stock: 10,
+        type: 'wig',
       });
     }
-  }, [product, form]);
+  }, [product, form, isOpen]);
 
   const handleFormSubmit = (data: ProductFormData) => {
     onSubmit({
       ...data,
-      sku: product?.sku || '', // Keep original SKU if editing
+      id: product?.id || '', // Keep original ID if editing
     });
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{product ? 'Edit Product' : 'Add New Product'}</DialogTitle>
           <DialogDescription>
@@ -121,39 +140,145 @@ export function ProductForm({ isOpen, onClose, onSubmit, product }: ProductFormP
             />
              <FormField
               control={form.control}
-              name="stock"
+              name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Stock Quantity</FormLabel>
+                  <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Input type="number" placeholder="0" {...field} />
+                    <Textarea placeholder="Describe the product..." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <FormField
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="price"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Price</FormLabel>
+                    <FormControl>
+                      <Input type="number" placeholder="0.00" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="stock"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Stock Quantity</FormLabel>
+                    <FormControl>
+                      <Input type="number" placeholder="0" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+                 <FormField
+                  control={form.control}
+                  name="style"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Style</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl><SelectTrigger><SelectValue placeholder="Select style" /></SelectTrigger></FormControl>
+                        <SelectContent>
+                          <SelectItem value="Straight">Straight</SelectItem>
+                          <SelectItem value="Wavy">Wavy</SelectItem>
+                          <SelectItem value="Curly">Curly</SelectItem>
+                          <SelectItem value="Pixie">Pixie</SelectItem>
+                          <SelectItem value="Bob">Bob</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                 <FormField
+                  control={form.control}
+                  name="color"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Color</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl><SelectTrigger><SelectValue placeholder="Select color" /></SelectTrigger></FormControl>
+                        <SelectContent>
+                          <SelectItem value="Blonde">Blonde</SelectItem>
+                          <SelectItem value="Brunette">Brunette</SelectItem>
+                          <SelectItem value="Black">Black</SelectItem>
+                          <SelectItem value="Red">Red</SelectItem>
+                          <SelectItem value="Grey">Grey</SelectItem>
+                          <SelectItem value="Pastel">Pastel</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+            </div>
+             <div className="grid grid-cols-2 gap-4">
+                 <FormField
+                  control={form.control}
+                  name="length"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Length</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl><SelectTrigger><SelectValue placeholder="Select length" /></SelectTrigger></FormControl>
+                        <SelectContent>
+                          <SelectItem value="Short">Short</SelectItem>
+                          <SelectItem value="Medium">Medium</SelectItem>
+                          <SelectItem value="Long">Long</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                 <FormField
+                  control={form.control}
+                  name="material"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Material</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl><SelectTrigger><SelectValue placeholder="Select material" /></SelectTrigger></FormControl>
+                        <SelectContent>
+                          <SelectItem value="Human Hair">Human Hair</SelectItem>
+                          <SelectItem value="Synthetic">Synthetic</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+            </div>
+             <FormField
               control={form.control}
-              name="status"
+              name="type"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Status</FormLabel>
+                  <FormLabel>Type</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a status" />
-                      </SelectTrigger>
-                    </FormControl>
+                    <FormControl><SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger></FormControl>
                     <SelectContent>
-                      <SelectItem value="In Stock">In Stock</SelectItem>
-                      <SelectItem value="Out of Stock">Out of Stock</SelectItem>
-                      <SelectItem value="Low Stock">Low Stock</SelectItem>
+                      <SelectItem value="wig">Wig</SelectItem>
+                      <SelectItem value="extension">Hair Extension</SelectItem>
+                      <SelectItem value="toupee">Toupee</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
                 </FormItem>
               )}
             />
+            
             <DialogFooter>
               <Button type="button" variant="outline" onClick={onClose}>
                 Cancel

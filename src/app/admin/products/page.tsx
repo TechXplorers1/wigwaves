@@ -21,25 +21,11 @@ import {
 } from '@/components/ui/table';
 import { ProductForm } from '@/components/admin/product-form';
 import Image from 'next/image';
-
-export interface Product {
-  sku: string;
-  name: string;
-  stock: number;
-  status: 'In Stock' | 'Out of Stock' | 'Low Stock';
-  image: string;
-}
-
-const initialProducts: Product[] = [
-  { name: 'Ngozi', sku: 'W1', stock: 15, status: 'In Stock', image: 'https://laidbyify.com/cdn/shop/files/34B90DCB-F114-469A-ACAD-7515530AE2BB.jpg?v=1756814058&width=2200' },
-  { name: 'Nkem (Natural Black)', sku: 'W2', stock: 8, status: 'In Stock', image: 'https://laidbyify.com/cdn/shop/files/7D5C1F71-C620-45CB-95E6-A77B8EFD8E7E.jpg?v=1762186440&width=2200' },
-  { name: 'Chika', sku: 'W3', stock: 0, status: 'Out of Stock', image: 'https://laidbyify.com/cdn/shop/files/IMG-3873.jpg?v=1760919015&width=2200' },
-  { name: 'Amarachi (Jet Black)', sku: 'W4', stock: 2, status: 'Low Stock', image: 'https://laidbyify.com/cdn/shop/files/FullSizeRender_a768257a-8218-4c15-b0fa-8fe21b490d14.jpg?v=1742301306' },
-  { name: 'Ogechi 2.0', sku: 'W5', stock: 20, status: 'In Stock', image: 'https://laidbyify.com/cdn/shop/files/FullSizeRender_918ee82c-59db-4d15-9ea9-a7370ddf1267.jpg?v=1741957669' },
-];
+import { useProducts } from '@/context/product-context';
+import type { Wig as Product } from '@/lib/types';
 
 export default function ProductsPage() {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const { products, addProduct, updateProduct } = useProducts();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | undefined>(undefined);
 
@@ -53,22 +39,36 @@ export default function ProductsPage() {
     setIsFormOpen(true);
   };
 
-  const handleFormSubmit = (product: Product) => {
+  const handleFormSubmit = (data: Product) => {
     if (editingProduct) {
-      // Update existing product
-      setProducts(prevItems => 
-        prevItems.map(item => item.sku === product.sku ? product : item)
-      );
+      // Logic for updating an existing product
+      const currentProduct = products.find(p => p.id === editingProduct.id);
+      if (currentProduct) {
+        updateProduct({ ...currentProduct, ...data, sku: currentProduct.id });
+      }
     } else {
-      // Add new product
-      setProducts(prevItems => [
-        { ...product, sku: `W${prevItems.length + 1}` }, // Simple SKU generation
-        ...prevItems
-      ]);
+      // Logic for adding a new product
+      addProduct({
+        name: data.name,
+        price: data.price,
+        image: data.image,
+        description: data.description,
+        style: data.style,
+        color: data.color,
+        length: data.length,
+        material: data.material,
+        type: data.type,
+      });
     }
     setIsFormOpen(false);
     setEditingProduct(undefined);
   };
+  
+  const getStatus = (stock: number): 'In Stock' | 'Out of Stock' | 'Low Stock' => {
+      if (stock === 0) return 'Out of Stock';
+      if (stock > 0 && stock <= 5) return 'Low Stock';
+      return 'In Stock';
+  }
 
   return (
     <>
@@ -96,7 +96,7 @@ export default function ProductsPage() {
             </TableHeader>
             <TableBody>
               {products.map((item) => (
-                <TableRow key={item.sku}>
+                <TableRow key={item.id}>
                   <TableCell className="hidden sm:table-cell">
                     <Image 
                       src={item.image || "https://placehold.co/60x80"}
@@ -107,17 +107,17 @@ export default function ProductsPage() {
                     />
                   </TableCell>
                   <TableCell className="font-medium">{item.name}</TableCell>
-                  <TableCell>{item.sku}</TableCell>
-                  <TableCell>{item.stock}</TableCell>
+                  <TableCell>{item.id}</TableCell>
+                  <TableCell>{(item as any).stock ?? 10}</TableCell>
                   <TableCell>
                     <Badge 
                       variant={
-                          item.status === 'In Stock' ? 'secondary' :
-                          item.status === 'Low Stock' ? 'default' : 'destructive'
+                          getStatus((item as any).stock ?? 10) === 'In Stock' ? 'secondary' :
+                          getStatus((item as any).stock ?? 10) === 'Low Stock' ? 'default' : 'destructive'
                       }
-                      className={item.status === 'Low Stock' ? 'bg-yellow-500 text-white' : ''}
+                      className={getStatus((item as any).stock ?? 10) === 'Low Stock' ? 'bg-yellow-500 text-white' : ''}
                     >
-                      {item.status}
+                      {getStatus((item as any).stock ?? 10)}
                     </Badge>
                   </TableCell>
                   <TableCell className="text-right">

@@ -1,17 +1,19 @@
 
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { products } from '@/lib/products';
 import ProductCard from '@/components/product/product-card';
 import Filters from '@/components/shop/filters';
 import type { Wig } from '@/lib/types';
 import Breadcrumb from '@/components/layout/breadcrumb';
 import { Button } from '@/components/ui/button';
+import { useProducts } from '@/context/product-context';
 
 export default function ShopPage() {
+  const { products } = useProducts();
   const searchParams = useSearchParams();
   const router = useRouter();
   const [filteredProducts, setFilteredProducts] = useState<Wig[]>(products);
@@ -90,7 +92,7 @@ export default function ShopPage() {
 
 
     setFilteredProducts(tempProducts);
-  }, [searchParams]);
+  }, [searchParams, products]);
   
   const initialSearch = searchParams.get('search') || '';
   
@@ -135,7 +137,7 @@ export default function ShopPage() {
     
     setIsEmptyCategory(categoryIsEmpty);
     setFilteredProducts(tempProducts);
-  }, [searchParams, router]);
+  }, [searchParams, router, products]);
 
   return (
     <div className="container py-8">

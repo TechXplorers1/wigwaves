@@ -10,6 +10,7 @@ import { AuthProvider } from '@/context/auth-context';
 import { FirebaseClientProvider } from '@/firebase';
 import AppLayout from '@/components/layout/app-layout';
 import { ThemeProvider } from '@/context/theme-provider';
+import { ProductProvider } from '@/context/product-context';
 
 // Using a variable for metadata to be compatible with 'use client'
 const metadata: Metadata = {
@@ -45,12 +46,14 @@ export default function RootLayout({
         >
           <FirebaseClientProvider>
             <AuthProvider>
-              <CartProvider>
-                  <AppLayout>
-                      {children}
-                  </AppLayout>
-                <Toaster />
-              </CartProvider>
+              <ProductProvider>
+                <CartProvider>
+                    <AppLayout>
+                        {children}
+                    </AppLayout>
+                  <Toaster />
+                </CartProvider>
+              </ProductProvider>
             </AuthProvider>
           </FirebaseClientProvider>
         </ThemeProvider>

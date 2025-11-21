@@ -8,10 +8,12 @@ import { ArrowRight, ShoppingCart as ShoppingCartIcon, PlayCircle, Quote } from 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { products } from "@/lib/products";
 import TestimonialCarousel from "@/components/testimonial-carousel";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useProducts } from "@/context/product-context";
+import { useCart } from "@/context/cart-context";
+import { useToast } from "@/hooks/use-toast";
 
 const categories = [
   { name: 'Wigs', image: 'https://www.atozhair.net/wp-content/uploads/2021/03/women-natural-hair-wig-500x500-1.jpg', href: '/shop?category=wigs' },
@@ -47,7 +49,18 @@ const heroItems = [
 ];
 
 export default function Home() {
+  const { products } = useProducts();
+  const { addToCart } = useCart();
+  const { toast } = useToast();
   const featuredProducts = products.slice(0, 8);
+
+  const handleAddToCart = (product: any) => {
+    addToCart(product, 1);
+    toast({
+      title: "Added to cart",
+      description: `${product.name} has been added to your cart.`,
+    });
+  };
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
@@ -149,7 +162,7 @@ export default function Home() {
                       </CardContent>
                       <CardFooter className="flex flex-col items-center gap-2 p-4 pt-0">
                           <p className="font-bold text-lg">${product.price.toFixed(2)}</p>
-                          <Button size="sm" variant="outline" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                          <Button size="sm" variant="outline" className="w-full bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => handleAddToCart(product)}>
                               <ShoppingCartIcon className="mr-2 h-4 w-4" /> Add
                           </Button>
                       </CardFooter>
