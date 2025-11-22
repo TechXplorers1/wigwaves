@@ -36,7 +36,12 @@ export default function ShopPage() {
             tempProducts = products.filter(p => p.isNew);
         } else {
             const categorySingular = category.endsWith('s') ? category.slice(0, -1) : category;
-            tempProducts = tempProducts.filter(p => p.name.toLowerCase().includes(categorySingular));
+            tempProducts = tempProducts.filter(p => {
+                if (categorySingular === 'extension') {
+                    return p.name.toLowerCase().includes('extension');
+                }
+                return p.type === categorySingular;
+            });
         }
     }
 
