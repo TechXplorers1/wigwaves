@@ -2,7 +2,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import { useFirestore, useCollection } from '@/firebase';
 import type { Wig } from '@/lib/types';
 import { errorEmitter } from '@/firebase/error-emitter';
@@ -12,6 +12,7 @@ interface ProductContextType {
   products: Wig[];
   addProduct: (product: Omit<Wig, 'id' | 'isNew'>) => void;
   updateProduct: (product: Wig) => void;
+  deleteProduct: (productId: string) => void;
   loading: boolean;
 }
 
@@ -48,8 +49,19 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const deleteProduct = (productId: string) => {
+    const productRef = doc(firestore, 'products', productId);
+    deleteDoc(productRef).catch(async (serverError) => {
+      const permissionError = new FirestorePermissionError({
+        path: productRef.path,
+        operation: 'delete',
+      });
+      errorEmitter.emit('permission-error', permissionError);
+    });
+  };
+
   return (
-    <ProductContext.Provider value={{ products: products || [], addProduct, updateProduct, loading }}>
+    <ProductContext.Provider value={{ products: products || [], addProduct, updateProduct, deleteProduct, loading }}>
       {children}
     </ProductContext.Provider>
   );

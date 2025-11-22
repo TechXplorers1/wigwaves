@@ -19,16 +19,30 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { ProductForm } from '@/components/admin/product-form';
 import Image from 'next/image';
 import { useProducts } from '@/context/product-context';
 import type { Wig as Product } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useToast } from '@/hooks/use-toast';
 
 export default function ProductsPage() {
-  const { products, addProduct, updateProduct, loading } = useProducts();
+  const { products, addProduct, updateProduct, deleteProduct, loading } = useProducts();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | undefined>(undefined);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [productToDelete, setProductToDelete] = useState<Product | null>(null);
+  const { toast } = useToast();
 
   const handleAddProduct = () => {
     setEditingProduct(undefined);
@@ -38,6 +52,23 @@ export default function ProductsPage() {
   const handleEditProduct = (product: Product) => {
     setEditingProduct(product);
     setIsFormOpen(true);
+  };
+
+  const handleOpenDeleteDialog = (product: Product) => {
+    setProductToDelete(product);
+    setIsDeleteDialogOpen(true);
+  };
+
+  const handleDeleteProduct = () => {
+    if (productToDelete) {
+      deleteProduct(productToDelete.id);
+      toast({
+        title: 'Product Deleted',
+        description: `"${productToDelete.name}" has been successfully deleted.`,
+      });
+      setIsDeleteDialogOpen(false);
+      setProductToDelete(null);
+    }
   };
 
   const handleFormSubmit = (data: Omit<Product, 'id'>) => {
@@ -120,9 +151,12 @@ export default function ProductsPage() {
                       {getStatus((item as any).stock ?? 10)}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="text-right space-x-2">
                     <Button variant="outline" size="sm" onClick={() => handleEditProduct(item)}>
                       Edit
+                    </Button>
+                     <Button variant="destructive" size="sm" onClick={() => handleOpenDeleteDialog(item)}>
+                      Delete
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -139,6 +173,22 @@ export default function ProductsPage() {
         onSubmit={handleFormSubmit}
         product={editingProduct}
       />
+
+      <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete the
+              product "{productToDelete?.name}" from the database.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteProduct}>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 }
