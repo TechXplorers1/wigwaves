@@ -2,40 +2,54 @@
 'use client';
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
+import { useFirestore, useCollection } from '@/firebase';
 import type { Wig } from '@/lib/types';
-import { products as initialProductsData } from '@/lib/products';
+import { errorEmitter } from '@/firebase/error-emitter';
+import { FirestorePermissionError } from '@/firebase/errors';
 
 interface ProductContextType {
   products: Wig[];
   addProduct: (product: Omit<Wig, 'id' | 'isNew'>) => void;
   updateProduct: (product: Wig) => void;
+  loading: boolean;
 }
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 export const ProductProvider = ({ children }: { children: ReactNode }) => {
-  const [products, setProducts] = useState<Wig[]>(initialProductsData);
+  const firestore = useFirestore();
+  const productsCollection = collection(firestore, 'products');
+
+  const { data: products, loading } = useCollection<Wig>(productsCollection);
 
   const addProduct = (product: Omit<Wig, 'id' | 'isNew'>) => {
-    setProducts(prevProducts => {
-        const newProduct: Wig = {
-            ...product,
-            // Generate a more unique ID for the SKU
-            id: `SKU-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-            isNew: true,
-        };
-        return [newProduct, ...prevProducts];
+    const newProduct = { ...product, isNew: true };
+    addDoc(productsCollection, newProduct).catch(async (serverError) => {
+      const permissionError = new FirestorePermissionError({
+        path: productsCollection.path,
+        operation: 'create',
+        requestResourceData: newProduct,
+      });
+      errorEmitter.emit('permission-error', permissionError);
     });
   };
 
   const updateProduct = (updatedProduct: Wig) => {
-    setProducts(prevProducts =>
-        prevProducts.map(p => p.id === updatedProduct.id ? updatedProduct : p)
-    );
+    const productRef = doc(firestore, 'products', updatedProduct.id);
+    const { id, ...productData } = updatedProduct;
+    updateDoc(productRef, productData).catch(async (serverError) => {
+      const permissionError = new FirestorePermissionError({
+        path: productRef.path,
+        operation: 'update',
+        requestResourceData: productData,
+      });
+      errorEmitter.emit('permission-error', permissionError);
+    });
   };
 
   return (
-    <ProductContext.Provider value={{ products, addProduct, updateProduct }}>
+    <ProductContext.Provider value={{ products: products || [], addProduct, updateProduct, loading }}>
       {children}
     </ProductContext.Provider>
   );

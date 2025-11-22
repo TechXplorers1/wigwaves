@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useProducts } from "@/context/product-context";
 import { useCart } from "@/context/cart-context";
 import { useToast } from "@/hooks/use-toast";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const categories = [
   { name: 'Wigs', image: 'https://www.atozhair.net/wp-content/uploads/2021/03/women-natural-hair-wig-500x500-1.jpg', href: '/shop?category=wigs' },
@@ -49,7 +50,7 @@ const heroItems = [
 ];
 
 export default function Home() {
-  const { products } = useProducts();
+  const { products, loading: productsLoading } = useProducts();
   const { addToCart } = useCart();
   const { toast } = useToast();
   const featuredProducts = products.slice(0, 8);
@@ -136,6 +137,24 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Products</h2>
           </div>
+          {productsLoading ? (
+            <div className="w-full max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
+              {[...Array(4)].map((_, i) => (
+                <Card key={i}>
+                  <CardHeader className="p-0">
+                    <Skeleton className="aspect-[3/4] rounded-t-lg" />
+                  </CardHeader>
+                  <CardContent className="p-4 text-center">
+                    <Skeleton className="h-5 w-3/4 mx-auto" />
+                  </CardContent>
+                  <CardFooter className="flex flex-col items-center gap-2 p-4 pt-0">
+                    <Skeleton className="h-7 w-1/2" />
+                    <Skeleton className="h-9 w-full" />
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          ) : (
            <Carousel
               opts={{
                 align: "start",
@@ -173,6 +192,7 @@ export default function Home() {
               <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
               <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
             </Carousel>
+            )}
              <div className="text-center mt-8">
               <Button asChild size="lg">
                 <Link href="/shop">View All Products</Link>

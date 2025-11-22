@@ -23,9 +23,10 @@ import { ProductForm } from '@/components/admin/product-form';
 import Image from 'next/image';
 import { useProducts } from '@/context/product-context';
 import type { Wig as Product } from '@/lib/types';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function ProductsPage() {
-  const { products, addProduct, updateProduct } = useProducts();
+  const { products, addProduct, updateProduct, loading } = useProducts();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | undefined>(undefined);
 
@@ -41,10 +42,8 @@ export default function ProductsPage() {
 
   const handleFormSubmit = (data: Omit<Product, 'id'>) => {
     if (editingProduct) {
-      // Logic for updating an existing product
       updateProduct({ ...editingProduct, ...data });
     } else {
-      // Logic for adding a new product
       addProduct(data);
     }
     setIsFormOpen(false);
@@ -70,6 +69,20 @@ export default function ProductsPage() {
           <div className="mb-4 flex justify-end">
               <Button onClick={handleAddProduct}>Add Product</Button>
           </div>
+          {loading ? (
+            <div className="space-y-4">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="flex items-center space-x-4">
+                  <Skeleton className="h-16 w-16 rounded-md" />
+                  <div className="space-y-2 flex-1">
+                    <Skeleton className="h-4 w-3/4" />
+                    <Skeleton className="h-4 w-1/2" />
+                  </div>
+                  <Skeleton className="h-8 w-20" />
+                </div>
+              ))}
+            </div>
+          ) : (
           <Table>
             <TableHeader>
               <TableRow>
@@ -116,6 +129,7 @@ export default function ProductsPage() {
               ))}
             </TableBody>
           </Table>
+          )}
         </CardContent>
       </Card>
 

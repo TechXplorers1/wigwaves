@@ -16,6 +16,7 @@ export const products: Wig[] = [
     length: 'Long',
     material: 'Synthetic',
     type: 'wig',
+    stock: 10,
   },
   {
     id: 'w2',
@@ -28,6 +29,7 @@ export const products: Wig[] = [
     length: 'Short',
     material: 'Human Hair',
     type: 'wig',
+    stock: 10,
   },
   {
     id: 'w3',
@@ -40,6 +42,7 @@ export const products: Wig[] = [
     length: 'Medium',
     material: 'Synthetic',
     type: 'wig',
+    stock: 10,
   },
   {
     id: 'w4',
@@ -52,6 +55,7 @@ export const products: Wig[] = [
     length: 'Long',
     material: 'Human Hair',
     type: 'wig',
+    stock: 10,
   },
   {
     id: 'w5',
@@ -64,6 +68,7 @@ export const products: Wig[] = [
     length: 'Short',
     material: 'Synthetic',
     type: 'wig',
+    stock: 10,
   },
   {
     id: 'w6',
@@ -76,6 +81,7 @@ export const products: Wig[] = [
     length: 'Medium',
     material: 'Synthetic',
     type: 'wig',
+    stock: 10,
   },
   {
     id: 'w7',
@@ -88,6 +94,7 @@ export const products: Wig[] = [
     length: 'Long',
     material: 'Human Hair',
     type: 'wig',
+    stock: 10,
   },
   {
     id: 'w13',
@@ -101,6 +108,7 @@ export const products: Wig[] = [
     material: 'Synthetic',
     isNew: true,
     type: 'extension',
+    stock: 10,
   },
   {
     id: 'w14',
@@ -114,6 +122,7 @@ export const products: Wig[] = [
     material: 'Human Hair',
     isNew: true,
     type: 'extension',
+    stock: 10,
   },
   {
     id: 'w15',
@@ -127,6 +136,7 @@ export const products: Wig[] = [
     material: 'Synthetic',
     isNew: true,
     type: 'extension',
+    stock: 10,
   },
   {
     id: 'w16',
@@ -140,6 +150,7 @@ export const products: Wig[] = [
     material: 'Human Hair',
     isNew: true,
     type: 'toupee',
+    stock: 10,
   },
   {
     id: 'w17',
@@ -153,6 +164,7 @@ export const products: Wig[] = [
     material: 'Synthetic',
     isNew: true,
     type: 'toupee',
+    stock: 10,
   },
   {
     id: 'w18',
@@ -166,5 +178,6 @@ export const products: Wig[] = [
     material: 'Human Hair',
     isNew: true,
     type: 'toupee',
+    stock: 10,
   }
 ];

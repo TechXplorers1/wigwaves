@@ -11,6 +11,7 @@ export type Wig = {
   material: 'Human Hair' | 'Synthetic';
   isNew?: boolean;
   type?: 'wig' | 'extension' | 'toupee';
+  stock?: number;
 };
 
 export type CartItem = Wig & {

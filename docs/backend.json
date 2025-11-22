@@ -30,6 +30,25 @@
         }
       },
       "required": ["uid", "email", "role"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Represents a product in the store.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "image": { "type": "string", "format": "uri" },
+        "description": { "type": "string" },
+        "style": { "type": "string", "enum": ["Straight", "Wavy", "Curly", "Pixie", "Bob"] },
+        "color": { "type": "string", "enum": ["Blonde", "Brunette", "Black", "Red", "Grey", "Pastel"] },
+        "length": { "type": "string", "enum": ["Short", "Medium", "Long"] },
+        "material": { "type": "string", "enum": ["Human Hair", "Synthetic"] },
+        "isNew": { "type": "boolean" },
+        "type": { "type": "string", "enum": ["wig", "extension", "toupee"] },
+        "stock": { "type": "number" }
+      },
+      "required": ["name", "price", "image", "description", "style", "color", "length", "material", "stock"]
     }
   },
   "auth": {
@@ -41,6 +60,12 @@
         "$ref": "#/entities/UserProfile"
       },
       "description": "Stores user profile information."
+    },
+    "/products/{productId}": {
+        "schema": {
+            "$ref": "#/entities/Product"
+        },
+        "description": "Stores all products for the e-commerce store."
     }
   }
 }
