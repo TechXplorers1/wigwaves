@@ -101,6 +101,7 @@ export default function ShopPage() {
     const style = searchParams.get('style');
     const lengthParam = searchParams.get('length');
     const capSizeParam = searchParams.get('cap_size');
+    const search = searchParams.get('search');
     
     let tempProducts = [...products];
     let categoryIsEmpty = false;
@@ -133,6 +134,10 @@ export default function ShopPage() {
 
     if (capSizeParam) {
       // For now, we just land on the shop page, no pre-filtering is done on the products listed
+    }
+
+    if (search) {
+      tempProducts = tempProducts.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
     }
     
     setIsEmptyCategory(categoryIsEmpty);
