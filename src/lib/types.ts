@@ -1,4 +1,6 @@
 
+import type { FieldValue } from "firebase/firestore";
+
 export type Wig = {
   id: string;
   name: string;
@@ -26,3 +28,29 @@ export type User = {
   photoURL?: string | null;
   role: 'admin' | 'user';
 };
+
+export type OrderItem = {
+    id: string;
+    name: string;
+    price: number;
+    quantity: number;
+    image: string;
+}
+
+export type CustomerInfo = {
+    name: string;
+    email: string;
+    address: string;
+    city: string;
+    zip: string;
+}
+
+export type Order = {
+    id: string;
+    userId: string;
+    items: OrderItem[];
+    total: number;
+    status: 'Pending' | 'Processing' | 'Shipped' | 'Delivered' | 'Canceled';
+    customerInfo: CustomerInfo;
+    createdAt: any;
+}

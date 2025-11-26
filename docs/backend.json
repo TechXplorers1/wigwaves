@@ -49,6 +49,43 @@
         "stock": { "type": "number" }
       },
       "required": ["name", "price", "image", "description", "style", "color", "length", "material", "stock"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Represents a customer's order.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "price": { "type": "number" },
+              "quantity": { "type": "number" },
+              "image": { "type": "string" }
+            },
+            "required": ["id", "name", "price", "quantity", "image"]
+          }
+        },
+        "total": { "type": "number" },
+        "status": { "type": "string", "enum": ["Pending", "Processing", "Shipped", "Delivered", "Canceled"]},
+        "customerInfo": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "email": { "type": "string" },
+            "address": { "type": "string" },
+            "city": { "type": "string" },
+            "zip": { "type": "string" }
+          },
+          "required": ["name", "email", "address"]
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "items", "total", "status", "customerInfo", "createdAt"]
     }
   },
   "auth": {
@@ -66,6 +103,12 @@
             "$ref": "#/entities/Product"
         },
         "description": "Stores all products for the e-commerce store."
+    },
+    "/orders/{orderId}": {
+      "schema": {
+        "$ref": "#/entities/Order"
+      },
+      "description": "Stores all customer orders."
     }
   }
 }

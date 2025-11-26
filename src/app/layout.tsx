@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import type { Metadata } from 'next';
@@ -11,6 +12,7 @@ import { FirebaseClientProvider } from '@/firebase';
 import AppLayout from '@/components/layout/app-layout';
 import { ThemeProvider } from '@/context/theme-provider';
 import { ProductProvider } from '@/context/product-context';
+import { OrderProvider } from '@/context/order-context';
 
 // Using a variable for metadata to be compatible with 'use client'
 const metadata: Metadata = {
@@ -47,12 +49,14 @@ export default function RootLayout({
           <FirebaseClientProvider>
             <AuthProvider>
               <ProductProvider>
-                <CartProvider>
-                    <AppLayout>
-                        {children}
-                    </AppLayout>
-                  <Toaster />
-                </CartProvider>
+                <OrderProvider>
+                  <CartProvider>
+                      <AppLayout>
+                          {children}
+                      </AppLayout>
+                    <Toaster />
+                  </CartProvider>
+                </OrderProvider>
               </ProductProvider>
             </AuthProvider>
           </FirebaseClientProvider>
