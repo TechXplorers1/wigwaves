@@ -75,6 +75,7 @@ export default function OrdersPage() {
   const approvedOrders = orders.filter(order => order.status === 'Approved');
   const packingOrders = orders.filter(order => order.status === 'Packing');
   const shippedOrders = orders.filter(order => order.status === 'Shipped');
+  const outForDeliveryOrders = orders.filter(order => order.status === 'Out for Delivery');
 
 
   const onApprove = (orderId: string) => {
@@ -87,6 +88,10 @@ export default function OrdersPage() {
 
   const onMoveToShipping = (orderId: string) => {
     updateOrderStatus(orderId, 'Shipped');
+  };
+
+  const onMoveToOutForDelivery = (orderId: string) => {
+    updateOrderStatus(orderId, 'Out for Delivery');
   };
 
   const renderOrderTable = (orders: Order[], actions?: (order: Order) => React.ReactNode) => (
@@ -231,34 +236,14 @@ export default function OrdersPage() {
             ))}
           </TabsContent>
           <TabsContent value="shipping">
-            {renderOrderTable(shippedOrders)}
+            {renderOrderTable(shippedOrders, (order) => (
+                <Button variant="outline" size="sm" onClick={() => onMoveToOutForDelivery(order.id)}>
+                    Move to Out for Delivery
+                </Button>
+            ))}
           </TabsContent>
           <TabsContent value="out-for-delivery">
-             <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="p-2 text-xs">Customer</TableHead>
-                  <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
-                  <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
-                  <TableHead className="text-right p-2 text-xs">Amount</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell className="p-2">
-                    <div className="font-medium text-xs">Liam Johnson</div>
-                    <div className="hidden text-xs text-muted-foreground md:inline">
-                      liam@example.com
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-005</TableCell>
-                  <TableCell className="hidden md:table-cell p-2 text-xs">
-                    2023-07-19
-                  </TableCell>
-                  <TableCell className="text-right p-2 text-xs">$550.00</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+             {renderOrderTable(outForDeliveryOrders)}
           </TabsContent>
           <TabsContent value="delivered">
              <Table>
