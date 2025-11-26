@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import {
@@ -68,11 +66,16 @@ const orderDetailsTabs = [
 ];
 
 export default function OrdersPage() {
-    const { orders, loading } = useOrders();
+    const { orders, loading, updateOrderStatus } = useOrders();
     const [activeTab, setActiveTab] = useState(tabs[0].value);
     const [activeTab2, setActiveTab2] = useState(orderDetailsTabs[0].value);
 
   const upcomingOrders = orders.filter(order => order.status === 'Pending');
+  const approvedOrders = orders.filter(order => order.status === 'Approved');
+
+  const onApprove = (orderId: string) => {
+    updateOrderStatus(orderId, 'Approved');
+  };
 
   const renderOrderTable = (orders: Order[], actions?: (order: Order) => React.ReactNode) => (
     <Table>
@@ -150,7 +153,7 @@ export default function OrdersPage() {
           <TabsContent value="upcoming">
              {renderOrderTable(upcomingOrders, (order) => (
                  <div className="flex flex-col sm:flex-row gap-2 justify-end">
-                  <Button variant="outline" size="sm">Approve</Button>
+                  <Button variant="outline" size="sm" onClick={() => onApprove(order.id)}>Approve</Button>
                   <Button variant="destructive" size="sm">Decline</Button>
                 </div>
              ))}
@@ -202,49 +205,7 @@ export default function OrdersPage() {
             </TabsList>
           </div>
           <TabsContent value="approved">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="p-2 text-xs">Customer</TableHead>
-                  <TableHead className="hidden sm:table-cell p-2 text-xs">Order ID</TableHead>
-                  <TableHead className="hidden md:table-cell p-2 text-xs">Date</TableHead>
-                  <TableHead className="text-right p-2 text-xs">Amount</TableHead>
-                  <TableHead className="text-center p-2 text-xs">Status</TableHead>
-                  <TableHead className="text-center p-2 text-xs">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell className="p-2">
-                    <div className="font-medium text-xs">Liam Johnson</div>
-                    <div className="hidden text-xs text-muted-foreground md:inline">
-                      liam@example.com
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell p-2 text-xs">#ORD-001</TableCell>
-                  <TableCell className="hidden md:table-cell p-2 text-xs">
-                    2023-07-15
-                  </TableCell>
-                  <TableCell className="text-right p-2 text-xs">$250.00</TableCell>
-                  <TableCell className="text-center p-2 text-xs">
-                    <Select>
-                      <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Select status" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="approve">Approve packing</SelectItem>
-                        <SelectItem value="delay">Delay packing</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                  <TableCell className="text-center p-2">
-                    <Button variant="outline" size="sm">
-                      Edit
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+            {renderOrderTable(approvedOrders)}
           </TabsContent>
           <TabsContent value="packing">
              <Table>

@@ -1,8 +1,7 @@
-
 'use client';
 
 import React, { createContext, useContext, useState, ReactNode, useEffect, useMemo } from 'react';
-import { collection, addDoc, serverTimestamp, query, where, orderBy, FieldValue } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, query, where, orderBy, FieldValue, doc, updateDoc } from 'firebase/firestore';
 import { useFirestore, useCollection } from '@/firebase';
 import type { Order } from '@/lib/types';
 import { useAuth } from './auth-context';
@@ -12,6 +11,7 @@ import { FirestorePermissionError } from '@/firebase/errors';
 interface OrderContextType {
   orders: Order[];
   addOrder: (orderData: Omit<Order, 'id' | 'createdAt'>) => Promise<void>;
+  updateOrderStatus: (orderId: string, status: Order['status']) => Promise<void>;
   loading: boolean;
 }
 
@@ -50,8 +50,21 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     }).then(() => {});
   };
 
+  const updateOrderStatus = async (orderId: string, status: Order['status']) => {
+    const orderRef = doc(firestore, 'orders', orderId);
+    await updateDoc(orderRef, { status }).catch(async (serverError) => {
+      const permissionError = new FirestorePermissionError({
+        path: orderRef.path,
+        operation: 'update',
+        requestResourceData: { status },
+      });
+      errorEmitter.emit('permission-error', permissionError);
+      throw permissionError;
+    });
+  };
+
   return (
-    <OrderContext.Provider value={{ orders: orders || [], addOrder, loading }}>
+    <OrderContext.Provider value={{ orders: orders || [], addOrder, updateOrderStatus, loading }}>
       {children}
     </OrderContext.Provider>
   );
