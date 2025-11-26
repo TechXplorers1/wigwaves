@@ -104,7 +104,7 @@ export default function OrdersPage() {
               </Badge>
             </TableCell>
             <TableCell className="hidden md:table-cell p-2 text-xs">
-              {order.createdAt ? format(new Date(order.createdAt), 'yyyy-MM-dd') : 'N/A'}
+              {order.createdAt && typeof order.createdAt.toDate === 'function' ? format(order.createdAt.toDate(), 'yyyy-MM-dd') : 'N/A'}
             </TableCell>
             <TableCell className="text-right p-2 text-xs">${order.total.toFixed(2)}</TableCell>
             {actions && <TableCell className="text-right p-2">{actions(order)}</TableCell>}
