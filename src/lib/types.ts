@@ -50,7 +50,7 @@ export type Order = {
     userId: string;
     items: OrderItem[];
     total: number;
-    status: 'Pending' | 'Processing' | 'Shipped' | 'Delivered' | 'Canceled';
+    status: 'Pending' | 'Approved' | 'Packing' | 'Shipped' | 'Delivered' | 'Canceled';
     customerInfo: CustomerInfo;
     createdAt: any;
 }
