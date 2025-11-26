@@ -52,8 +52,8 @@ export default function AdminLayout({
     { href: "/admin/dashboard", label: "Dashboard", icon: Home },
     { href: "/admin/orders", label: "Order Management", icon: ShoppingCart },
     { href: "/admin/products", label: "Products", icon: Package },
-    { href: "#", label: "Customers", icon: Users },
-    { href: "#", label: "Analytics", icon: LineChart },
+    { href: "/admin/customers", label: "Customers", icon: Users },
+    { href: "/admin/analytics", label: "Analytics", icon: LineChart },
   ];
 
   return (
@@ -153,7 +153,7 @@ export default function AdminLayout({
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
             {children}
         </main>
       </div>

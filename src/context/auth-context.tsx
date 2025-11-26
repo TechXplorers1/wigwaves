@@ -10,8 +10,9 @@ import {
   User as FirebaseUser,
   updateProfile
 } from 'firebase/auth';
-import { useAuth as useFirebaseAuth } from '@/firebase';
+import { useAuth as useFirebaseAuth, useFirestore } from '@/firebase';
 import type { User } from '@/lib/types';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 interface AuthContextType {
   user: User | null;
@@ -27,19 +28,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const auth = useFirebaseAuth();
+  const firestore = useFirestore();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        // Create a user object from authentication data only, bypassing Firestore.
-        const appUser: User = {
-          uid: firebaseUser.uid,
-          email: firebaseUser.email,
-          displayName: firebaseUser.displayName,
-          photoURL: firebaseUser.photoURL,
-          role: firebaseUser.email === 'admin@gmail.com' ? 'admin' : 'user', // Assign role based on email
-        };
-        setUser(appUser);
+        const userDocRef = doc(firestore, 'users', firebaseUser.uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (userDoc.exists()) {
+          setUser({ uid: firebaseUser.uid, ...userDoc.data() } as User);
+        } else {
+           const appUser: User = {
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+            displayName: firebaseUser.displayName,
+            photoURL: firebaseUser.photoURL,
+            role: 'user', 
+          };
+          setUser(appUser);
+        }
       } else {
         setUser(null);
       }
@@ -47,7 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
 
     return () => unsubscribe();
-  }, [auth]);
+  }, [auth, firestore]);
 
   const login = async (email: string, password: string) => {
     await signInWithEmailAndPassword(auth, email, password);
@@ -61,9 +69,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const firebaseUser = userCredential.user;
 
-    // Update the Firebase Auth profile. This does not require Firestore.
     if (firebaseUser) {
         await updateProfile(firebaseUser, { displayName: name });
+        
+        const userDocRef = doc(firestore, 'users', firebaseUser.uid);
+        await setDoc(userDocRef, {
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+            displayName: name,
+            photoURL: firebaseUser.photoURL,
+            role: 'user'
+        });
     }
   };
 

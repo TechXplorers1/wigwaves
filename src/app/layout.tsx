@@ -13,6 +13,7 @@ import AppLayout from '@/components/layout/app-layout';
 import { ThemeProvider } from '@/context/theme-provider';
 import { ProductProvider } from '@/context/product-context';
 import { OrderProvider } from '@/context/order-context';
+import { UserProvider } from '@/context/user-context';
 
 // Using a variable for metadata to be compatible with 'use client'
 const metadata: Metadata = {
@@ -49,14 +50,16 @@ export default function RootLayout({
           <FirebaseClientProvider>
             <AuthProvider>
               <ProductProvider>
-                <OrderProvider>
-                  <CartProvider>
-                      <AppLayout>
-                          {children}
-                      </AppLayout>
-                    <Toaster />
-                  </CartProvider>
-                </OrderProvider>
+                <UserProvider>
+                  <OrderProvider>
+                    <CartProvider>
+                        <AppLayout>
+                            {children}
+                        </AppLayout>
+                      <Toaster />
+                    </CartProvider>
+                  </OrderProvider>
+                </UserProvider>
               </ProductProvider>
             </AuthProvider>
           </FirebaseClientProvider>
