@@ -92,9 +92,9 @@ export default function OrdersPage() {
         {orders.map((order) => (
           <TableRow key={order.id}>
             <TableCell className="p-2">
-              <div className="font-medium text-xs">{order.customerInfo.name}</div>
+              <div className="font-medium text-xs">{order.customerInfo?.name || 'N/A'}</div>
               <div className="hidden text-xs text-muted-foreground md:inline">
-                {order.customerInfo.email}
+                {order.customerInfo?.email || 'N/A'}
               </div>
             </TableCell>
             <TableCell className="hidden sm:table-cell p-2 text-xs">{order.id}</TableCell>
@@ -104,7 +104,7 @@ export default function OrdersPage() {
               </Badge>
             </TableCell>
             <TableCell className="hidden md:table-cell p-2 text-xs">
-              {format(new Date(order.createdAt), 'yyyy-MM-dd')}
+              {order.createdAt ? format(new Date(order.createdAt), 'yyyy-MM-dd') : 'N/A'}
             </TableCell>
             <TableCell className="text-right p-2 text-xs">${order.total.toFixed(2)}</TableCell>
             {actions && <TableCell className="text-right p-2">{actions(order)}</TableCell>}
