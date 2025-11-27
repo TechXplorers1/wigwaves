@@ -16,8 +16,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useProducts } from '@/context/product-context';
+import type { Wig } from '@/lib/types';
 
 const capSizes = ["Small 21\"", "Medium 22\"", "Large 23\""];
 const lengths = ["18", "20", "22", "24", "26"];
@@ -39,7 +40,7 @@ const lengthAdjustments: { [key: string]: number } = {
 
 export default function ProductDetailPage() {
   const params = useParams();
-  const { id } = params;
+  const id = params.id as string;
   const { products } = useProducts();
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
@@ -47,9 +48,15 @@ export default function ProductDetailPage() {
   const [selectedLength, setSelectedLength] = useState(lengths[2]);
   const [currentPrice, setCurrentPrice] = useState(0);
 
+  const product = useMemo(() => products.find(p => p.id === id), [products, id]);
 
-  const product = products.find(p => p.id === id);
-  const relatedProducts = products.filter(p => p.style === product?.style && p.id !== product?.id).slice(0, 3);
+  const relatedProducts = useMemo(() => {
+    if (!product) return [];
+    const productStyle = product.style;
+    return products
+      .filter(p => p.style === productStyle && p.id !== product.id)
+      .slice(0, 3);
+  }, [products, product]);
 
   useEffect(() => {
     if (product) {
@@ -239,5 +246,3 @@ export default function ProductDetailPage() {
     </div>
   );
 }
-
-    
