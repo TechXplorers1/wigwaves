@@ -110,19 +110,19 @@ export default function Header() {
   const closeCart = () => setIsCartOpen(false);
   
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsMenuOpen(false);
-
-    if (isHomePage && href.startsWith('/#')) {
-      const id = href.substring(2);
-      const element = document.getElementById(id);
-      if (element) {
-        window.scrollTo({
-          top: element.offsetTop - 80, // Adjust for header height
-          behavior: 'smooth',
-        });
-      }
+    if (isHomePage) {
+        e.preventDefault();
+        setIsMenuOpen(false);
+        const id = href.substring(2);
+        const element = document.getElementById(id);
+        if (element) {
+            window.scrollTo({
+            top: element.offsetTop - 80, // Adjust for header height
+            behavior: 'smooth',
+            });
+        }
     } else {
+        // If not on home page, navigate to home page with hash
         router.push(href);
     }
   };
@@ -157,7 +157,7 @@ export default function Header() {
                       <Truck className="w-4 h-4" />
                       <Link href="#" className="hover:text-primary">Track Order</Link>
                   </div>
-                   {user ? (
+                   {isClient && user ? (
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button variant="ghost" className="h-auto p-0 flex items-center gap-1.5 text-xs hover:bg-transparent hover:text-primary">
@@ -190,14 +190,14 @@ export default function Header() {
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
-                    ) : (
+                    ) : isClient ? (
                       <div className="flex items-center gap-1.5">
                           <User className="w-4 h-4" />
                           <Link href="/login" className="hover:text-primary">Log In</Link>
                           <span className="opacity-50">|</span>
                           <Link href="/register" className="hover:text-primary">Sign Up</Link>
                       </div>
-                    )}
+                    ) : null }
               </div>
           </div>
       </div>
@@ -262,7 +262,7 @@ export default function Header() {
                     onClick={(e) => handleNavClick(e, link.href)}
                     className={cn(
                         'text-sm font-medium transition-colors hover:text-primary',
-                        activeLink === link.href ? 'text-primary font-bold' : 'text-foreground'
+                        (isHomePage ? activeLink === link.href : pathname === link.href) ? 'text-primary font-bold' : 'text-foreground'
                     )}
                 >
                     {link.name}
