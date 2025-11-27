@@ -114,11 +114,10 @@ export default function Header() {
           behavior: 'smooth',
         });
       }
-      setIsMenuOpen(false);
     } else {
-      router.push(href);
-      setIsMenuOpen(false);
+        // For external pages, Next.js Link will handle it
     }
+    setIsMenuOpen(false);
   };
 
   return (
@@ -198,7 +197,7 @@ export default function Header() {
     <header className="border-b">
       <div className="container flex h-16 sm:h-20 items-center">
         <div className="mr-6 flex items-center">
-            <Link href="/"><Logo /></Link>
+            <Logo />
         </div>
         
         <div className="flex items-center lg:hidden ml-auto">
@@ -210,7 +209,7 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="left" className='w-full max-w-sm p-0'>
                 <SheetHeader className="p-6 pb-0">
-                  <SheetTitle><Link href="/"><Logo /></Link></SheetTitle>
+                  <SheetTitle><Link href="/" onClick={() => setIsMenuOpen(false)}><Logo /></Link></SheetTitle>
                   <SheetDescription className="sr-only">Main mobile navigation menu</SheetDescription>
                 </SheetHeader>
                 <div className="p-6">
