@@ -58,7 +58,7 @@ export default function Header() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            setActiveLink(`/#${entry.target.id}`);
+            setActiveLink(`/${entry.target.id === 'home' ? '' : '#' + entry.target.id}`);
           }
         });
       }, { threshold: 0.5, rootMargin: "-100px 0px -50% 0px" });
@@ -73,6 +73,13 @@ export default function Header() {
           }
         }
       });
+      
+      const homeElement = document.getElementById('home');
+      if (homeElement) {
+        sectionsRef.current['/'] = homeElement;
+        observer.observe(homeElement);
+      }
+
 
       return () => {
         Object.values(sectionsRef.current).forEach(element => {
@@ -81,9 +88,11 @@ export default function Header() {
           }
         });
       };
+    } else {
+        setActiveLink(pathname);
     }
 
-  }, [isHomePage]);
+  }, [isHomePage, pathname]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,8 +110,10 @@ export default function Header() {
   const closeCart = () => setIsCartOpen(false);
   
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+
     if (isHomePage && href.startsWith('/#')) {
-      e.preventDefault();
       const id = href.substring(2);
       const element = document.getElementById(id);
       if (element) {
@@ -111,10 +122,8 @@ export default function Header() {
           behavior: 'smooth',
         });
       }
-      setIsMenuOpen(false);
-    } else if (!isHomePage && href.startsWith('/#')) {
-        // If not on home page, just let the Link component handle navigation
-        setIsMenuOpen(false);
+    } else {
+        router.push(href);
     }
   };
 
@@ -253,7 +262,7 @@ export default function Header() {
                     onClick={(e) => handleNavClick(e, link.href)}
                     className={cn(
                         'text-sm font-medium transition-colors hover:text-primary',
-                        (isHomePage && activeLink === link.href) ? 'text-primary font-bold' : 'text-foreground'
+                        activeLink === link.href ? 'text-primary font-bold' : 'text-foreground'
                     )}
                 >
                     {link.name}
