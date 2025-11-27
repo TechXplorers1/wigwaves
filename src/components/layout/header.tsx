@@ -48,38 +48,42 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('');
   const sectionsRef = useRef<{[key: string]: HTMLElement | null}>({});
+  
+  const isHomePage = pathname === '/';
 
   useEffect(() => {
     setIsClient(true);
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveLink(`/#${entry.target.id}`);
+    if (isHomePage) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveLink(`/#${entry.target.id}`);
+          }
+        });
+      }, { threshold: 0.5, rootMargin: "-100px 0px -50% 0px" });
+
+      PRIMARY_NAV_LINKS.forEach(link => {
+        const id = link.href.split('#')[1];
+        if (id) {
+          const element = document.getElementById(id);
+          if (element) {
+            sectionsRef.current[link.href] = element;
+            observer.observe(element);
+          }
         }
       });
-    }, { threshold: 0.5, rootMargin: "-100px 0px -50% 0px" });
 
-    PRIMARY_NAV_LINKS.forEach(link => {
-      const id = link.href.split('#')[1];
-      if (id) {
-        const element = document.getElementById(id);
-        if (element) {
-          sectionsRef.current[link.href] = element;
-          observer.observe(element);
-        }
-      }
-    });
+      return () => {
+        Object.values(sectionsRef.current).forEach(element => {
+          if (element) {
+            observer.unobserve(element);
+          }
+        });
+      };
+    }
 
-    return () => {
-      Object.values(sectionsRef.current).forEach(element => {
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
-    };
-
-  }, []);
+  }, [isHomePage]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,7 +101,7 @@ export default function Header() {
   const closeCart = () => setIsCartOpen(false);
   
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('/#')) {
+    if (isHomePage && href.startsWith('/#')) {
       e.preventDefault();
       const id = href.substring(2);
       const element = document.getElementById(id);
@@ -108,6 +112,9 @@ export default function Header() {
         });
       }
       setIsMenuOpen(false);
+    } else if (!isHomePage && href.startsWith('/#')) {
+        // If not on home page, just let the Link component handle navigation
+        setIsMenuOpen(false);
     }
   };
 
@@ -246,7 +253,7 @@ export default function Header() {
                     onClick={(e) => handleNavClick(e, link.href)}
                     className={cn(
                         'text-sm font-medium transition-colors hover:text-primary',
-                        (activeLink === link.href) ? 'text-primary font-bold' : 'text-foreground'
+                        (isHomePage && activeLink === link.href) ? 'text-primary font-bold' : 'text-foreground'
                     )}
                 >
                     {link.name}
