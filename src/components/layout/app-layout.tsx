@@ -11,13 +11,12 @@ export default function AppLayout({
 }>) {
   const pathname = usePathname();
   const isAdminRoute = pathname.startsWith('/admin');
-  const isShopPage = pathname === '/shop';
 
   return (
     <div className="relative flex min-h-screen flex-col">
-        {!isAdminRoute && !isShopPage && <Header />}
+        {!isAdminRoute && <Header />}
         <main className={isAdminRoute ? '' : 'flex-1'}>{children}</main>
-        {!isAdminRoute && !isShopPage && <Footer />}
+        {!isAdminRoute && <Footer />}
     </div>
   );
 }
