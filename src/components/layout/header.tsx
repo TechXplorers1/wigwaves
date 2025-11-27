@@ -58,7 +58,8 @@ export default function Header() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            setActiveLink(`/${entry.target.id === 'home' ? '' : '#' + entry.target.id}`);
+            const sectionId = `/#${entry.target.id}`;
+            setActiveLink(sectionId === '/#home' ? '/' : sectionId);
           }
         });
       }, { threshold: 0.5, rootMargin: "-100px 0px -50% 0px" });
@@ -74,13 +75,6 @@ export default function Header() {
         }
       });
       
-      const homeElement = document.getElementById('home');
-      if (homeElement) {
-        sectionsRef.current['/'] = homeElement;
-        observer.observe(homeElement);
-      }
-
-
       return () => {
         Object.values(sectionsRef.current).forEach(element => {
           if (element) {
@@ -110,20 +104,20 @@ export default function Header() {
   const closeCart = () => setIsCartOpen(false);
   
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (isHomePage) {
-        e.preventDefault();
-        setIsMenuOpen(false);
-        const id = href.substring(2);
-        const element = document.getElementById(id);
-        if (element) {
-            window.scrollTo({
-            top: element.offsetTop - 80, // Adjust for header height
-            behavior: 'smooth',
-            });
-        }
+    if (isHomePage && href.includes('#')) {
+      e.preventDefault();
+      const id = href.split('#')[1];
+      const element = document.getElementById(id);
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop - 80, // Adjust for header height
+          behavior: 'smooth',
+        });
+      }
+      setIsMenuOpen(false);
     } else {
-        // If not on home page, navigate to home page with hash
-        router.push(href);
+      router.push(href);
+      setIsMenuOpen(false);
     }
   };
 
@@ -204,7 +198,7 @@ export default function Header() {
     <header className="border-b">
       <div className="container flex h-16 sm:h-20 items-center">
         <div className="mr-6 flex items-center">
-            <Logo />
+            <Link href="/"><Logo /></Link>
         </div>
         
         <div className="flex items-center lg:hidden ml-auto">
@@ -216,7 +210,7 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="left" className='w-full max-w-sm p-0'>
                 <SheetHeader className="p-6 pb-0">
-                  <SheetTitle><Logo /></SheetTitle>
+                  <SheetTitle><Link href="/"><Logo /></Link></SheetTitle>
                   <SheetDescription className="sr-only">Main mobile navigation menu</SheetDescription>
                 </SheetHeader>
                 <div className="p-6">
@@ -241,7 +235,7 @@ export default function Header() {
                         onClick={(e) => handleNavClick(e, link.href)}
                         className={cn(
                         'transition-colors hover:text-primary py-2',
-                        activeLink === link.href ? 'text-primary' : 'text-muted-foreground'
+                        (isHomePage && (activeLink === link.href || (link.href === '/#home' && activeLink === '/'))) ? 'text-primary' : 'text-muted-foreground'
                         )}
                     >
                         {link.name}
@@ -262,7 +256,7 @@ export default function Header() {
                     onClick={(e) => handleNavClick(e, link.href)}
                     className={cn(
                         'text-sm font-medium transition-colors hover:text-primary',
-                        (isHomePage ? activeLink === link.href : pathname === link.href) ? 'text-primary font-bold' : 'text-foreground'
+                        (isHomePage && (activeLink === link.href || (link.href === '/#home' && activeLink === '/'))) ? 'text-primary font-bold' : 'text-foreground'
                     )}
                 >
                     {link.name}
@@ -270,7 +264,7 @@ export default function Header() {
             ))}
         </nav>
         
-        <div className="hidden lg:flex flex-initial items-center justify-end gap-2">
+        <div className="flex flex-initial items-center justify-end gap-2">
             <form onSubmit={handleSearch} className="relative w-full max-w-[15rem]">
                 <Input
                     type="search"
