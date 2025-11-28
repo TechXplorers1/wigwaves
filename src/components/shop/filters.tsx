@@ -51,7 +51,6 @@ const Filters = memo(function Filters({
 
   const handleClearFilters = () => {
     setFilters(initialFilters);
-    onFilterChange(initialFilters);
   };
   
 
