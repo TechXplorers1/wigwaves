@@ -6,7 +6,7 @@ export const PRIMARY_NAV_LINKS = [
   { name: 'Products', href: '/#products' },
   { name: 'About Us', href: '/#about' },
   { name: 'Gallery', href: '/#gallery' },
-  { name: 'Videos', href: '/#videos' },
+  // { name: 'Videos', href: '/#videos' },
   { name: 'Testimonials', href: '/#testimonials' },
   { name: 'Contact Us', href: '/#contact' },
 ];

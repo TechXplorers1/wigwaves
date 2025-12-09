@@ -14,7 +14,9 @@ export default function Footer() {
             <MapPin className='w-7 h-7 text-primary mb-2'/>
             <h3 className="font-semibold text-lg">Our Office Address</h3>
             <address className="not-italic text-muted-foreground">
-                Eleganza House, 15B Joseph Street, Marina, Lagos, Nigeria
+2310 Maple Ridge Road, 
+Atlanta, GA 30309, 
+United States
             </address>
           </div>
            <div className="flex flex-col items-center text-center gap-2">

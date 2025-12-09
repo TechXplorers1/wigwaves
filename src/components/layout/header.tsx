@@ -196,9 +196,10 @@ export default function Header() {
       </div>
     <header className="border-b">
       <div className="container flex h-16 sm:h-20 items-center">
-        <div className="mr-6 flex items-center">
-            <Logo />
-        </div>
+       <div className="mr-6 flex items-center scale-110 sm:scale-125">
+  <Logo />
+</div>
+
         
         <div className="flex items-center lg:hidden ml-auto">
            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
@@ -209,7 +210,14 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="left" className='w-full max-w-sm p-0'>
                 <SheetHeader className="p-6 pb-0">
-                  <SheetTitle><Link href="/" onClick={() => setIsMenuOpen(false)}><Logo /></Link></SheetTitle>
+               <SheetTitle>
+  <Link href="/" onClick={() => setIsMenuOpen(false)}>
+    <span className="inline-block scale-110">
+      <Logo />
+    </span>
+  </Link>
+</SheetTitle>
+
                   <SheetDescription className="sr-only">Main mobile navigation menu</SheetDescription>
                 </SheetHeader>
                 <div className="p-6">

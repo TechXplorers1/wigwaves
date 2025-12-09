@@ -1,7 +1,6 @@
-
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useMemo } from 'react'; // ✅ Added useMemo
 import { collection, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import { useFirestore, useCollection } from '@/firebase';
 import type { Wig } from '@/lib/types';
@@ -20,7 +19,11 @@ const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const firestore = useFirestore();
-  const productsCollection = collection(firestore, 'products');
+
+  // ✅ FIX: Wrap this in useMemo so the reference stays stable across renders
+  const productsCollection = useMemo(() => {
+    return collection(firestore, 'products');
+  }, [firestore]);
 
   const { data: products, loading } = useCollection<Wig>(productsCollection);
 

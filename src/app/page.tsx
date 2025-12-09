@@ -23,20 +23,21 @@ const categories = [
 ];
 
 const galleryImages = [
-    { src: 'https://picsum.photos/seed/gallery1/600/400', alt: 'Woman applying hair extensions', hint: 'hair extensions application'},
-    { src: 'https://picsum.photos/seed/gallery2/600/400', alt: 'A collection of various hair extensions', hint: 'hair extensions display'},
-    { src: 'https://picsum.photos/seed/gallery3/600/400', alt: 'Close-up of hair extensions being fitted', hint: 'hair fitting'},
-]
+    { src: '/Woman_applying.png', alt: 'Woman applying hair extensions', hint: 'hair extensions application'},
+    { src: '/various_hair.png', alt: 'A collection of various hair extensions', hint: 'hair extensions display'},
+    { src: '/closeup_hair.png', alt: 'Close-up of hair extensions being fitted', hint: 'hair fitting'},
+];
 
 const heroItems = [
   {
-    image: "https://media.istockphoto.com/id/1281698360/photo/natural-afro-hair-wide-toothy-smile-and-expression-of-gladness-on-the-face-of-young-brown.jpg?s=612x612&w=0&k=20&c=zuINrArEtdq26QLUjsakZPY6wvjeS3k5_me_8yUzp4E=",
+     image: "https://plus.unsplash.com/premium_photo-1706377274456-885d63f5ea2a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     title: "Get The Best Quality",
     subtitle: "Hair and Wig Extensions Here",
     alt: "Woman with beautiful natural afro hair smiling",
   },
   {
-    image: "https://cdn.shopify.com/s/files/1/0598/4668/8930/files/Megan_Thee_Stallio_Hot_Girl_Summer_Tour_5_480x480.jpg?v=1717689550",
+   
+     image: "https://cdn.pixabay.com/photo/2024/01/06/15/26/ai-generated-8491587_1280.jpg",
     title: "Summer Styles Are Here",
     subtitle: "Find your perfect look for the season",
     alt: "Megan Thee Stallion on her Hot Girl Summer Tour",
@@ -238,7 +239,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="videos" className="w-full py-12 md:py-24 bg-background">
+      {/* <section id="videos" className="w-full py-12 md:py-24 bg-background">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-headline tracking-tighter">Videos</h2>
@@ -264,7 +265,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section id="testimonials" className="w-full py-12 md:py-24 bg-zinc-900 text-white">
         <div className="container px-4 md:px-6">
